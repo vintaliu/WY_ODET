@@ -1,14 +1,16 @@
-C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 1   
+C51 COMPILER V9.59.0.0   UART                                                              09/26/2022 12:26:50 PAGE 1   
 
 
-C51 COMPILER V9.52.0.0, COMPILATION OF MODULE UART
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE UART
 OBJECT MODULE PLACED IN ..\OBJ\Uart.obj
-COMPILER INVOKED BY: D:\Program Files (x86)\KeilC51-V952\C51\BIN\C51.EXE ..\Code\Uart.c OMF2 BROWSE INCDIR(..\Include) D
-                    -EBUG PRINT(..\Listings\Uart.lst) TABS(2) OBJECT(..\OBJ\Uart.obj)
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\Code\Uart.c OMF2 OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Include) DEBUG PR
+                    -INT(..\Listings\Uart.lst) TABS(2) OBJECT(..\OBJ\Uart.obj)
 
 line level    source
 
    1          #include "User_Def.h"
+*** WARNING C318 IN LINE 15 OF \lwt-workspace\X2445°´¼ü°å-µ¥Æ¬»úêÉÎùÎ¢ 2.73K 45%Õ¼¿Õ±È\Include\MC51F003A4_COMMON.h: can'
+             -t open file 'MC51F003A4.h'
    2          #include "function.h"
    3          #include "SystemInit.h"
    4          #include "Uart.h"
@@ -31,9 +33,12 @@ line level    source
   21          void UART1_SendByte(unsigned char senddata)
   22          { 
   23   1          SBUF_1 = senddata;
+*** ERROR C202 IN LINE 23 OF ..\Code\Uart.c: 'SBUF_1': undefined identifier
   24   1          /* Loop until the end of transmission */
   25   1          while (!(SCON_1 & 0x02));
+*** ERROR C202 IN LINE 25 OF ..\Code\Uart.c: 'SCON_1': undefined identifier
   26   1          CLR_TI_1();
+*** ERROR C202 IN LINE 26 OF ..\Code\Uart.c: 'SCON_1': undefined identifier
   27   1      }
   28          /*****·¢ËÍ×Ö·û´®*****/
   29          void UART1_SendString(unsigned char *Data, unsigned int len)
@@ -47,6 +52,7 @@ line level    source
   37          {
   38   1          unsigned char USART1_RX_BUF;
   39   1          USART1_RX_BUF = SBUF_1;
+*** ERROR C202 IN LINE 39 OF ..\Code\Uart.c: 'SBUF_1': undefined identifier
   40   1          return  USART1_RX_BUF;
   41   1      }
   42          
@@ -56,14 +62,14 @@ line level    source
   46   1          unsigned char ucSendCont = 0;
   47   1          Uart1SendBuf[ucSendCont++] = SendHeard1;
   48   1          Uart1SendBuf[ucSendCont++] = SendHeard2;
+C51 COMPILER V9.59.0.0   UART                                                              09/26/2022 12:26:50 PAGE 2   
+
   49   1          Uart1SendBuf[ucSendCont++] = FeedBack1;
   50   1          Uart1SendBuf[ucSendCont++] = SendTail1;
   51   1          Uart1SendBuf[ucSendCont++] = SendTail2;
   52   1          Uart1SendBuf[ucSendCont++] = SendTail3;
   53   1          Uart1SendBuf[ucSendCont++] = SendTail4;
   54   1          UART1_SendString(Uart1SendBuf, ucSendCont);
-C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 2   
-
   55   1      }
   56          
   57          //#define WaiteFbMaxTime 9
@@ -120,14 +126,14 @@ line level    source
  108   1          Uart1SendBuf[2] = ucSendCont;
  109   1          for(ucRecSendCont = 0; ucRecSendCont < ErroSendTimes; ucRecSendCont++)//·¢ËÍÎå´ÎÊý¾Ý
  110   1          {
+C51 COMPILER V9.59.0.0   UART                                                              09/26/2022 12:26:50 PAGE 3   
+
  111   2              UART1_SendString(Uart1SendBuf, ucSendCont);
  112   2              for(ucContTime = 0; ucContTime < WaiteFbMaxTime; ucContTime++)     //µÈ´ý·¢ËÍ¾ÅºÁÃë
  113   2              {
  114   3      #ifdef QianXiUart //ÑÓÊ±·¢ËÍÊý¾Ý          
  115   3                  vSendUartDelya(40);
  116   3      #else
-C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 3   
-
                           vSendUartDelya(40);
               #endif          
  119   3                  if(g_ucRecFbData)break;  //·¢ËÍ³É¹¦ÔòÌø³ö
@@ -184,14 +190,14 @@ line level    source
  170          {
  171   1      
  172   1          unsigned char ucSendCont = 0;
+C51 COMPILER V9.59.0.0   UART                                                              09/26/2022 12:26:50 PAGE 4   
+
  173   1      
  174   1      
  175   1          Uart1SendBuf[ucSendCont++] = SendHeard1;
  176   1          Uart1SendBuf[ucSendCont++] = SendHeard2;
  177   1          Uart1SendBuf[ucSendCont++] = 0;
  178   1          Uart1SendBuf[ucSendCont++] = ShowDefine;
-C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 4   
-
  179   1          Uart1SendBuf[ucSendCont++] = LedStatus;
  180   1          Uart1SendBuf[ucSendCont++] = ucStatus;
  181   1          Uart1SendBuf[ucSendCont++] = ucData;
@@ -235,8 +241,10 @@ line level    source
  219   1          Uart1SendBuf[ucSendCont++] = ReadOneByte;
  220   1          //´ÓEEPROMÖÐ¶ÁÈ¡ËÙ¶È
  221   1          clr_EA; //¹Ø±ÕËùÓÐÖÐ¶Ï£¬·ñÔò×ÜÊÇ½øÈë´®¿ÚÖÐ¶Ï
+*** ERROR C202 IN LINE 221 OF ..\Code\Uart.c: 'EA': undefined identifier
  222   1          Uart1SendBuf[ucSendCont++] = EEPROM_Byte_Read(EEPRO_One_Byte_ADDRESS);
  223   1          set_EA; //¿ªÖÐ¶Ï
+*** ERROR C202 IN LINE 223 OF ..\Code\Uart.c: 'EA': undefined identifier
  224   1          Uart1SendBuf[ucSendCont++] = SendTail1;
  225   1          Uart1SendBuf[ucSendCont++] = SendTail2;
  226   1          Uart1SendBuf[ucSendCont++] = SendTail3;
@@ -246,6 +254,8 @@ line level    source
  230   1          UART1_SendString(Uart1SendBuf, ucSendCont);
  231   1      
  232   1      }
+C51 COMPILER V9.59.0.0   UART                                                              09/26/2022 12:26:50 PAGE 5   
+
  233          /*****ÏòÖ÷¿Ø·¢ËÍ60Bytes*****/
  234          void vSend60Bytes(void)
  235          {
@@ -254,18 +264,18 @@ line level    source
  238   1      
  239   1          Uart1SendBuf[ucSendCont++] = SendHeard1;
  240   1          Uart1SendBuf[ucSendCont++] = SendHeard2;
-C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 5   
-
  241   1          Uart1SendBuf[ucSendCont++] = 0;
  242   1          Uart1SendBuf[ucSendCont++] = ShowDefine;
  243   1          Uart1SendBuf[ucSendCont++] = Read60Bytes;
  244   1          clr_EA;
+*** ERROR C202 IN LINE 244 OF ..\Code\Uart.c: 'EA': undefined identifier
  245   1          for (i = 0; i < RW_COUNT; i++)//´ÓEEPROMÖÐ¶ÁÈ¡ËÙ¶È
  246   1          {
  247   2              Uart1SendBuf[ucSendCont++] = EEPROM_Byte_Read(EEPROM_START_ADDRESS_FACT_PARE+i); //ÕâÀïµÄÊý¾ÝÖ±½Ó¶
              -ÔÓ¦ FALSEÖÐµÄÊý¾Ý
  248   2          }
  249   1          set_EA;
+*** ERROR C202 IN LINE 249 OF ..\Code\Uart.c: 'EA': undefined identifier
  250   1          Uart1SendBuf[ucSendCont++] = SendTail1;
  251   1          Uart1SendBuf[ucSendCont++] = SendTail2;
  252   1          Uart1SendBuf[ucSendCont++] = SendTail3;
@@ -308,8 +318,20 @@ line level    source
  288   3              case OrderPowerOnOff:  //¹Ø»úÃüÁî
  289   3                  ucLessThanLowPower = FALSE; //½ûÖ¹µçÔ´µÆÉÁË¸
  290   3                  strPeripheral.usRecvPowerOFF_Flag = TRUE;
+C51 COMPILER V9.59.0.0   UART                                                              09/26/2022 12:26:50 PAGE 6   
+
  291   3                  SPEED_LED_0;   //¹Ø±ÕËÙ¶ÈµÆ
+*** ERROR C202 IN LINE 291 OF ..\Code\Uart.c: 'P00D': undefined identifier
+*** ERROR C202 IN LINE 291 OF ..\Code\Uart.c: 'P01D': undefined identifier
+*** ERROR C202 IN LINE 291 OF ..\Code\Uart.c: 'P14D': undefined identifier
+*** ERROR C202 IN LINE 291 OF ..\Code\Uart.c: 'P12D': undefined identifier
+*** ERROR C202 IN LINE 291 OF ..\Code\Uart.c: 'P11D': undefined identifier
  292   3                  POWER_SHOW_0;  //¹Ø±ÕµçÔ´µÆ
+*** ERROR C202 IN LINE 292 OF ..\Code\Uart.c: 'P21D': undefined identifier
+*** ERROR C202 IN LINE 292 OF ..\Code\Uart.c: 'P24D': undefined identifier
+*** ERROR C202 IN LINE 292 OF ..\Code\Uart.c: 'P27D': undefined identifier
+*** ERROR C202 IN LINE 292 OF ..\Code\Uart.c: 'P26D': undefined identifier
+*** ERROR C202 IN LINE 292 OF ..\Code\Uart.c: 'P10D': undefined identifier
  293   3                  break;
  294   3              case OrderErro:  //´íÎó±¨¾¯
  295   3                  if (FALSE == strPeripheral.ucRecvTestFlag)
@@ -318,8 +340,6 @@ line level    source
  298   4                  }
  299   3                  break;
  300   3              case QuitErro:  //½â³ý±¨¾¯
-C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 6   
-
  301   3                  if (FALSE == strPeripheral.ucRecvTestFlag)
  302   3                  {
  303   4                      strPeripheral.ucRecvAlarmNum = 0;
@@ -361,7 +381,11 @@ line level    source
  339   3                  break;
  340   3              case Write60Bytes:  //Ð´Èë60×Ö½ÚµÄÊý¾Ý¡ª¡ªÐ´ÈëÏÔÊ¾°å
  341   3                  clr_ES;
+*** ERROR C202 IN LINE 341 OF ..\Code\Uart.c: 'IE1': undefined identifier
+C51 COMPILER V9.59.0.0   UART                                                              09/26/2022 12:26:50 PAGE 7   
+
  342   3                  clr_EA;
+*** ERROR C202 IN LINE 342 OF ..\Code\Uart.c: 'EA': undefined identifier
  343   3                  for (i = 0; i < RW_COUNT; i++)
  344   3                  {
  345   4                      ucEepromBuf[i] = Uart1RecvBuf[ 5 + i];
@@ -370,7 +394,9 @@ line level    source
  348   3                  strPeripheral.ucPowerLedShowPhase = 0;
  349   3                  strPeripheral.ucRecvWrite60Bytes_Flag = 1;
  350   3                  set_ES;//ÔÙ´Î¿ªÆô ´®¿ÚÖÐ¶Ï
+*** ERROR C202 IN LINE 350 OF ..\Code\Uart.c: 'IE1': undefined identifier
  351   3                  set_EA;
+*** ERROR C202 IN LINE 351 OF ..\Code\Uart.c: 'EA': undefined identifier
  352   3                  break;
  353   3              case Read60Bytes:  //Ö÷¿Ø¶ÁÈ¡60×Ö½ÚµÄÊý¾Ý¼´·¢ËÍ¸øÖ÷¿Ø
  354   3      
@@ -379,15 +405,17 @@ line level    source
  357   3                  break;
  358   3              case WriteOneByte:  //Ð´Èë1×Ö½ÚµÄÊý¾Ý¡ª¡ªÐ´ÈëÏÔÊ¾°å
  359   3                  clr_ES;
+*** ERROR C202 IN LINE 359 OF ..\Code\Uart.c: 'IE1': undefined identifier
  360   3                  clr_EA;
+*** ERROR C202 IN LINE 360 OF ..\Code\Uart.c: 'EA': undefined identifier
  361   3                  ucRecDataCodeAndData[0] = WriteOneByte;
  362   3                  ucRecDataCodeAndData[1] = Uart1RecvBuf[6];//·ÀÖ¹³ÌÐòÇ¶Ì×
-C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 7   
-
  363   3                  EEPROM_WriteByte(EEPRO_One_Byte_ADDRESS, ucRecDataCodeAndData[1]);
  364   3                  ucRecDataCodeAndData[0] = ucRecDataCodeAndData[1] = 0;
  365   3                  set_EA;
+*** ERROR C202 IN LINE 365 OF ..\Code\Uart.c: 'EA': undefined identifier
  366   3                  set_ES;//ÔÙ´Î¿ªÆô ´®¿ÚÖÐ¶Ï
+*** ERROR C202 IN LINE 366 OF ..\Code\Uart.c: 'IE1': undefined identifier
  367   3      
  368   3                  break;
  369   3      
@@ -418,6 +446,8 @@ line level    source
  394   3                  SpeedLedOn(ucSpeedGrad);   //ËÙ¶ÈLED
  395   3                  SetPWM1_Out(0, 0); //·äÃùÆ÷²»Ïì
  396   3                  break;
+C51 COMPILER V9.59.0.0   UART                                                              09/26/2022 12:26:50 PAGE 8   
+
  397   3              case OrderSpeekP:  //À®°È
  398   3                  if(0x01 == Uart1RecvBuf[5])
  399   3                  {
@@ -446,8 +476,6 @@ line level    source
  422   3                  break;
  423   3              }
  424   2              Uart1RecvFlag = FALSE;
-C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 8   
-
  425   2          }
  426   1      
  427   1      }
@@ -482,6 +510,8 @@ line level    source
  456   2              else
  457   2              {
  458   3                  Uart1RXPhase = SCI_Frame_Address;
+C51 COMPILER V9.59.0.0   UART                                                              09/26/2022 12:26:50 PAGE 9   
+
  459   3              }
  460   2              break;
  461   2          case SCI_Frame_Address:
@@ -510,8 +540,6 @@ line level    source
  484   2              break;
  485   2          case Uart_Frame_Crc:
  486   2              Uart1RecvBuf[Uart1RXCnt++] = rc_data;
-C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 9   
-
  487   2              if (Uart1RXCnt >= 7)
  488   2              {
  489   3                  if((SendTail4 == Uart1RecvBuf[Uart1RXCnt - 1]) && (SendTail3 == Uart1RecvBuf[Uart1RXCnt - 2]) 
@@ -533,20 +561,4 @@ line level    source
  504          
  505          
 
-
-MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   2264    ----
-   CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =    160    ----
-   PDATA SIZE       =   ----    ----
-   DATA SIZE        =      7      11
-   IDATA SIZE       =     60    ----
-   BIT SIZE         =      1    ----
-   EDATA SIZE       =   ----    ----
-   HDATA SIZE       =   ----    ----
-   XDATA CONST SIZE =   ----    ----
-   FAR CONST SIZE   =   ----    ----
-END OF MODULE INFORMATION.
-
-
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  1 WARNING(S),  26 ERROR(S)

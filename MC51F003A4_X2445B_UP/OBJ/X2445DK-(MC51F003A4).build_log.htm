@@ -1,0 +1,466 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.26.2.0
+Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: weitao liu, wuyang, LIC=IKA0P-MN1E5-GVR1T-RZFQJ-4SU42-BGYL5
+ 
+Tool Versions:
+Toolchain:       PK51 Prof. Developers Kit  Version: 9.59.0.0
+Toolchain Path:  C:\Keil_v5\C51\BIN
+C Compiler:      C51.exe V9.59.0.0
+Assembler:       A51.exe V8.2.7.0
+Linker/Locator:  LX51.exe V4.66.93.0
+Library Manager: LIBX51.exe V4.30.1.0
+Hex Converter:   OHX51.exe V1.47.0.0
+CPU DLL:         S8051.DLL V3.122.0.0
+Dialog DLL:      DP51.DLL V2.66.0.0
+    Target DLL: ..\SinoMCU_S1\Bin51\SNLInkS1.dll
+Dialog DLL:      TP51.DLL V2.60.0.0
+ 
+<h2>Project:</h2>
+D:\lwt-workspace\X2445按键板-单片机晟矽微 2.73K 45%占空比\USER\X2445DK-与自动电量识别配套(MC51F003A4).uvproj
+Project File Date:  09/26/2022
+
+<h2>Output:</h2>
+Rebuild target 'X2445DK-与自动电量识别配套(MC51F003A4)'
+assembling STARTUP.A51...
+compiling main.c...
+\lwt-workspace\X2445按键板-单片机晟矽微 2.73K 45占空比\Include\MC51F003A4_COMMON.h(15): warning C318: can't open file 'MC51F003A4.h'
+compiling 51_interrupt.c...
+\lwt-workspace\X2445按键板-单片机晟矽微 2.73K 45占空比\Include\MC51F003A4_COMMON.h(15): warning C318: can't open file 'MC51F003A4.h'
+..\Code\51_interrupt.c(15): error C141: syntax error near 'T0_IRQn', expected 'const'
+..\Code\51_interrupt.c(16): error C132: 'T0_IRQn': not in formal parameter list
+..\Code\51_interrupt.c(16): error C141: syntax error near '{', expected ';'
+..\Code\51_interrupt.c(17): error C132: 'SFR_interrupt_buff_H': not in formal parameter list
+..\Code\51_interrupt.c(17): error C132: 'bits': not in formal parameter list
+..\Code\51_interrupt.c(17): error C244: 'bit1': can't initialize, bad type or class
+..\Code\51_interrupt.c(17): error C202: 'SFRSL0': undefined identifier
+..\Code\51_interrupt.c(17): error C132: 'bit1': not in formal parameter list
+..\Code\51_interrupt.c(18): error C244: 'SFRSL0': can't initialize, bad type or class
+..\Code\51_interrupt.c(18): error C132: 'SFRSL0': not in formal parameter list
+..\Code\51_interrupt.c(19): error C244: 'TR0': can't initialize, bad type or class
+..\Code\51_interrupt.c(19): error C132: 'TR0': not in formal parameter list
+..\Code\51_interrupt.c(20): error C244: 'TL0': can't initialize, bad type or class
+..\Code\51_interrupt.c(20): error C132: 'TL0': not in formal parameter list
+..\Code\51_interrupt.c(21): error C244: 'TH0': can't initialize, bad type or class
+..\Code\51_interrupt.c(21): error C132: 'TH0': not in formal parameter list
+..\Code\51_interrupt.c(22): error C244: 'TR0': can't initialize, bad type or class
+..\Code\51_interrupt.c(22): error C132: 'TR0': not in formal parameter list
+..\Code\51_interrupt.c(23): error C244: 'SFRSL0': can't initialize, bad type or class
+..\Code\51_interrupt.c(23): error C132: 'SFRSL0': not in formal parameter list
+..\Code\51_interrupt.c(25): error C132: 'Globle_Timer_1MS': not in formal parameter list
+..\Code\51_interrupt.c(25): error C141: syntax error near '.', expected ';'
+..\Code\51_interrupt.c(25): error C244: 'All': can't initialize, bad type or class
+..\Code\51_interrupt.c(25): error C132: 'All': not in formal parameter list
+..\Code\51_interrupt.c(28): error C132: 'vDealAd': not in formal parameter list
+..\Code\51_interrupt.c(30): error C141: syntax error near '}', expected 'hdata'
+..\Code\51_interrupt.c(32): error C141: syntax error near 'UART1_IRQn', expected 'const'
+..\Code\51_interrupt.c(33): error C132: 'UART1_IRQn': not in formal parameter list
+..\Code\51_interrupt.c(33): error C141: syntax error near '{', expected ';'
+..\Code\51_interrupt.c(34): error C132: 'Recvdata': not in formal parameter list
+..\Code\51_interrupt.c(35): error C141: syntax error near 'if', expected 'hdata'
+..\Code\51_interrupt.c(35): error C141: syntax error near '&', expected ')'
+..\Code\51_interrupt.c(38): error C129: missing ';' before '&='
+compiling function.c...
+\lwt-workspace\X2445按键板-单片机晟矽微 2.73K 45占空比\Include\MC51F003A4_COMMON.h(15): warning C318: can't open file 'MC51F003A4.h'
+..\Code\function.c(35): error C202: 'SFRSL0': undefined identifier
+..\Code\function.c(36): error C202: 'PWM13DH': undefined identifier
+..\Code\function.c(37): error C202: 'PWM13DL': undefined identifier
+..\Code\function.c(38): error C202: 'SFRSL0': undefined identifier
+..\Code\function.c(50): error C202: 'ADRH': undefined identifier
+..\Code\function.c(51): error C202: 'ADRL': undefined identifier
+..\Code\function.c(52): error C202: 'ADCCR0': undefined identifier
+..\Code\function.c(62): error C202: 'ADCCR0': undefined identifier
+..\Code\function.c(160): error C202: 'EA': undefined identifier
+..\Code\function.c(164): error C202: 'EA': undefined identifier
+..\Code\function.c(211): error C202: 'P21D': undefined identifier
+..\Code\function.c(211): error C202: 'P24D': undefined identifier
+..\Code\function.c(211): error C202: 'P27D': undefined identifier
+..\Code\function.c(211): error C202: 'P26D': undefined identifier
+..\Code\function.c(211): error C202: 'P10D': undefined identifier
+..\Code\function.c(214): error C202: 'P21D': undefined identifier
+..\Code\function.c(214): error C202: 'P24D': undefined identifier
+..\Code\function.c(214): error C202: 'P27D': undefined identifier
+..\Code\function.c(214): error C202: 'P26D': undefined identifier
+..\Code\function.c(214): error C202: 'P10D': undefined identifier
+..\Code\function.c(217): error C202: 'P21D': undefined identifier
+..\Code\function.c(217): error C202: 'P24D': undefined identifier
+..\Code\function.c(217): error C202: 'P27D': undefined identifier
+..\Code\function.c(217): error C202: 'P26D': undefined identifier
+..\Code\function.c(217): error C202: 'P10D': undefined identifier
+..\Code\function.c(220): error C202: 'P21D': undefined identifier
+..\Code\function.c(220): error C202: 'P24D': undefined identifier
+..\Code\function.c(220): error C202: 'P27D': undefined identifier
+..\Code\function.c(220): error C202: 'P26D': undefined identifier
+..\Code\function.c(220): error C202: 'P10D': undefined identifier
+..\Code\function.c(223): error C202: 'P21D': undefined identifier
+..\Code\function.c(223): error C202: 'P24D': undefined identifier
+..\Code\function.c(223): error C202: 'P27D': undefined identifier
+..\Code\function.c(223): error C202: 'P26D': undefined identifier
+..\Code\function.c(223): error C202: 'P10D': undefined identifier
+..\Code\function.c(226): error C202: 'P21D': undefined identifier
+..\Code\function.c(226): error C202: 'P24D': undefined identifier
+..\Code\function.c(226): error C202: 'P27D': undefined identifier
+..\Code\function.c(226): error C202: 'P26D': undefined identifier
+..\Code\function.c(226): error C202: 'P10D': undefined identifier
+..\Code\function.c(239): error C202: 'P00D': undefined identifier
+..\Code\function.c(239): error C202: 'P01D': undefined identifier
+..\Code\function.c(239): error C202: 'P14D': undefined identifier
+..\Code\function.c(239): error C202: 'P12D': undefined identifier
+..\Code\function.c(239): error C202: 'P11D': undefined identifier
+..\Code\function.c(242): error C202: 'P00D': undefined identifier
+..\Code\function.c(242): error C202: 'P01D': undefined identifier
+..\Code\function.c(242): error C202: 'P14D': undefined identifier
+..\Code\function.c(242): error C202: 'P12D': undefined identifier
+..\Code\function.c(242): error C202: 'P11D': undefined identifier
+..\Code\function.c(245): error C202: 'P00D': undefined identifier
+..\Code\function.c(245): error C202: 'P01D': undefined identifier
+..\Code\function.c(245): error C202: 'P14D': undefined identifier
+..\Code\function.c(245): error C202: 'P12D': undefined identifier
+..\Code\function.c(245): error C202: 'P11D': undefined identifier
+..\Code\function.c(248): error C202: 'P00D': undefined identifier
+..\Code\function.c(248): error C202: 'P01D': undefined identifier
+..\Code\function.c(248): error C202: 'P14D': undefined identifier
+..\Code\function.c(248): error C202: 'P12D': undefined identifier
+..\Code\function.c(248): error C202: 'P11D': undefined identifier
+..\Code\function.c(251): error C202: 'P00D': undefined identifier
+..\Code\function.c(251): error C202: 'P01D': undefined identifier
+..\Code\function.c(251): error C202: 'P14D': undefined identifier
+..\Code\function.c(251): error C202: 'P12D': undefined identifier
+..\Code\function.c(251): error C202: 'P11D': undefined identifier
+..\Code\function.c(269): error C202: 'P21D': undefined identifier
+..\Code\function.c(269): error C202: 'P24D': undefined identifier
+..\Code\function.c(269): error C202: 'P27D': undefined identifier
+..\Code\function.c(269): error C202: 'P26D': undefined identifier
+..\Code\function.c(269): error C202: 'P10D': undefined identifier
+..\Code\function.c(274): error C202: 'P21D': undefined identifier
+..\Code\function.c(274): error C202: 'P24D': undefined identifier
+..\Code\function.c(274): error C202: 'P27D': undefined identifier
+..\Code\function.c(274): error C202: 'P26D': undefined identifier
+..\Code\function.c(274): error C202: 'P10D': undefined identifier
+..\Code\function.c(279): error C202: 'P21D': undefined identifier
+..\Code\function.c(279): error C202: 'P24D': undefined identifier
+..\Code\function.c(279): error C202: 'P27D': undefined identifier
+..\Code\function.c(279): error C202: 'P26D': undefined identifier
+..\Code\function.c(279): error C202: 'P10D': undefined identifier
+..\Code\function.c(284): error C202: 'P21D': undefined identifier
+..\Code\function.c(284): error C202: 'P24D': undefined identifier
+..\Code\function.c(284): error C202: 'P27D': undefined identifier
+..\Code\function.c(284): error C202: 'P26D': undefined identifier
+..\Code\function.c(284): error C202: 'P10D': undefined identifier
+..\Code\function.c(289): error C202: 'P21D': undefined identifier
+..\Code\function.c(289): error C202: 'P24D': undefined identifier
+..\Code\function.c(289): error C202: 'P27D': undefined identifier
+..\Code\function.c(289): error C202: 'P26D': undefined identifier
+..\Code\function.c(289): error C202: 'P10D': undefined identifier
+..\Code\function.c(294): error C202: 'P21D': undefined identifier
+..\Code\function.c(294): error C202: 'P24D': undefined identifier
+..\Code\function.c(294): error C202: 'P27D': undefined identifier
+..\Code\function.c(294): error C202: 'P26D': undefined identifier
+..\Code\function.c(294): error C202: 'P10D': undefined identifier
+..\Code\function.c(302): error C202: 'P21D': undefined identifier
+..\Code\function.c(355): error C202: 'P23D': undefined identifier
+..\Code\function.c(357): error C202: 'EA': undefined identifier
+..\Code\function.c(363): error C202: 'EA': undefined identifier
+..\Code\function.c(379): error C202: 'EA': undefined identifier
+..\Code\function.c(384): error C202: 'EA': undefined identifier
+..\Code\function.c(385): error C202: 'IE1': undefined identifier
+..\Code\function.c(451): error C202: 'EA': undefined identifier
+..\Code\function.c(453): error C202: 'EA': undefined identifier
+..\Code\function.c(474): error C202: 'P00D': undefined identifier
+..\Code\function.c(475): error C202: 'P00D': undefined identifier
+..\Code\function.c(477): error C202: 'P01D': undefined identifier
+..\Code\function.c(478): error C202: 'P01D': undefined identifier
+..\Code\function.c(480): error C202: 'P14D': undefined identifier
+..\Code\function.c(481): error C202: 'P14D': undefined identifier
+..\Code\function.c(483): error C202: 'P12D': undefined identifier
+..\Code\function.c(484): error C202: 'P12D': undefined identifier
+..\Code\function.c(488): error C202: 'P11D': undefined identifier
+..\Code\function.c(492): error C202: 'P11D': undefined identifier
+..\Code\function.c(498): error C202: 'P21D': undefined identifier
+..\Code\function.c(498): error C202: 'P24D': undefined identifier
+..\Code\function.c(498): error C202: 'P27D': undefined identifier
+..\Code\function.c(498): error C202: 'P26D': undefined identifier
+..\Code\function.c(498): error C202: 'P10D': undefined identifier
+..\Code\function.c(499): error C202: 'P00D': undefined identifier
+..\Code\function.c(499): error C202: 'P01D': undefined identifier
+..\Code\function.c(499): error C202: 'P14D': undefined identifier
+..\Code\function.c(499): error C202: 'P12D': undefined identifier
+..\Code\function.c(499): error C202: 'P11D': undefined identifier
+..\Code\function.c(505): error C202: 'SFRSL0': undefined identifier
+..\Code\function.c(507): error C202: 'PWM1PH': undefined identifier
+..\Code\function.c(508): error C202: 'PWM1PL': undefined identifier
+..\Code\function.c(509): error C202: 'PWM13DH': undefined identifier
+..\Code\function.c(510): error C202: 'PWM13DL': undefined identifier
+..\Code\function.c(512): error C202: 'SFRSL0': undefined identifier
+..\Code\function.c(571): error C202: 'P21D': undefined identifier
+..\Code\function.c(571): error C202: 'P24D': undefined identifier
+..\Code\function.c(571): error C202: 'P27D': undefined identifier
+..\Code\function.c(571): error C202: 'P26D': undefined identifier
+..\Code\function.c(571): error C202: 'P10D': undefined identifier
+..\Code\function.c(572): error C202: 'P00D': undefined identifier
+..\Code\function.c(572): error C202: 'P01D': undefined identifier
+..\Code\function.c(572): error C202: 'P14D': undefined identifier
+..\Code\function.c(572): error C202: 'P12D': undefined identifier
+..\Code\function.c(572): error C202: 'P11D': undefined identifier
+..\Code\function.c(860): error C202: 'P00D': undefined identifier
+..\Code\function.c(860): error C202: 'P01D': undefined identifier
+..\Code\function.c(860): error C202: 'P14D': undefined identifier
+..\Code\function.c(860): error C202: 'P12D': undefined identifier
+..\Code\function.c(860): error C202: 'P11D': undefined identifier
+..\Code\function.c(861): error C202: 'P21D': undefined identifier
+..\Code\function.c(861): error C202: 'P24D': undefined identifier
+..\Code\function.c(861): error C202: 'P27D': undefined identifier
+..\Code\function.c(861): error C202: 'P26D': undefined identifier
+..\Code\function.c(861): error C202: 'P10D': undefined identifier
+..\Code\function.c(877): error C202: 'P21D': undefined identifier
+..\Code\function.c(877): error C202: 'P24D': undefined identifier
+..\Code\function.c(877): error C202: 'P27D': undefined identifier
+..\Code\function.c(877): error C202: 'P26D': undefined identifier
+..\Code\function.c(877): error C202: 'P10D': undefined identifier
+..\Code\function.c(900): error C202: 'P21D': undefined identifier
+..\Code\function.c(900): error C202: 'P24D': undefined identifier
+..\Code\function.c(900): error C202: 'P27D': undefined identifier
+..\Code\function.c(900): error C202: 'P26D': undefined identifier
+..\Code\function.c(900): error C202: 'P10D': undefined identifier
+..\Code\function.c(901): error C202: 'P00D': undefined identifier
+..\Code\function.c(901): error C202: 'P01D': undefined identifier
+..\Code\function.c(901): error C202: 'P14D': undefined identifier
+..\Code\function.c(901): error C202: 'P12D': undefined identifier
+..\Code\function.c(901): error C202: 'P11D': undefined identifier
+..\Code\function.c(914): error C202: 'P21D': undefined identifier
+..\Code\function.c(914): error C202: 'P24D': undefined identifier
+..\Code\function.c(914): error C202: 'P27D': undefined identifier
+..\Code\function.c(914): error C202: 'P26D': undefined identifier
+..\Code\function.c(914): error C202: 'P10D': undefined identifier
+..\Code\function.c(915): error C202: 'P00D': undefined identifier
+..\Code\function.c(915): error C202: 'P01D': undefined identifier
+..\Code\function.c(915): error C202: 'P14D': undefined identifier
+..\Code\function.c(915): error C202: 'P12D': undefined identifier
+..\Code\function.c(915): error C202: 'P11D': undefined identifier
+..\Code\function.c(920): error C202: 'P21D': undefined identifier
+..\Code\function.c(920): error C202: 'P24D': undefined identifier
+..\Code\function.c(920): error C202: 'P27D': undefined identifier
+..\Code\function.c(920): error C202: 'P26D': undefined identifier
+..\Code\function.c(920): error C202: 'P10D': undefined identifier
+..\Code\function.c(921): error C202: 'P00D': undefined identifier
+..\Code\function.c(921): error C202: 'P01D': undefined identifier
+..\Code\function.c(921): error C202: 'P14D': undefined identifier
+..\Code\function.c(921): error C202: 'P12D': undefined identifier
+..\Code\function.c(921): error C202: 'P11D': undefined identifier
+..\Code\function.c(935): error C202: 'P21D': undefined identifier
+..\Code\function.c(935): error C202: 'P24D': undefined identifier
+..\Code\function.c(935): error C202: 'P27D': undefined identifier
+..\Code\function.c(935): error C202: 'P26D': undefined identifier
+..\Code\function.c(935): error C202: 'P10D': undefined identifier
+..\Code\function.c(936): error C202: 'P00D': undefined identifier
+..\Code\function.c(936): error C202: 'P01D': undefined identifier
+..\Code\function.c(936): error C202: 'P14D': undefined identifier
+..\Code\function.c(936): error C202: 'P12D': undefined identifier
+..\Code\function.c(936): error C202: 'P11D': undefined identifier
+..\Code\function.c(951): error C202: 'P21D': undefined identifier
+..\Code\function.c(951): error C202: 'P24D': undefined identifier
+..\Code\function.c(951): error C202: 'P27D': undefined identifier
+..\Code\function.c(951): error C202: 'P26D': undefined identifier
+..\Code\function.c(951): error C202: 'P10D': undefined identifier
+..\Code\function.c(957): error C202: 'P21D': undefined identifier
+..\Code\function.c(957): error C202: 'P24D': undefined identifier
+..\Code\function.c(957): error C202: 'P27D': undefined identifier
+..\Code\function.c(957): error C202: 'P26D': undefined identifier
+..\Code\function.c(957): error C202: 'P10D': undefined identifier
+..\Code\function.c(979): error C202: 'P00D': undefined identifier
+..\Code\function.c(979): error C202: 'P01D': undefined identifier
+..\Code\function.c(979): error C202: 'P14D': undefined identifier
+..\Code\function.c(979): error C202: 'P12D': undefined identifier
+..\Code\function.c(979): error C202: 'P11D': undefined identifier
+..\Code\function.c(990): error C202: 'P00D': undefined identifier
+..\Code\function.c(990): error C202: 'P01D': undefined identifier
+..\Code\function.c(990): error C202: 'P14D': undefined identifier
+..\Code\function.c(990): error C202: 'P12D': undefined identifier
+..\Code\function.c(990): error C202: 'P11D': undefined identifier
+..\Code\function.c(991): error C202: 'P21D': undefined identifier
+..\Code\function.c(991): error C202: 'P24D': undefined identifier
+..\Code\function.c(991): error C202: 'P27D': undefined identifier
+..\Code\function.c(991): error C202: 'P26D': undefined identifier
+..\Code\function.c(991): error C202: 'P10D': undefined identifier
+..\Code\function.c(998): error C202: 'P21D': undefined identifier
+..\Code\function.c(998): error C202: 'P24D': undefined identifier
+..\Code\function.c(998): error C202: 'P27D': undefined identifier
+..\Code\function.c(998): error C202: 'P26D': undefined identifier
+..\Code\function.c(998): error C202: 'P10D': undefined identifier
+..\Code\function.c(1009): error C202: 'P21D': undefined identifier
+..\Code\function.c(1009): error C202: 'P24D': undefined identifier
+..\Code\function.c(1009): error C202: 'P27D': undefined identifier
+..\Code\function.c(1009): error C202: 'P26D': undefined identifier
+..\Code\function.c(1009): error C202: 'P10D': undefined identifier
+..\Code\function.c(1023): error C202: 'P21D': undefined identifier
+..\Code\function.c(1023): error C202: 'P24D': undefined identifier
+..\Code\function.c(1023): error C202: 'P27D': undefined identifier
+..\Code\function.c(1023): error C202: 'P26D': undefined identifier
+..\Code\function.c(1023): error C202: 'P10D': undefined identifier
+..\Code\function.c(1180): error C202: 'P00D': undefined identifier
+..\Code\function.c(1180): error C202: 'P01D': undefined identifier
+..\Code\function.c(1180): error C202: 'P14D': undefined identifier
+..\Code\function.c(1180): error C202: 'P12D': undefined identifier
+..\Code\function.c(1180): error C202: 'P11D': undefined identifier
+..\Code\function.c(1181): error C202: 'P21D': undefined identifier
+..\Code\function.c(1181): error C202: 'P24D': undefined identifier
+..\Code\function.c(1181): error C202: 'P27D': undefined identifier
+..\Code\function.c(1181): error C202: 'P26D': undefined identifier
+..\Code\function.c(1181): error C202: 'P10D': undefined identifier
+..\Code\function.c(1319): error C202: 'EA': undefined identifier
+..\Code\function.c(1320): error C202: 'IAPMD': undefined identifier
+..\Code\function.c(1321): error C202: 'IAPMD': undefined identifier
+..\Code\function.c(1322): error C202: 'IAPMD': undefined identifier
+..\Code\function.c(1323): error C202: 'IAPMD': undefined identifier
+..\Code\function.c(1324): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1325): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1326): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1327): error C202: 'IAPADH': undefined identifier
+..\Code\function.c(1328): error C202: 'IAPADL': undefined identifier
+..\Code\function.c(1329): error C202: 'IAPDB': undefined identifier
+..\Code\function.c(1330): error C202: 'IAPADL': undefined identifier
+..\Code\function.c(1331): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1332): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1333): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1334): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1335): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1336): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1337): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1338): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1339): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1340): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1352): error C202: 'IAPMD': undefined identifier
+..\Code\function.c(1353): error C202: 'IAPMD': undefined identifier
+..\Code\function.c(1354): error C202: 'IAPMD': undefined identifier
+..\Code\function.c(1355): error C202: 'IAPMD': undefined identifier
+..\Code\function.c(1356): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1357): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1358): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1359): error C202: 'IAPADH': undefined identifier
+..\Code\function.c(1360): error C202: 'IAPADL': undefined identifier
+..\Code\function.c(1361): error C202: 'IAPDB': undefined identifier
+..\Code\function.c(1362): error C202: 'IAPADL': undefined identifier
+..\Code\function.c(1363): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1364): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1365): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1366): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1367): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1368): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1369): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1370): error C202: 'IAPKEY': undefined identifier
+..\Code\function.c(1371): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1372): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1373): error C202: 'EA': undefined identifier
+..\Code\function.c(1384): error C202: 'EA': undefined identifier
+..\Code\function.c(1385): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1387): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1388): error C202: 'EA': undefined identifier
+..\Code\function.c(1401): error C202: 'EA': undefined identifier
+..\Code\function.c(1402): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1408): error C202: 'IAPCR': undefined identifier
+..\Code\function.c(1409): error C202: 'EA': undefined identifier
+..\Code\function.c(1414): error C202: 'EA': undefined identifier
+..\Code\function.c(1420): error C202: 'EA': undefined identifier
+..\Code\function.c(1425): error C202: 'P24D': undefined identifier
+..\Code\function.c(1427): error C202: 'P26D': undefined identifier
+..\Code\function.c(1431): error C202: 'P00D': undefined identifier
+..\Code\function.c(1433): error C202: 'P14D': undefined identifier
+..\Code\function.c(1435): error C202: 'P11D': undefined identifier
+compiling SystemInit.c...
+\lwt-workspace\X2445按键板-单片机晟矽微 2.73K 45占空比\Include\MC51F003A4_COMMON.h(15): warning C318: can't open file 'MC51F003A4.h'
+..\Code\SystemInit.c(8): error C202: 'ADCCR0': undefined identifier
+..\Code\SystemInit.c(9): error C202: 'ADCCR1': undefined identifier
+..\Code\SystemInit.c(10): error C202: 'ADRIOS0': undefined identifier
+..\Code\SystemInit.c(11): error C202: 'ADRIOS1': undefined identifier
+..\Code\SystemInit.c(13): error C202: 'ADCCR0': undefined identifier
+..\Code\SystemInit.c(14): error C202: 'ADCCR1': undefined identifier
+..\Code\SystemInit.c(15): error C202: 'ADRIOS0': undefined identifier
+..\Code\SystemInit.c(16): error C202: 'ADRIOS1': undefined identifier
+..\Code\SystemInit.c(17): error C202: 'ADCCR0': undefined identifier
+..\Code\SystemInit.c(23): error C202: 'EA': undefined identifier
+..\Code\SystemInit.c(29): error C202: 'EA': undefined identifier
+..\Code\SystemInit.c(42): error C202: 'P0MOD0': undefined identifier
+..\Code\SystemInit.c(43): error C202: 'P1MOD0': undefined identifier
+..\Code\SystemInit.c(44): error C202: 'P1MOD1': undefined identifier
+..\Code\SystemInit.c(45): error C202: 'P2MOD0': undefined identifier
+..\Code\SystemInit.c(46): error C202: 'P2MOD1': undefined identifier
+..\Code\SystemInit.c(48): error C202: 'P15D': undefined identifier
+..\Code\SystemInit.c(49): error C202: 'P21D': undefined identifier
+..\Code\SystemInit.c(49): error C202: 'P24D': undefined identifier
+..\Code\SystemInit.c(49): error C202: 'P27D': undefined identifier
+..\Code\SystemInit.c(49): error C202: 'P26D': undefined identifier
+..\Code\SystemInit.c(49): error C202: 'P10D': undefined identifier
+..\Code\SystemInit.c(50): error C202: 'P00D': undefined identifier
+..\Code\SystemInit.c(50): error C202: 'P01D': undefined identifier
+..\Code\SystemInit.c(50): error C202: 'P14D': undefined identifier
+..\Code\SystemInit.c(50): error C202: 'P12D': undefined identifier
+..\Code\SystemInit.c(50): error C202: 'P11D': undefined identifier
+..\Code\SystemInit.c(56): error C202: 'SFRSL0': undefined identifier
+..\Code\SystemInit.c(57): error C202: 'PWM1CR0': undefined identifier
+..\Code\SystemInit.c(60): error C202: 'PWM1CR1': undefined identifier
+..\Code\SystemInit.c(61): error C202: 'PWM1CR0': undefined identifier
+..\Code\SystemInit.c(62): error C202: 'PWM1PH': undefined identifier
+..\Code\SystemInit.c(63): error C202: 'PWM1PL': undefined identifier
+..\Code\SystemInit.c(64): error C202: 'PWM1CR2': undefined identifier
+..\Code\SystemInit.c(65): error C202: 'PWM13DH': undefined identifier
+..\Code\SystemInit.c(66): error C202: 'PWM13DL': undefined identifier
+..\Code\SystemInit.c(67): error C202: 'PWM1CR3': undefined identifier
+..\Code\SystemInit.c(69): error C202: 'SFRSL0': undefined identifier
+..\Code\SystemInit.c(74): error C202: 'PCON': undefined identifier
+..\Code\SystemInit.c(75): error C202: 'SCON_1': undefined identifier
+..\Code\SystemInit.c(76): error C202: 'SCON_1': undefined identifier
+..\Code\SystemInit.c(78): error C202: 'TMOD': undefined identifier
+..\Code\SystemInit.c(79): error C202: 'TMOD': undefined identifier
+..\Code\SystemInit.c(80): error C202: 'TR1': undefined identifier
+..\Code\SystemInit.c(81): error C202: 'TL1': undefined identifier
+..\Code\SystemInit.c(82): error C202: 'TH1': undefined identifier
+..\Code\SystemInit.c(83): error C202: 'TR1': undefined identifier
+..\Code\SystemInit.c(85): error C202: 'IE1': undefined identifier
+..\Code\SystemInit.c(91): error C202: 'TMOD': undefined identifier
+..\Code\SystemInit.c(92): error C202: 'TCON': undefined identifier
+..\Code\SystemInit.c(93): error C202: 'TCON1': undefined identifier
+..\Code\SystemInit.c(94): error C202: 'TR0': undefined identifier
+..\Code\SystemInit.c(95): error C202: 'TL0': undefined identifier
+..\Code\SystemInit.c(96): error C202: 'TH0': undefined identifier
+..\Code\SystemInit.c(98): error C202: 'IP': undefined identifier
+..\Code\SystemInit.c(99): error C202: 'IPH': undefined identifier
+..\Code\SystemInit.c(100): error C202: 'T0IE': undefined identifier
+..\Code\SystemInit.c(101): error C202: 'TR0': undefined identifier
+compiling Uart.c...
+\lwt-workspace\X2445按键板-单片机晟矽微 2.73K 45占空比\Include\MC51F003A4_COMMON.h(15): warning C318: can't open file 'MC51F003A4.h'
+..\Code\Uart.c(23): error C202: 'SBUF_1': undefined identifier
+..\Code\Uart.c(25): error C202: 'SCON_1': undefined identifier
+..\Code\Uart.c(26): error C202: 'SCON_1': undefined identifier
+..\Code\Uart.c(39): error C202: 'SBUF_1': undefined identifier
+..\Code\Uart.c(221): error C202: 'EA': undefined identifier
+..\Code\Uart.c(223): error C202: 'EA': undefined identifier
+..\Code\Uart.c(244): error C202: 'EA': undefined identifier
+..\Code\Uart.c(249): error C202: 'EA': undefined identifier
+..\Code\Uart.c(291): error C202: 'P00D': undefined identifier
+..\Code\Uart.c(291): error C202: 'P01D': undefined identifier
+..\Code\Uart.c(291): error C202: 'P14D': undefined identifier
+..\Code\Uart.c(291): error C202: 'P12D': undefined identifier
+..\Code\Uart.c(291): error C202: 'P11D': undefined identifier
+..\Code\Uart.c(292): error C202: 'P21D': undefined identifier
+..\Code\Uart.c(292): error C202: 'P24D': undefined identifier
+..\Code\Uart.c(292): error C202: 'P27D': undefined identifier
+..\Code\Uart.c(292): error C202: 'P26D': undefined identifier
+..\Code\Uart.c(292): error C202: 'P10D': undefined identifier
+..\Code\Uart.c(341): error C202: 'IE1': undefined identifier
+..\Code\Uart.c(342): error C202: 'EA': undefined identifier
+..\Code\Uart.c(350): error C202: 'IE1': undefined identifier
+..\Code\Uart.c(351): error C202: 'EA': undefined identifier
+..\Code\Uart.c(359): error C202: 'IE1': undefined identifier
+..\Code\Uart.c(360): error C202: 'EA': undefined identifier
+..\Code\Uart.c(365): error C202: 'EA': undefined identifier
+..\Code\Uart.c(366): error C202: 'IE1': undefined identifier
+compiling PrintfDefine.c...
+Target not created.
+Build Time Elapsed:  00:00:02
+</pre>
+</body>
+</html>

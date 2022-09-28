@@ -9,7 +9,7 @@ void vSysSourceInit();
 void GPIO_Init();//I/O口初始化
 void Uart_Init();//UART配置
 void Time0_Init();//定时器2PWM输出配置
-
+void vInitAdc(void);
 
 #define NO_USE 2
 #define TRUE   1

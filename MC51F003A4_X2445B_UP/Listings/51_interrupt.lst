@@ -1,10 +1,10 @@
-C51 COMPILER V9.52.0.0   51_INTERRUPT                                                      07/13/2021 15:24:46 PAGE 1   
+C51 COMPILER V9.59.0.0   51_INTERRUPT                                                      09/26/2022 12:26:49 PAGE 1   
 
 
-C51 COMPILER V9.52.0.0, COMPILATION OF MODULE 51_INTERRUPT
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE 51_INTERRUPT
 OBJECT MODULE PLACED IN ..\OBJ\51_interrupt.obj
-COMPILER INVOKED BY: D:\Program Files (x86)\KeilC51-V952\C51\BIN\C51.EXE ..\Code\51_interrupt.c OMF2 BROWSE INCDIR(..\In
-                    -clude) DEBUG PRINT(..\Listings\51_interrupt.lst) TABS(2) OBJECT(..\OBJ\51_interrupt.obj)
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\Code\51_interrupt.c OMF2 OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Include) 
+                    -DEBUG PRINT(..\Listings\51_interrupt.lst) TABS(2) OBJECT(..\OBJ\51_interrupt.obj)
 
 line level    source
 
@@ -15,6 +15,8 @@ line level    source
    5          ***********************************************/
    6          #include "uart.h"
    7          #include "User_Def.h"
+*** WARNING C318 IN LINE 15 OF \lwt-workspace\X2445按键板-单片机晟矽微 2.73K 45%占空比\Include\MC51F003A4_COMMON.h: can'
+             -t open file 'MC51F003A4.h'
    8          #include "SystemInit.h"
    9          #include "function.h"
   10          
@@ -23,50 +25,67 @@ line level    source
   13          GLOBLE_TIMER_1MS Globle_Timer_1MS;
   14          unsigned short g_us1msTimes = 0;
   15          void Timer0_ISR(void) interrupt T0_IRQn
+*** ERROR C141 IN LINE 15 OF ..\Code\51_interrupt.c: syntax error near 'T0_IRQn', expected 'const'
   16          {
-  17   1          SFR_INTERRUPT_BUFF_BIT_T0 = SFRSL0;   //进中断缓存SFR
-  18   1          SLK_SFR0();
-  19   1          TR0 = 0; //无论是读或者写 TLx/THx 的值，必须先停止(TR0=0;)
-  20   1          TL0 = 0x18;
-  21   1          TH0 = 0xFC; //读写时，先读写L，在H
-  22   1          TR0 = 1;
-  23   1          SFRSL0 = SFR_INTERRUPT_BUFF_BIT_T0;   //进中断缓存SFR
-  24   1        
-  25   1          Globle_Timer_1MS.All = 0xFFFF;
-  26   1        //  if(g_us1msTimes)g_us1msTimes--;
-  27   1        //  if(usTickNum) usTickNum--;
-  28   1          vDealAd();
-  29   1          
-  30   1      }
+*** ERROR C132 IN LINE 16 OF ..\Code\51_interrupt.c: 'T0_IRQn': not in formal parameter list
+*** ERROR C141 IN LINE 16 OF ..\Code\51_interrupt.c: syntax error near '{', expected ';'
+  17              SFR_INTERRUPT_BUFF_BIT_T0 = SFRSL0;   //进中断缓存SFR
+*** ERROR C132 IN LINE 17 OF ..\Code\51_interrupt.c: 'SFR_interrupt_buff_H': not in formal parameter list
+*** ERROR C132 IN LINE 17 OF ..\Code\51_interrupt.c: 'bits': not in formal parameter list
+*** ERROR C244 IN LINE 17 OF ..\Code\51_interrupt.c: 'bit1': can't initialize, bad type or class
+*** ERROR C202 IN LINE 17 OF ..\Code\51_interrupt.c: 'SFRSL0': undefined identifier
+*** ERROR C132 IN LINE 17 OF ..\Code\51_interrupt.c: 'bit1': not in formal parameter list
+  18              SLK_SFR0();
+*** ERROR C244 IN LINE 18 OF ..\Code\51_interrupt.c: 'SFRSL0': can't initialize, bad type or class
+*** ERROR C132 IN LINE 18 OF ..\Code\51_interrupt.c: 'SFRSL0': not in formal parameter list
+  19              TR0 = 0; //无论是读或者写 TLx/THx 的值，必须先停止(TR0=0;)
+*** ERROR C244 IN LINE 19 OF ..\Code\51_interrupt.c: 'TR0': can't initialize, bad type or class
+*** ERROR C132 IN LINE 19 OF ..\Code\51_interrupt.c: 'TR0': not in formal parameter list
+  20              TL0 = 0x18;
+*** ERROR C244 IN LINE 20 OF ..\Code\51_interrupt.c: 'TL0': can't initialize, bad type or class
+*** ERROR C132 IN LINE 20 OF ..\Code\51_interrupt.c: 'TL0': not in formal parameter list
+  21              TH0 = 0xFC; //读写时，先读写L，在H
+*** ERROR C244 IN LINE 21 OF ..\Code\51_interrupt.c: 'TH0': can't initialize, bad type or class
+*** ERROR C132 IN LINE 21 OF ..\Code\51_interrupt.c: 'TH0': not in formal parameter list
+  22              TR0 = 1;
+*** ERROR C244 IN LINE 22 OF ..\Code\51_interrupt.c: 'TR0': can't initialize, bad type or class
+*** ERROR C132 IN LINE 22 OF ..\Code\51_interrupt.c: 'TR0': not in formal parameter list
+  23              SFRSL0 = SFR_INTERRUPT_BUFF_BIT_T0;   //进中断缓存SFR
+*** ERROR C244 IN LINE 23 OF ..\Code\51_interrupt.c: 'SFRSL0': can't initialize, bad type or class
+*** ERROR C132 IN LINE 23 OF ..\Code\51_interrupt.c: 'SFRSL0': not in formal parameter list
+  24            
+  25              Globle_Timer_1MS.All = 0xFFFF;
+*** ERROR C132 IN LINE 25 OF ..\Code\51_interrupt.c: 'Globle_Timer_1MS': not in formal parameter list
+*** ERROR C141 IN LINE 25 OF ..\Code\51_interrupt.c: syntax error near '.', expected ';'
+*** ERROR C244 IN LINE 25 OF ..\Code\51_interrupt.c: 'All': can't initialize, bad type or class
+*** ERROR C132 IN LINE 25 OF ..\Code\51_interrupt.c: 'All': not in formal parameter list
+  26            //  if(g_us1msTimes)g_us1msTimes--;
+  27            //  if(usTickNum) usTickNum--;
+  28              vDealAd();
+C51 COMPILER V9.59.0.0   51_INTERRUPT                                                      09/26/2022 12:26:49 PAGE 2   
+
+*** ERROR C132 IN LINE 28 OF ..\Code\51_interrupt.c: 'vDealAd': not in formal parameter list
+  29              
+  30          }
+*** ERROR C141 IN LINE 30 OF ..\Code\51_interrupt.c: syntax error near '}', expected 'hdata'
   31          
   32          void UART1_ISR(void) interrupt UART1_IRQn
+*** ERROR C141 IN LINE 32 OF ..\Code\51_interrupt.c: syntax error near 'UART1_IRQn', expected 'const'
   33          {
-  34   1          unsigned char Recvdata;
-  35   1          if (((SCON_1 & DEF_SET_BIT0) == DEF_SET_BIT0))
-  36   1          {
-  37   2              Recvdata = UART1_ReceiveByte();
-  38   2              CLR_RI_1();
-  39   2              UART1_RecvData(Recvdata);
-  40   2          }
-  41   1      }
+*** ERROR C132 IN LINE 33 OF ..\Code\51_interrupt.c: 'UART1_IRQn': not in formal parameter list
+*** ERROR C141 IN LINE 33 OF ..\Code\51_interrupt.c: syntax error near '{', expected ';'
+  34              unsigned char Recvdata;
+*** ERROR C132 IN LINE 34 OF ..\Code\51_interrupt.c: 'Recvdata': not in formal parameter list
+  35              if (((SCON_1 & DEF_SET_BIT0) == DEF_SET_BIT0))
+*** ERROR C141 IN LINE 35 OF ..\Code\51_interrupt.c: syntax error near 'if', expected 'hdata'
+*** ERROR C141 IN LINE 35 OF ..\Code\51_interrupt.c: syntax error near '&', expected ')'
+  36              {
+  37                  Recvdata = UART1_ReceiveByte();
+  38                  CLR_RI_1();
+*** ERROR C129 IN LINE 38 OF ..\Code\51_interrupt.c: missing ';' before '&='
+  39                  UART1_RecvData(Recvdata);
+  40              }
+  41          }
   42          
 
-
-MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    177    ----
-   CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----    ----
-   PDATA SIZE       =   ----    ----
-   DATA SIZE        =      4    ----
-   IDATA SIZE       =   ----    ----
-   BIT SIZE         =   ----    ----
-   EDATA SIZE       =   ----    ----
-   HDATA SIZE       =   ----    ----
-C51 COMPILER V9.52.0.0   51_INTERRUPT                                                      07/13/2021 15:24:46 PAGE 2   
-
-   XDATA CONST SIZE =   ----    ----
-   FAR CONST SIZE   =   ----    ----
-END OF MODULE INFORMATION.
-
-
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  1 WARNING(S),  33 ERROR(S)

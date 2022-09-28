@@ -188,14 +188,18 @@ void vFirstStart(void)
 
     //////////////////////////////////以下仅为调试模式下有效果
 #ifdef InDeBugMode
-    strPeripheral.ucRecvData_Flag = 0x03;
-    strPeripheral.uiRecvPowerValue = 40000;//电量不为零时才检测按键
-    //
-    SpeedLedOn(ucSpeedGrad);
-    PowerLedOn(strPeripheral.uiRecvPowerValue); //显示电量
+//    strPeripheral.ucRecvData_Flag = 0x03;
+//    strPeripheral.uiRecvPowerValue = 40000;//电量不为零时才检测按键
+//    //
+//    SpeedLedOn(ucSpeedGrad);
+//    PowerLedOn(strPeripheral.uiRecvPowerValue); //显示电量
+		
 #endif
 
 }
+
+
+
 
 /*****显示电量指示灯********/
 void PowerLedNumOn(unsigned char num)
@@ -1405,3 +1409,106 @@ void EEPROM_Read(unsigned int addr, unsigned char idata *R_data, unsigned int le
     set_EA;
 }
 
+
+void myFuncInit(){
+    clr_EA;      //关闭中断
+    GPIO_Init();
+	  Time0_Init();    
+    PWM1_Init();
+    vInitAdc();
+    //Uart_Init();
+	  set_EA;      //打开中断
+}
+void myFuncLed(){
+  //电源灯
+	//P21D = 1;//左1
+	P24D = 1;//左2
+	//P27D = 1;//左3
+	P26D = 1;//左4
+	//P10D = 1;//左5
+	
+	//速度灯
+	P00D = 1;//左1
+	//P01D = 1;//左2
+	P14D =1;//左3
+	//P12D = 1;//左4
+	P11D = 1;//左5
+}
+void MyFuncSpeaker(){
+	
+	unsigned short usReadSpeakerPwmFlag = 0;
+	
+	if(Globle_Timer_1MS.Bits.CheckKeyPress)
+  {
+      Globle_Timer_1MS.Bits.CheckKeyPress = 0;
+			
+			if(uiAdVoltage > 3350)//4096
+			{
+					ucKeyPressFlag = FALSE;
+					strPeripheral.SpeedUpKeyTime = 0;
+					strPeripheral.SpeedDownKeyTime = 0;
+					strPeripheral.SpeakerKeyTime = 0;
+					strPeripheral.SpeedDownAndUpTime = 0;
+					strPeripheral.SpeakerAndSpeedUpTime = 0;
+					strPeripheral.Input.Bits.SpeedDownKeyPressFlag =  0;
+          ucBuzzerPressedFlg = FALSE;
+			}
+			else if((uiAdVoltage < 2164) && (uiAdVoltage > 1944))//
+			{
+					strPeripheral.SpeakerKeyTime++;
+					strPeripheral.SpeedDownAndUpTime = 0;
+					strPeripheral.SpeakerAndSpeedUpTime = 0;
+					strPeripheral.Input.Bits.SpeedDownKeyPressFlag =  0;
+				  
+					if(strPeripheral.SpeakerKeyTime > TIMER_20MS)
+					{
+							strPeripheral.SpeakerKeyTime = TIMER_20MS;
+							strPeripheral.Input.Bits.SpeakerKey = TRUE;
+							//ucKeyPressFlag = TRUE;
+					}
+			}
+			
+			
+			if(strPeripheral.Input.Bits.SpeakerKey)
+				{
+						if (TRUE != strPeripheral.ucRecvOrderInCharge)
+						{
+								strPeripheral.Output.Bits.Alarm = TRUE;
+								SetPWM1_Out(LabaKeyPressSpeekTime, LabaKeyPressSpeekPulse);
+								//if(FALSE == ucBuzzerPressedFlg)vSendBuzzerOrder(0x01);
+								ucBuzzerPressedFlg = TRUE;
+						}else{
+								ucBuzzerPressedFlg = FALSE;
+						}
+				}
+		}
+	  usReadSpeakerPwmFlag =  usReadSpeakerPwm();
+  	if(usReadSpeakerPwmFlag && 0 == strPeripheral.SpeakerKeyTime)
+    {
+			SetPWM1_Out(0, 0);
+//        Globle_Timer_1MS.Bits.CheckIDele = 0;
+//        if((0 == strPeripheral.ucRecvBikeInBack) 
+//					&& (0 == ucLess18Power) 
+//				  &&(0 == strPeripheral.ucRecvAlarmNum) 
+//				  && (FALSE == ucBuzzerTstFlg) 
+//				  && (FALSE == ucBuzzerPressedFlg) 
+//				  && (0 == ucKeyPressFlag) 
+//				  && (0 == strPeripheral.ucRecvWrite60Bytes_Flag) 
+//				  && (0x03 == strPeripheral.usRecvPowerON_Flag) 
+//				  && (0 == strPeripheral.SpeakerAndSpeedUpTime) 
+//				  && (0 == strPeripheral.SpeedDownAndUpTime) 
+//				  && (0 == strPeripheral.SpeedDownKeyTime) 
+//				  && (0 == strPeripheral.SpeedUpKeyTime) )
+//        {
+//            SetPWM1_Out(SpeedKeyTime, 0);//ucDebugSpeaker = 14;
+//            for(ucKeyPressFlag = 0; ucKeyPressFlag < 60; ucKeyPressFlag++)
+//            {
+//                Globle_Timer_1MS.Bits.CheckIDele  = 0;
+//                while(0 == Globle_Timer_1MS.Bits.CheckIDele);
+//            }
+//            vSendBuzzerOrder(0x02);
+//            Globle_Timer_1MS.Bits.CheckIDele = ucKeyPressFlag = 0;
+//        }
+    }
+	
+}

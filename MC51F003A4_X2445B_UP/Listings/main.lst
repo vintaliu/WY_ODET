@@ -1,48 +1,69 @@
-C51 COMPILER V9.52.0.0   MAIN                                                              07/13/2021 15:24:46 PAGE 1   
+C51 COMPILER V9.59.0.0   MAIN                                                              09/26/2022 12:26:49 PAGE 1   
 
 
-C51 COMPILER V9.52.0.0, COMPILATION OF MODULE MAIN
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN ..\OBJ\main.obj
-COMPILER INVOKED BY: D:\Program Files (x86)\KeilC51-V952\C51\BIN\C51.EXE ..\Code\main.c OMF2 BROWSE INCDIR(..\Include) D
-                    -EBUG PRINT(..\Listings\main.lst) TABS(2) OBJECT(..\OBJ\main.obj)
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\Code\main.c OMF2 OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Include) DEBUG PR
+                    -INT(..\Listings\main.lst) TABS(2) OBJECT(..\OBJ\main.obj)
 
 line level    source
 
-   1          #include "User_Def.h"
-   2          #include "function.h"
-   3          #include "SystemInit.h"
-   4          #include "uart.h"
-   5          
-   6          //extern  unsigned int n;
-   7          
-   8          int main(void)
-   9          {
-  10   1          vFirstStart();//开机  
-  11   1          while (1)
-  12   1          {
-  13   2              USART1_DataProcess();
-  14   2              PeripheralHandle();
-  15   2      
-  16   2              //        if(Globle_Timer_1MS.Bits.AdVoltage)
-  17   2              //        {
-  18   2              //            Globle_Timer_1MS.Bits.AdVoltage = 0;
-  19   2              //            vDealAd();
-  20   2              //        }
-  21   2      
-  22   2          }
-  23   1      }
-  24          
-  25          /*******************         *****END OF FILE****/
+   1          #include <stdio.h>
+   2          #include "User_Def.h"
+*** WARNING C318 IN LINE 15 OF \lwt-workspace\X2445按键板-单片机晟矽微 2.73K 45%占空比\Include\MC51F003A4_COMMON.h: can'
+             -t open file 'MC51F003A4.h'
+   3          #include "function.h"
+   4          #include "SystemInit.h"
+   5          #include "uart.h"
+   6          
+   7          //extern  unsigned int n;
+   8          void myFuncInit();
+   9          void MyFuncSpeaker();
+  10          void myFuncLed();
+  11          unsigned int i = 0;
+  12          int main(void)
+  13          {
+  14   1      
+  15   1          
+  16   1      //    vFirstStart();//开机  
+  17   1      //    i = 0;
+  18   1      //    while (1)
+  19   1      //    {
+  20   1      //        i++;
+  21   1      //        USART1_DataProcess();
+  22   1      //        PeripheralHandle();
+  23   1      
+  24   1      //        //        if(Globle_Timer_1MS.Bits.AdVoltage)
+  25   1      //        //        {
+  26   1      //        //            Globle_Timer_1MS.Bits.AdVoltage = 0;
+  27   1      //        //            vDealAd();
+  28   1      //        //        }
+  29   1      //      
+  30   1      //      
+  31   1      //    }
+  32   1        
+  33   1          myFuncInit();
+  34   1          i = 0;
+  35   1          while(1){
+  36   2            i++;
+  37   2            myFuncLed();
+  38   2            MyFuncSpeaker();
+  39   2          }
+  40   1      }
+  41          
+  42          /*******************         *****END OF FILE****/
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     11    ----
+   CODE SIZE        =     24    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----    ----
+   DATA SIZE        =      2    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
+C51 COMPILER V9.59.0.0   MAIN                                                              09/26/2022 12:26:49 PAGE 2   
+
    EDATA SIZE       =   ----    ----
    HDATA SIZE       =   ----    ----
    XDATA CONST SIZE =   ----    ----
@@ -50,4 +71,4 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
