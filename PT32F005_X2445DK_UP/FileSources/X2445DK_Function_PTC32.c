@@ -1209,3 +1209,7 @@ void PeripheralHandle(void)
 }
 #endif
 
+void myFuncInit(void){
+
+
+}

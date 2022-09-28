@@ -9,15 +9,23 @@ unsigned char ucTestData[60] = {0};
 int main (void)
 {
 	vFirstStart();
-	
+//	strPeripheral.ucRecvData_Flag = 0x03;
+//  strPeripheral.uiRecvPowerValue = 24600;//电量不为零时才检测按键
+////    //
+////	ucSpeedGrad = 2;
+////  SpeedLedOn(ucSpeedGrad);
+//  PowerLedOn(strPeripheral.uiRecvPowerValue); //显示电量
 	while(1)
 	{
-       // USART1_DataProcess();
+        USART1_DataProcess();
         
-        //PeripheralHandle();
+        PeripheralHandle();
 		
-//				vPowerPressed();
+				//vPowerPressed();
+		
 	}
+	
+
 }
 
 #ifdef  USE_FULL_ASSERT

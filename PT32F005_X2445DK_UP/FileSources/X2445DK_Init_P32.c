@@ -28,6 +28,8 @@ void GPIO_InitPT32(void)
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
     GPIO_InitStructure.GPIO_SR = GPIO_Slew_Rate_High;
     GPIO_Init(CMSDK_PA, &GPIO_InitStructure);
+	
+	  //GPIO_Init(CMSDK_PA, &GPIO_InitStructure);
 
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7; //电量指示灯 2，3，4，5
     GPIO_Init(CMSDK_PC, &GPIO_InitStructure);

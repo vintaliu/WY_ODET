@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Out\X2445DK-PT32F005.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Out\X2445DK-PT32F005.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Sep 26 09:22:29 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Sep 28 14:27:49 2022
 <BR><P>
 <H3>Maximum Stack Usage =        120 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -317,6 +317,7 @@ Global Symbols
 <LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vSysSourceInit
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_DataProcess
 </UL>
 
 <P><STRONG><a name="[3c]"></a>GPIO_PinAFConfig</STRONG> (Thumb, 242 bytes, Stack size 32 bytes, pt32x005_gpio.o(i.GPIO_PinAFConfig))
@@ -657,14 +658,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Uart_Init
 </UL>
 
-<P><STRONG><a name="[5e]"></a>USART1_DataProcess</STRONG> (Thumb, 704 bytes, Stack size 16 bytes, x2445dk_uart_p32.o(i.USART1_DataProcess))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = USART1_DataProcess &rArr; EEPROM_WriteByte &rArr; FLASH_ProgramWord &rArr; assert_failed &rArr; __2printf
+<P><STRONG><a name="[5e]"></a>USART1_DataProcess</STRONG> (Thumb, 708 bytes, Stack size 16 bytes, x2445dk_uart_p32.o(i.USART1_DataProcess))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = USART1_DataProcess &rArr; GPIO_InitPT32 &rArr; GPIO_PinAFConfig &rArr; assert_failed &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vSendOneBytes
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vSendFeedBack
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vSendDKVersion
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vSend60Bytes
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_PRIMASK
+<LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_InitPT32
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vSendSpeedGrad
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Cmd
 <LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits

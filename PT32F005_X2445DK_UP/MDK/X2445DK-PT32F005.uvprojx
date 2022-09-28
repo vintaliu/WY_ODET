@@ -386,11 +386,6 @@
               <FileType>2</FileType>
               <FilePath>..\FileSources\startup_PT32X005x.s</FilePath>
             </File>
-            <File>
-              <FileName>system_PT32X005.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\FileSources\system_PT32X005.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -400,6 +395,11 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\FileSources\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>system_PT32X005.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FileSources\system_PT32X005.c</FilePath>
             </File>
             <File>
               <FileName>PT32X005_it.c</FileName>
@@ -425,6 +425,11 @@
               <FileName>X2445DK_Uart_P32.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\FileSources\X2445DK_Uart_P32.c</FilePath>
+            </File>
+            <File>
+              <FileName>printfWindow.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FileSources\printfWindow.c</FilePath>
             </File>
           </Files>
         </Group>

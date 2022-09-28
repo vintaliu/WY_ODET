@@ -1,5 +1,7 @@
 #include "X2445DK_Const.h"
 
+void GPIO_InitPT32(void);
+
 unsigned char Uart1RecvBuf[BufferSize] = {0};
 unsigned char Uart1SendBuf[BufferSize] = {0};
 
@@ -290,6 +292,7 @@ void USART1_DataProcess(void)
             strPeripheral.usRecvPowerOFF_Flag = TRUE;
             SPEED_LED_0;   //关闭速度灯
             POWER_SHOW_0;  //关闭电源灯
+				    GPIO_InitPT32();
             break;
         case OrderErro:  //错误报警
             if (FALSE == strPeripheral.ucRecvTestFlag)
