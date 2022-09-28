@@ -1,0 +1,552 @@
+C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE UART
+OBJECT MODULE PLACED IN ..\OBJ\Uart.obj
+COMPILER INVOKED BY: D:\Program Files (x86)\KeilC51-V952\C51\BIN\C51.EXE ..\Code\Uart.c OMF2 BROWSE INCDIR(..\Include) D
+                    -EBUG PRINT(..\Listings\Uart.lst) TABS(2) OBJECT(..\OBJ\Uart.obj)
+
+line level    source
+
+   1          #include "User_Def.h"
+   2          #include "function.h"
+   3          #include "SystemInit.h"
+   4          #include "Uart.h"
+   5          
+   6          unsigned char xdata Uart1RecvBuf[BufferSize] = {0};
+   7          unsigned char xdata Uart1SendBuf[BufferSize] = {0};
+   8          
+   9          
+  10          unsigned char Uart1RXPhase = Uart_Frame_Header;
+  11          bit Uart1RecvFlag = 0;
+  12          unsigned char Uart1RXCnt = 0;
+  13          
+  14          unsigned char ucEnableSoftDogFlg = FALSE;
+  15          unsigned char idata ucEepromBuf[60];    //±£´æ60×Ö½ÚµÄÊý¾Ý
+  16          unsigned char ucRecDataCodeAndData[2] = 0;
+  17          unsigned char ucAskDKVersion;
+  18          unsigned char g_ucRecFbData = FALSE;
+  19          
+  20          
+  21          void UART1_SendByte(unsigned char senddata)
+  22          { 
+  23   1          SBUF_1 = senddata;
+  24   1          /* Loop until the end of transmission */
+  25   1          while (!(SCON_1 & 0x02));
+  26   1          CLR_TI_1();
+  27   1      }
+  28          /*****·¢ËÍ×Ö·û´®*****/
+  29          void UART1_SendString(unsigned char *Data, unsigned int len)
+  30          {
+  31   1          unsigned int i = 0;
+  32   1          for(; i < len; i++) UART1_SendByte(Data[i]);
+  33   1      }
+  34          
+  35          /*******½ÓÊÕÊý¾Ý*****/
+  36          unsigned char  UART1_ReceiveByte()
+  37          {
+  38   1          unsigned char USART1_RX_BUF;
+  39   1          USART1_RX_BUF = SBUF_1;
+  40   1          return  USART1_RX_BUF;
+  41   1      }
+  42          
+  43          /****·µ»ØÊÕµ½ÃüÁîÖ¡****/
+  44          void vSendFeedBack(void)
+  45          {
+  46   1          unsigned char ucSendCont = 0;
+  47   1          Uart1SendBuf[ucSendCont++] = SendHeard1;
+  48   1          Uart1SendBuf[ucSendCont++] = SendHeard2;
+  49   1          Uart1SendBuf[ucSendCont++] = FeedBack1;
+  50   1          Uart1SendBuf[ucSendCont++] = SendTail1;
+  51   1          Uart1SendBuf[ucSendCont++] = SendTail2;
+  52   1          Uart1SendBuf[ucSendCont++] = SendTail3;
+  53   1          Uart1SendBuf[ucSendCont++] = SendTail4;
+  54   1          UART1_SendString(Uart1SendBuf, ucSendCont);
+C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 2   
+
+  55   1      }
+  56          
+  57          //#define WaiteFbMaxTime 9
+  58          ///*********°´ÏÂÀ®°È°´¼üÊ±£¬·¢ËÍÃüÁî********/
+  59          //void vSendBuzzerOrder(unsigned char arg)
+  60          //{
+  61          //    unsigned char ucSendCont = 0;
+  62          
+  63          //    Uart1SendBuf[ucSendCont++] = SendHeard1;
+  64          //    Uart1SendBuf[ucSendCont++] = SendHeard2;
+  65          //    Uart1SendBuf[ucSendCont++] = 0;
+  66          //    Uart1SendBuf[ucSendCont++] = ShowDefine;
+  67          //    Uart1SendBuf[ucSendCont++] = OrderSpeekP;
+  68          //    Uart1SendBuf[ucSendCont++] = arg;
+  69          //    Uart1SendBuf[ucSendCont++] = SendTail1;
+  70          //    Uart1SendBuf[ucSendCont++] = SendTail2;
+  71          //    Uart1SendBuf[ucSendCont++] = SendTail3;
+  72          //    Uart1SendBuf[ucSendCont++] = SendTail4;
+  73          //    Uart1SendBuf[2] = ucSendCont;
+  74          
+  75          //    UART1_SendString(Uart1SendBuf, ucSendCont);
+  76          //}
+  77          
+  78          void vSendUartDelya(unsigned char ucDelay)
+  79          {
+  80   1        while(ucDelay)
+  81   1        {
+  82   2          ucDelay --;
+  83   2        }
+  84   1      }
+  85          #ifdef QianXiUart //ÑÓÊ±·¢ËÍÊý¾Ý          
+  86                      #define WaiteFbMaxTime 250
+  87          #else
+                          #define WaiteFbMaxTime 30
+              #endif
+  90          
+  91          /*********°´ÏÂÀ®°È°´¼üÊ±£¬·¢ËÍÃüÁî********/
+  92          void vSendBuzzerOrder(unsigned char arg)
+  93          {
+  94   1          unsigned char ucSendCont = 0;
+  95   1          unsigned char ucRecSendCont = 0;
+  96   1          unsigned char ucContTime = 0;
+  97   1          g_ucRecFbData = FALSE;
+  98   1          Uart1SendBuf[ucSendCont++] = SendHeard1;
+  99   1          Uart1SendBuf[ucSendCont++] = SendHeard2;
+ 100   1          Uart1SendBuf[ucSendCont++] = 0;
+ 101   1          Uart1SendBuf[ucSendCont++] = ShowDefine;
+ 102   1          Uart1SendBuf[ucSendCont++] = OrderSpeekP;
+ 103   1          Uart1SendBuf[ucSendCont++] = arg;
+ 104   1          Uart1SendBuf[ucSendCont++] = SendTail1;
+ 105   1          Uart1SendBuf[ucSendCont++] = SendTail2;
+ 106   1          Uart1SendBuf[ucSendCont++] = SendTail3;
+ 107   1          Uart1SendBuf[ucSendCont++] = SendTail4;
+ 108   1          Uart1SendBuf[2] = ucSendCont;
+ 109   1          for(ucRecSendCont = 0; ucRecSendCont < ErroSendTimes; ucRecSendCont++)//·¢ËÍÎå´ÎÊý¾Ý
+ 110   1          {
+ 111   2              UART1_SendString(Uart1SendBuf, ucSendCont);
+ 112   2              for(ucContTime = 0; ucContTime < WaiteFbMaxTime; ucContTime++)     //µÈ´ý·¢ËÍ¾ÅºÁÃë
+ 113   2              {
+ 114   3      #ifdef QianXiUart //ÑÓÊ±·¢ËÍÊý¾Ý          
+ 115   3                  vSendUartDelya(40);
+ 116   3      #else
+C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 3   
+
+                          vSendUartDelya(40);
+              #endif          
+ 119   3                  if(g_ucRecFbData)break;  //·¢ËÍ³É¹¦ÔòÌø³ö
+ 120   3              }
+ 121   2              if(g_ucRecFbData)break;
+ 122   2          }
+ 123   1      }
+ 124          
+ 125          void vSendDKVersion(unsigned char uiVersion)
+ 126          {
+ 127   1          unsigned char ucSendCont = 0;
+ 128   1      
+ 129   1          Uart1SendBuf[ucSendCont++] = SendHeard1;
+ 130   1          Uart1SendBuf[ucSendCont++] = SendHeard2;
+ 131   1          Uart1SendBuf[ucSendCont++] = 0;
+ 132   1          Uart1SendBuf[ucSendCont++] = ShowDefine;
+ 133   1          Uart1SendBuf[ucSendCont++] = ReadDKVersion;
+ 134   1          Uart1SendBuf[ucSendCont++] = uiVersion;
+ 135   1          Uart1SendBuf[ucSendCont++] = SendTail1;
+ 136   1          Uart1SendBuf[ucSendCont++] = SendTail2;
+ 137   1          Uart1SendBuf[ucSendCont++] = SendTail3;
+ 138   1          Uart1SendBuf[ucSendCont++] = SendTail4;
+ 139   1          Uart1SendBuf[2] = ucSendCont;
+ 140   1      
+ 141   1          UART1_SendString(Uart1SendBuf, ucSendCont);
+ 142   1      
+ 143   1      }
+ 144          
+ 145          /****·¢ËÍËÙ¶ÈÖµ****/
+ 146          void vSendSpeedGrad(unsigned char ucSpeed)//·¢ËÍËÙ¶È
+ 147          {
+ 148   1      
+ 149   1          unsigned char ucSendCont = 0;
+ 150   1      
+ 151   1      
+ 152   1          Uart1SendBuf[ucSendCont++] = SendHeard1;
+ 153   1          Uart1SendBuf[ucSendCont++] = SendHeard2;
+ 154   1          Uart1SendBuf[ucSendCont++] = 0;
+ 155   1          Uart1SendBuf[ucSendCont++] = ShowDefine;
+ 156   1          Uart1SendBuf[ucSendCont++] = SpeedGrad;
+ 157   1          Uart1SendBuf[ucSendCont++] = ucSpeed;
+ 158   1          Uart1SendBuf[ucSendCont++] = SendTail1;
+ 159   1          Uart1SendBuf[ucSendCont++] = SendTail2;
+ 160   1          Uart1SendBuf[ucSendCont++] = SendTail3;
+ 161   1          Uart1SendBuf[ucSendCont++] = SendTail4;
+ 162   1          Uart1SendBuf[2] = ucSendCont;
+ 163   1      
+ 164   1          UART1_SendString(Uart1SendBuf, ucSendCont);
+ 165   1      
+ 166   1      }
+ 167          /****·¢ËÍ°´¼ü°å×´Ì¬Öµ20190807****/
+ 168          //#define LedStatus         0x0A //°´¼ü°å×´Ì¬ÖµÏÂ·¢¸øÖ÷°å
+ 169          void vSendLedStatus(unsigned char ucStatus, unsigned char ucData) //·¢ËÍ°´¼ü°å×´Ì¬Öµ
+ 170          {
+ 171   1      
+ 172   1          unsigned char ucSendCont = 0;
+ 173   1      
+ 174   1      
+ 175   1          Uart1SendBuf[ucSendCont++] = SendHeard1;
+ 176   1          Uart1SendBuf[ucSendCont++] = SendHeard2;
+ 177   1          Uart1SendBuf[ucSendCont++] = 0;
+ 178   1          Uart1SendBuf[ucSendCont++] = ShowDefine;
+C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 4   
+
+ 179   1          Uart1SendBuf[ucSendCont++] = LedStatus;
+ 180   1          Uart1SendBuf[ucSendCont++] = ucStatus;
+ 181   1          Uart1SendBuf[ucSendCont++] = ucData;
+ 182   1          Uart1SendBuf[ucSendCont++] = SendTail1;
+ 183   1          Uart1SendBuf[ucSendCont++] = SendTail2;
+ 184   1          Uart1SendBuf[ucSendCont++] = SendTail3;
+ 185   1          Uart1SendBuf[ucSendCont++] = SendTail4;
+ 186   1          Uart1SendBuf[2] = ucSendCont;
+ 187   1      
+ 188   1          UART1_SendString(Uart1SendBuf, ucSendCont);
+ 189   1      }
+ 190          
+ 191          void vSendPowerOn(void)//·¢ËÍ¿ª»úÃüÁî
+ 192          {
+ 193   1          unsigned char ucSendCont = 0;
+ 194   1      
+ 195   1      
+ 196   1          Uart1SendBuf[ucSendCont++] = SendHeard1;
+ 197   1          Uart1SendBuf[ucSendCont++] = SendHeard2;
+ 198   1          Uart1SendBuf[ucSendCont++] = 0;
+ 199   1          Uart1SendBuf[ucSendCont++] = ShowDefine;
+ 200   1          Uart1SendBuf[ucSendCont++] = OrderPowerOnOff;
+ 201   1          Uart1SendBuf[ucSendCont++] = SendTail1;
+ 202   1          Uart1SendBuf[ucSendCont++] = SendTail2;
+ 203   1          Uart1SendBuf[ucSendCont++] = SendTail3;
+ 204   1          Uart1SendBuf[ucSendCont++] = SendTail4;
+ 205   1          Uart1SendBuf[2] = ucSendCont;
+ 206   1      
+ 207   1          UART1_SendString(Uart1SendBuf, ucSendCont);         //·¢ËÍÊý×éÖÐ°üº¬¿ª»úÃüÁîÐÅÏ¢
+ 208   1      
+ 209   1      }
+ 210          
+ 211          void vSendOneBytes(void)//ÏòÖ÷¿Ø·¢ËÍÒ»¸öBytes
+ 212          {
+ 213   1          unsigned char ucSendCont = 0;
+ 214   1      
+ 215   1          Uart1SendBuf[ucSendCont++] = SendHeard1;
+ 216   1          Uart1SendBuf[ucSendCont++] = SendHeard2;
+ 217   1          Uart1SendBuf[ucSendCont++] = 0;
+ 218   1          Uart1SendBuf[ucSendCont++] = ShowDefine;
+ 219   1          Uart1SendBuf[ucSendCont++] = ReadOneByte;
+ 220   1          //´ÓEEPROMÖÐ¶ÁÈ¡ËÙ¶È
+ 221   1          clr_EA; //¹Ø±ÕËùÓÐÖÐ¶Ï£¬·ñÔò×ÜÊÇ½øÈë´®¿ÚÖÐ¶Ï
+ 222   1          Uart1SendBuf[ucSendCont++] = EEPROM_Byte_Read(EEPRO_One_Byte_ADDRESS);
+ 223   1          set_EA; //¿ªÖÐ¶Ï
+ 224   1          Uart1SendBuf[ucSendCont++] = SendTail1;
+ 225   1          Uart1SendBuf[ucSendCont++] = SendTail2;
+ 226   1          Uart1SendBuf[ucSendCont++] = SendTail3;
+ 227   1          Uart1SendBuf[ucSendCont++] = SendTail4;
+ 228   1          Uart1SendBuf[2] = ucSendCont;
+ 229   1      
+ 230   1          UART1_SendString(Uart1SendBuf, ucSendCont);
+ 231   1      
+ 232   1      }
+ 233          /*****ÏòÖ÷¿Ø·¢ËÍ60Bytes*****/
+ 234          void vSend60Bytes(void)
+ 235          {
+ 236   1          unsigned char ucSendCont = 0;
+ 237   1          unsigned char i;
+ 238   1      
+ 239   1          Uart1SendBuf[ucSendCont++] = SendHeard1;
+ 240   1          Uart1SendBuf[ucSendCont++] = SendHeard2;
+C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 5   
+
+ 241   1          Uart1SendBuf[ucSendCont++] = 0;
+ 242   1          Uart1SendBuf[ucSendCont++] = ShowDefine;
+ 243   1          Uart1SendBuf[ucSendCont++] = Read60Bytes;
+ 244   1          clr_EA;
+ 245   1          for (i = 0; i < RW_COUNT; i++)//´ÓEEPROMÖÐ¶ÁÈ¡ËÙ¶È
+ 246   1          {
+ 247   2              Uart1SendBuf[ucSendCont++] = EEPROM_Byte_Read(EEPROM_START_ADDRESS_FACT_PARE+i); //ÕâÀïµÄÊý¾ÝÖ±½Ó¶
+             -ÔÓ¦ FALSEÖÐµÄÊý¾Ý
+ 248   2          }
+ 249   1          set_EA;
+ 250   1          Uart1SendBuf[ucSendCont++] = SendTail1;
+ 251   1          Uart1SendBuf[ucSendCont++] = SendTail2;
+ 252   1          Uart1SendBuf[ucSendCont++] = SendTail3;
+ 253   1          Uart1SendBuf[ucSendCont++] = SendTail4;
+ 254   1          Uart1SendBuf[2] = ucSendCont;
+ 255   1      
+ 256   1          UART1_SendString(Uart1SendBuf, ucSendCont);
+ 257   1      
+ 258   1      }
+ 259          
+ 260          void USART1_DataProcess(void)
+ 261          {
+ 262   1          unsigned char i;
+ 263   1          unsigned char ucDataBase = 0;
+ 264   1      
+ 265   1          if(Uart1RecvFlag)
+ 266   1          {
+ 267   2              if(strPeripheral.ucRecvData_Flag == 0)
+ 268   2              {
+ 269   3                  strPeripheral.ucPowerLedNum = 0;
+ 270   3                  strPeripheral.ucPowerLedShowPhase = 0;
+ 271   3                  strPeripheral.ucRecvData_Flag = 0x03;
+ 272   3              }
+ 273   2              if(Uart1RecvBuf[2] != FeedBack1)
+ 274   2              {
+ 275   3                  vSendFeedBack();
+ 276   3              }
+ 277   2      
+ 278   2              switch(Uart1RecvBuf[4])
+ 279   2              {
+ 280   3                  case OrderPower://Èç¹ûÊÇµçÁ¿Ö¡
+ 281   3                  if (FALSE == strPeripheral.ucRecvTestFlag)
+ 282   3                  {
+ 283   4                      strPeripheral.uiRecvPowerValue = ((unsigned int)Uart1RecvBuf[5] << 8) + Uart1RecvBuf[6];//
+             -·¢ËÍ16Î»Êý¾Ý
+ 284   4                  }
+ 285   3                  strPeripheral.ucRecvPowerValue_Flag = TRUE;
+ 286   3      
+ 287   3                  break;
+ 288   3              case OrderPowerOnOff:  //¹Ø»úÃüÁî
+ 289   3                  ucLessThanLowPower = FALSE; //½ûÖ¹µçÔ´µÆÉÁË¸
+ 290   3                  strPeripheral.usRecvPowerOFF_Flag = TRUE;
+ 291   3                  SPEED_LED_0;   //¹Ø±ÕËÙ¶ÈµÆ
+ 292   3                  POWER_SHOW_0;  //¹Ø±ÕµçÔ´µÆ
+ 293   3                  break;
+ 294   3              case OrderErro:  //´íÎó±¨¾¯
+ 295   3                  if (FALSE == strPeripheral.ucRecvTestFlag)
+ 296   3                  {
+ 297   4                      strPeripheral.ucRecvAlarmNum = Uart1RecvBuf[5];
+ 298   4                  }
+ 299   3                  break;
+ 300   3              case QuitErro:  //½â³ý±¨¾¯
+C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 6   
+
+ 301   3                  if (FALSE == strPeripheral.ucRecvTestFlag)
+ 302   3                  {
+ 303   4                      strPeripheral.ucRecvAlarmNum = 0;
+ 304   4                      SPEEKER_CTRL_OFF;
+ 305   4                  }
+ 306   3      
+ 307   3                  break;
+ 308   3              case AskSpeedGrad:  //Ö÷¿ØÑ¯ÎÊËÙ¶È
+ 309   3      
+ 310   3                  vSendSpeedGrad(ucSpeedGrad);
+ 311   3                  break;
+ 312   3              case FirstOrderPowerOn:  //¿ª»úºó£¬Ó²¼þ¸øÈëÐÅºÅ
+ 313   3                  strPeripheral.usRecvPowerOFF_Flag = FALSE;
+ 314   3                  if (FALSE == strPeripheral.ucRecvTestFlag)
+ 315   3                  {
+ 316   4                      strPeripheral.ucRecvAlarmNum = 0;
+ 317   4                      SPEEKER_CTRL_OFF;
+ 318   4                  }
+ 319   3                  if(FALSE == strPeripheral.usRecvPowerON_Flag)strPeripheral.usRecvPowerON_Flag = TRUE;
+ 320   3      
+ 321   3                  break;
+ 322   3              case BikeInBack:  //µ¹³µÖÐ
+ 323   3                  strPeripheral.ucRecvBikeInBack = TRUE;
+ 324   3                  break;
+ 325   3              case BikeOutBack:  //²»ÔÚµ¹³µÖÐ
+ 326   3                  SetPWM1_Out(SpeedKeyTime, 0);//ucDebugSpeaker = 15;
+ 327   3                  strPeripheral.ucRecvBikeInBack = FALSE;
+ 328   3                  SPEEKER_CTRL_OFF;
+ 329   3      
+ 330   3                  break;
+ 331   3              case OrderInCharge:  //³äµçÖÐ
+ 332   3                  strPeripheral.ucRecvOrderInCharge = TRUE;
+ 333   3      
+ 334   3                  break;
+ 335   3              case OrderOutCharge:  //²»ÔÚ³äµçÖÐ
+ 336   3                  strPeripheral.ucRecvOrderInCharge = FALSE;
+ 337   3                  SpeedLedOn(ucSpeedGrad);
+ 338   3      
+ 339   3                  break;
+ 340   3              case Write60Bytes:  //Ð´Èë60×Ö½ÚµÄÊý¾Ý¡ª¡ªÐ´ÈëÏÔÊ¾°å
+ 341   3                  clr_ES;
+ 342   3                  clr_EA;
+ 343   3                  for (i = 0; i < RW_COUNT; i++)
+ 344   3                  {
+ 345   4                      ucEepromBuf[i] = Uart1RecvBuf[ 5 + i];
+ 346   4                  }
+ 347   3                  //vWrite60Bytes();
+ 348   3                  strPeripheral.ucPowerLedShowPhase = 0;
+ 349   3                  strPeripheral.ucRecvWrite60Bytes_Flag = 1;
+ 350   3                  set_ES;//ÔÙ´Î¿ªÆô ´®¿ÚÖÐ¶Ï
+ 351   3                  set_EA;
+ 352   3                  break;
+ 353   3              case Read60Bytes:  //Ö÷¿Ø¶ÁÈ¡60×Ö½ÚµÄÊý¾Ý¼´·¢ËÍ¸øÖ÷¿Ø
+ 354   3      
+ 355   3                  vSend60Bytes();
+ 356   3      
+ 357   3                  break;
+ 358   3              case WriteOneByte:  //Ð´Èë1×Ö½ÚµÄÊý¾Ý¡ª¡ªÐ´ÈëÏÔÊ¾°å
+ 359   3                  clr_ES;
+ 360   3                  clr_EA;
+ 361   3                  ucRecDataCodeAndData[0] = WriteOneByte;
+ 362   3                  ucRecDataCodeAndData[1] = Uart1RecvBuf[6];//·ÀÖ¹³ÌÐòÇ¶Ì×
+C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 7   
+
+ 363   3                  EEPROM_WriteByte(EEPRO_One_Byte_ADDRESS, ucRecDataCodeAndData[1]);
+ 364   3                  ucRecDataCodeAndData[0] = ucRecDataCodeAndData[1] = 0;
+ 365   3                  set_EA;
+ 366   3                  set_ES;//ÔÙ´Î¿ªÆô ´®¿ÚÖÐ¶Ï
+ 367   3      
+ 368   3                  break;
+ 369   3      
+ 370   3              case OrderBatteryType:  //Ð´Èë1×Ö½ÚµÄÊý¾Ý¡ª¡ªÐ´ÈëÏÔÊ¾°å
+ 371   3      //            clr_ES;
+ 372   3      //            clr_EA;
+ 373   3      //            ucDataBase = EEPROM_Byte_Read(WriteBatteryTypeFlag_Addr);
+ 374   3      //            if(EEPROM_Byte_Read(WriteBatteryTypeFlag_Addr) !=  Uart1RecvBuf[5])
+ 375   3      //            {
+ 376   3      //                EEPROM_WriteByte(WriteBatteryTypeFlag_Addr, Uart1RecvBuf[5]);
+ 377   3      //            }
+ 378   3      //            set_EA;
+ 379   3      //            set_ES;//ÔÙ´Î¿ªÆô ´®¿ÚÖÐ¶Ï
+ 380   3                  break;
+ 381   3      
+ 382   3              case ReadOneByte:  //¶ÁÈ¡1×Ö½ÚµÄÊý¾Ý¡ª¡ª·¢ËÍ¸øÖ÷¿Ø
+ 383   3                  vSendOneBytes();//·¢ËÍÒ»¸ö×Ö½ÚÊý¾Ý
+ 384   3                  break;
+ 385   3              case Disp10Led:  //µãÁÁLEDÃüÁî¡£²âÊÔÓÃ
+ 386   3                  strPeripheral.ucRecvTestFlag = TRUE;
+ 387   3                  strPeripheral.usRecvLedTmp = ((unsigned int)Uart1RecvBuf[5] << 8) + Uart1RecvBuf[6];
+ 388   3                  //vTestShowLed(strPeripheral.usRecvLedTmp);
+ 389   3      
+ 390   3                  break;
+ 391   3              case OutDispLed:  //ÍË³öLEDÃüÁî¡£²âÊÔÓÃ
+ 392   3                  strPeripheral.ucRecvTestFlag = FALSE;
+ 393   3                  PowerLedOn(strPeripheral.uiRecvPowerValue);  //µçÔ´LED
+ 394   3                  SpeedLedOn(ucSpeedGrad);   //ËÙ¶ÈLED
+ 395   3                  SetPWM1_Out(0, 0); //·äÃùÆ÷²»Ïì
+ 396   3                  break;
+ 397   3              case OrderSpeekP:  //À®°È
+ 398   3                  if(0x01 == Uart1RecvBuf[5])
+ 399   3                  {
+ 400   4                      ucBuzzerTstFlg = TRUE;
+ 401   4                      SetPWM1_Out(SpeedKeyTime, SpeedKeyPulse);
+ 402   4                  }
+ 403   3                  else if(0x02 == Uart1RecvBuf[5])
+ 404   3                  {
+ 405   4                      ucBuzzerTstFlg = FALSE;
+ 406   4                      SetPWM1_Out(SpeedKeyTime, 0);//ucDebugSpeaker = 16;
+ 407   4                  }
+ 408   3      
+ 409   3                  break;
+ 410   3              case OrderWatchDogOpen:  //ÈÃÏÔÊ¾°åÆðµ½¿ªÆôÓ²¼þ¿´ÃÅ¹·×÷ÓÃ
+ 411   3                  ucEnableSoftDogFlg = TRUE;
+ 412   3      
+ 413   3                  break;
+ 414   3              case OrderWatchDogClose:  //¹Ø±ÕÏÔÊ¾°åµÄÓ²¼þ¿´ÃÅ¹·µÄ×÷ÓÃ
+ 415   3                  ucEnableSoftDogFlg = FALSE;
+ 416   3                  break;
+ 417   3              case ReadDKVersion:  //Èç¹ûÊÇÑ¯ÎÊ³ÌÐò°æ±¾ºÅµÄ
+ 418   3                  ucAskDKVersion = 0x01;
+ 419   3                  vSendDKVersion(DKVersion); //DKVersion=0x00
+ 420   3                  break;
+ 421   3              default:
+ 422   3                  break;
+ 423   3              }
+ 424   2              Uart1RecvFlag = FALSE;
+C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 8   
+
+ 425   2          }
+ 426   1      
+ 427   1      }
+ 428          void UART1_RecvData(unsigned char rc_data)
+ 429          {
+ 430   1          switch(Uart1RXPhase)
+ 431   1          {
+ 432   2          case Uart_Frame_Header:
+ 433   2              if(rc_data == 0xEB)
+ 434   2              {
+ 435   3                  Uart1RXCnt = 0;
+ 436   3                  Uart1RecvBuf[Uart1RXCnt] = rc_data;
+ 437   3                  Uart1RXCnt++;
+ 438   3              }
+ 439   2              else if(Uart1RXCnt == 1)
+ 440   2              {
+ 441   3                  Uart1RecvBuf[Uart1RXCnt++] = rc_data;
+ 442   3                  Uart1RXPhase = Uart_Frame_length;
+ 443   3              }
+ 444   2              else
+ 445   2              {
+ 446   3                  Uart1RXCnt = 0;
+ 447   3              }
+ 448   2              break;
+ 449   2          case Uart_Frame_length:
+ 450   2              Uart1RecvBuf[Uart1RXCnt++]  = rc_data;
+ 451   2              if(rc_data == FeedBack1)
+ 452   2              {
+ 453   3                  Uart1RXPhase = Uart_Frame_Crc;
+ 454   3                  g_ucRecFbData = TRUE;
+ 455   3              }
+ 456   2              else
+ 457   2              {
+ 458   3                  Uart1RXPhase = SCI_Frame_Address;
+ 459   3              }
+ 460   2              break;
+ 461   2          case SCI_Frame_Address:
+ 462   2              Uart1RecvBuf[Uart1RXCnt++]  = rc_data;
+ 463   2              Uart1RXPhase = Uart_Frame_command;
+ 464   2              break;
+ 465   2          case Uart_Frame_command:
+ 466   2              Uart1RecvBuf[Uart1RXCnt++]  = rc_data;
+ 467   2              Uart1RXPhase = Uart_Frame_Data;
+ 468   2              break;
+ 469   2          case Uart_Frame_Data:
+ 470   2              Uart1RecvBuf[Uart1RXCnt++]  = rc_data;
+ 471   2              if(Uart1RXCnt < 80)
+ 472   2              {
+ 473   3                  if((Uart1RXCnt + 3) == Uart1RecvBuf[2]  )
+ 474   3                  {
+ 475   4                      Uart1RXPhase = Uart_Frame_Crc;
+ 476   4                  }
+ 477   3              }
+ 478   2              else
+ 479   2              {
+ 480   3                  Uart1RXCnt = 0;
+ 481   3                  Uart1RecvBuf[Uart1RXCnt] = 0;
+ 482   3                  Uart1RXPhase = Uart_Frame_Header;
+ 483   3              }
+ 484   2              break;
+ 485   2          case Uart_Frame_Crc:
+ 486   2              Uart1RecvBuf[Uart1RXCnt++] = rc_data;
+C51 COMPILER V9.52.0.0   UART                                                              07/13/2021 15:24:50 PAGE 9   
+
+ 487   2              if (Uart1RXCnt >= 7)
+ 488   2              {
+ 489   3                  if((SendTail4 == Uart1RecvBuf[Uart1RXCnt - 1]) && (SendTail3 == Uart1RecvBuf[Uart1RXCnt - 2]) 
+             -&& (SendTail2 == Uart1RecvBuf[Uart1RXCnt - 3]) && (SendTail1 == Uart1RecvBuf[Uart1RXCnt - 4]))
+ 490   3                  {
+ 491   4                      Uart1RXCnt = 0;
+ 492   4                      Uart1RecvBuf[Uart1RXCnt] = 0;
+ 493   4                      Uart1RXPhase = Uart_Frame_Header;
+ 494   4                      Uart1RecvFlag = TRUE;
+ 495   4                  }
+ 496   3              }
+ 497   2              break;
+ 498   2          default:
+ 499   2              Uart1RXPhase = Uart_Frame_Header;
+ 500   2              break;
+ 501   2          }
+ 502   1      }
+ 503          
+ 504          
+ 505          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2264    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =    160    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      7      11
+   IDATA SIZE       =     60    ----
+   BIT SIZE         =      1    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

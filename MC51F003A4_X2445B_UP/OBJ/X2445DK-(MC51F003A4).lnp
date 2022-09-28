@@ -1,0 +1,9 @@
+"..\OBJ\STARTUP.obj",
+"..\OBJ\main.obj",
+"..\OBJ\51_interrupt.obj",
+"..\OBJ\function.obj",
+"..\OBJ\SystemInit.obj",
+"..\OBJ\Uart.obj" 
+TO "..\OBJ\X2445DK-(MC51F003A4)" 
+
+PRINT("..\Listings\X2445DK-(MC51F003A4).map") REMOVEUNUSED 

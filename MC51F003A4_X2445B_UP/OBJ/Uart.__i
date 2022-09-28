@@ -1,0 +1,1 @@
+"..\Code\Uart.c" OMF2 BROWSE INCDIR(..\Include) DEBUG PRINT(..\Listings\Uart.lst) TABS (2) OBJECT(..\OBJ\Uart.obj)

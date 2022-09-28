@@ -1,0 +1,72 @@
+C51 COMPILER V9.52.0.0   51_INTERRUPT                                                      07/13/2021 15:24:46 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE 51_INTERRUPT
+OBJECT MODULE PLACED IN ..\OBJ\51_interrupt.obj
+COMPILER INVOKED BY: D:\Program Files (x86)\KeilC51-V952\C51\BIN\C51.EXE ..\Code\51_interrupt.c OMF2 BROWSE INCDIR(..\In
+                    -clude) DEBUG PRINT(..\Listings\51_interrupt.lst) TABS(2) OBJECT(..\OBJ\51_interrupt.obj)
+
+line level    source
+
+   1          /**********************************************
+   2          
+   3          中断服务子函数库
+   4          
+   5          ***********************************************/
+   6          #include "uart.h"
+   7          #include "User_Def.h"
+   8          #include "SystemInit.h"
+   9          #include "function.h"
+  10          
+  11          
+  12          
+  13          GLOBLE_TIMER_1MS Globle_Timer_1MS;
+  14          unsigned short g_us1msTimes = 0;
+  15          void Timer0_ISR(void) interrupt T0_IRQn
+  16          {
+  17   1          SFR_INTERRUPT_BUFF_BIT_T0 = SFRSL0;   //进中断缓存SFR
+  18   1          SLK_SFR0();
+  19   1          TR0 = 0; //无论是读或者写 TLx/THx 的值，必须先停止(TR0=0;)
+  20   1          TL0 = 0x18;
+  21   1          TH0 = 0xFC; //读写时，先读写L，在H
+  22   1          TR0 = 1;
+  23   1          SFRSL0 = SFR_INTERRUPT_BUFF_BIT_T0;   //进中断缓存SFR
+  24   1        
+  25   1          Globle_Timer_1MS.All = 0xFFFF;
+  26   1        //  if(g_us1msTimes)g_us1msTimes--;
+  27   1        //  if(usTickNum) usTickNum--;
+  28   1          vDealAd();
+  29   1          
+  30   1      }
+  31          
+  32          void UART1_ISR(void) interrupt UART1_IRQn
+  33          {
+  34   1          unsigned char Recvdata;
+  35   1          if (((SCON_1 & DEF_SET_BIT0) == DEF_SET_BIT0))
+  36   1          {
+  37   2              Recvdata = UART1_ReceiveByte();
+  38   2              CLR_RI_1();
+  39   2              UART1_RecvData(Recvdata);
+  40   2          }
+  41   1      }
+  42          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    177    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+C51 COMPILER V9.52.0.0   51_INTERRUPT                                                      07/13/2021 15:24:46 PAGE 2   
+
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

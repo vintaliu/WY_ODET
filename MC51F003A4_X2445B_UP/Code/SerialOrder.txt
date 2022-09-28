@@ -1,0 +1,63 @@
+主控-->键盘板：
+单命令字定义
+EB 90 09 A1 SingleOrder CC 33 C3 3C 固定长度 9位。
+SingleOrder 为命令字
+要求有回复帧，帧内容是 EB 90 FB CC 33 C3 3C
+
+1,电池电量：EB 90 A1 OrderPower  A1--为主板，OrderPower命令字  
+EB 90 Lg A1 01 D0 D1 CC 33 C3 3C      Lg为一他字节，帧长度
+说明：  PowerAD = D0<<8 + D1; (65535) 24000 As 24.000v  当电压低于18v时，蜂鸣器以3s秒为周期 
+要求有回复帧，帧内容是 EB 90 FB CC 33 C3 3C
+
+2,错误报警 
+EB 90 Lg A1 OrderErro D0 CC 33 C3 3C Lg为一他字节，帧长度
+D0 报警内容
+要求有回复帧，帧内容是 EB 90 FB CC 33 C3 3C
+注：显示板蜂鸣器二短D0为长鸣次数 只有停止报警命令才可退出报警状态
+
+3,退出报警状态 QuitErro -- 单命令
+
+4,查询当前速度值 AskSpeedGrad -- 单命令
+要求返回当前速度刻度值
+
+5，车子在倒退中 BikeInBack -- 单命令
+显示板鸣笛，只有收到车子不在倒退中才可以退出。（在鸣笛过程中，所有按键功能有效）
+
+6，写EEprom数据 Write60Bytes
+EB 90 Lg A1 Write60Bytes D0 D1 D2 ... D60 CC 33 C3 3C Lg为一他字节，帧长度
+写数据到EEPROM，写数据内容共60字节
+
+7,读EEprom数据 Read60Bytes -- 单命令
+要求返回60字节速Eeprom数据，且命令字为 Read60Bytes
+
+8，向Eeprom写入单字节命令 WriteOneByte
+EB 90 Lg A1 WriteOneByte D0 D1 CC 33 C3 3C Lg为一他字节，帧长度
+D0 Eeprom地址， D1数据内容。
+
+9，向Eeprom读出单字节命令 ReadOneByte
+EB 90 Lg A1 ReadOneByte D0 CC 33 C3 3C Lg为一他字节，帧长度
+D0 Eeprom地址， 
+要求返回查询Eeprom地址中的数据内容 且命令字为 ReadOneByte(注意发送内容) 
+
+10, 让显示板灯点亮 Disp10Led
+EB 90 Lg A1 Disp10Led D0 D1 CC 33 C3 3C Lg为一他字节，帧长度
+显示位: D0<<8 + D1; Bit0 -- Bit4 电源指示灯，1亮，0灭  Bit5 -- Bit9 速度指示灯，1亮，0灭
+
+11,退出LED显示状态 OutDispLed -- 单命令
+
+12,关机命令 OrderPowerOff -- 单命令
+主控向显示板发送的命令
+
+13,喇叭命令 OrderSpeekP 
+EB 90 Lg A2 OrderSpeekP D0 CC 33 C3 3C Lg为一他字节，帧长度
+显示板向主控发送的命令 D0状态  按键按下为0x01 抬起为0x02  
+
+14,开启硬件开门狗 OrderWatchDogOpen -- 单命令
+主控向显示板发送的命令
+
+15,关闭硬件开门狗 OrderWatchDogClose -- 单命令
+主控向显示板发送的命令
+
+16,喇叭命令 OrderSpeekP 
+EB 90 Lg A1 OrderSpeekP D0 CC 33 C3 3C Lg为一他字节，帧长度
+主控向显示板发送的命令 D0状态  蜂鸣器响0x01 蜂鸣器不响0x02 

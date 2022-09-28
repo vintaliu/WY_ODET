@@ -1,0 +1,1 @@
+"..\Code\main.c" OMF2 BROWSE INCDIR(..\Include) DEBUG PRINT(..\Listings\main.lst) TABS (2) OBJECT(..\OBJ\main.obj)

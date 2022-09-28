@@ -1,0 +1,1 @@
+"..\Code\SystemInit.c" OMF2 BROWSE INCDIR(..\Include) DEBUG PRINT(..\Listings\SystemInit.lst) TABS (2) OBJECT(..\OBJ\SystemInit.obj)
