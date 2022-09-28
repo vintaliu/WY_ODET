@@ -1,0 +1,3 @@
+---- PowerOnSpeedAt1 Matches (2 in 2 files) ----
+Function.h (f:\00项目资料相关\02轮椅控制器\001项目程序\x2445dk_v2.5(stc)-程序开发过程\x2445dk_v2.5(stc)\inc)://#define PowerOnSpeedAt1  //开机速度在1档
+X2445DK_Function_STC.c (f:\00项目资料相关\02轮椅控制器\001项目程序\x2445dk_v2.5(stc)-程序开发过程\x2445dk_v2.5(stc)\src):#ifdef PowerOnSpeedAt1

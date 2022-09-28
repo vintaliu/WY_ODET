@@ -1,0 +1,475 @@
+Dependencies for Project 'X2445DK-PT32F005', Target 'X2445DK-PT32F005': (DO NOT MODIFY !)
+F (..\FileSources\startup_PT32X005x.s)(0x600E6F98)(--cpu Cortex-M0 -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include--pd "__UVISION_VERSION SETA 526" --pd "_RTE_ SETA 1"--list .\list\startup_pt32x005x.lst --xref -o .\out\startup_pt32x005x.o --depend .\out\startup_pt32x005x.d)
+F (..\FileSources\system_PT32X005.c)(0x611CC52C)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\system_pt32x005.o --omf_browse .\out\system_pt32x005.crf --depend .\out\system_pt32x005.d)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+F (..\FileSources\main.c)(0x611F1B24)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\main.o --omf_browse .\out\main.crf --depend .\out\main.d)
+I (..\FileSources\X2445DK_Const.h)(0x614BCC92)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+I (..\FileSources\function.h)(0x614BCDFE)
+I (..\FileSources\SystemInit.h)(0x611F14DB)
+I (..\FileSources\uart.h)(0x611E0ED4)
+F (..\FileSources\PT32X005_it.c)(0x611EFE8B)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\pt32x005_it.o --omf_browse .\out\pt32x005_it.crf --depend .\out\pt32x005_it.d)
+I (..\FileSources\PT32X005_it.h)(0x611DEDEA)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+I (..\FileSources\X2445DK_Const.h)(0x614BCC92)
+I (..\FileSources\function.h)(0x614BCDFE)
+I (..\FileSources\SystemInit.h)(0x611F14DB)
+I (..\FileSources\uart.h)(0x611E0ED4)
+F (..\FileSources\X2445DK_Eeprom_P32.c)(0x611EF67A)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\x2445dk_eeprom_p32.o --omf_browse .\out\x2445dk_eeprom_p32.crf --depend .\out\x2445dk_eeprom_p32.d)
+I (..\FileSources\X2445DK_Const.h)(0x614BCC92)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+I (..\FileSources\function.h)(0x614BCDFE)
+I (..\FileSources\SystemInit.h)(0x611F14DB)
+I (..\FileSources\uart.h)(0x611E0ED4)
+F (..\FileSources\X2445DK_Function_PTC32.c)(0x614EE56F)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\x2445dk_function_ptc32.o --omf_browse .\out\x2445dk_function_ptc32.crf --depend .\out\x2445dk_function_ptc32.d)
+I (..\FileSources\X2445DK_Const.h)(0x614BCC92)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+I (..\FileSources\function.h)(0x614BCDFE)
+I (..\FileSources\SystemInit.h)(0x611F14DB)
+I (..\FileSources\uart.h)(0x611E0ED4)
+F (..\FileSources\X2445DK_Init_P32.c)(0x611F2578)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\x2445dk_init_p32.o --omf_browse .\out\x2445dk_init_p32.crf --depend .\out\x2445dk_init_p32.d)
+I (..\FileSources\X2445DK_Const.h)(0x614BCC92)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+I (..\FileSources\function.h)(0x614BCDFE)
+I (..\FileSources\SystemInit.h)(0x611F14DB)
+I (..\FileSources\uart.h)(0x611E0ED4)
+F (..\FileSources\X2445DK_Uart_P32.c)(0x614BCD8A)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\x2445dk_uart_p32.o --omf_browse .\out\x2445dk_uart_p32.crf --depend .\out\x2445dk_uart_p32.d)
+I (..\FileSources\X2445DK_Const.h)(0x614BCC92)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+I (..\FileSources\function.h)(0x614BCDFE)
+I (..\FileSources\SystemInit.h)(0x611F14DB)
+I (..\FileSources\uart.h)(0x611E0ED4)
+F (..\PT32X005_FWLib\src\PT32X005_gpio.c)(0x60A20B1C)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\pt32x005_gpio.o --omf_browse .\out\pt32x005_gpio.crf --depend .\out\pt32x005_gpio.d)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+F (..\PT32X005_FWLib\src\PT32X005_sys.c)(0x6082930C)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\pt32x005_sys.o --omf_browse .\out\pt32x005_sys.crf --depend .\out\pt32x005_sys.d)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+F (..\PT32X005_FWLib\src\PT32X005_uart.c)(0x60472D76)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\pt32x005_uart.o --omf_browse .\out\pt32x005_uart.crf --depend .\out\pt32x005_uart.d)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+F (..\PT32X005_FWLib\src\PT32X005_adc.c)(0x607E985C)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\pt32x005_adc.o --omf_browse .\out\pt32x005_adc.crf --depend .\out\pt32x005_adc.d)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+F (..\PT32X005_FWLib\src\PT32X005_flash.c)(0x60850DB8)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\pt32x005_flash.o --omf_browse .\out\pt32x005_flash.crf --depend .\out\pt32x005_flash.d)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+F (..\PT32X005_FWLib\src\PT32X005_pwm.c)(0x6082963C)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\pt32x005_pwm.o --omf_browse .\out\pt32x005_pwm.crf --depend .\out\pt32x005_pwm.d)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+F (..\PT32X005_FWLib\src\PT32X005_misc.c)(0x5FE18774)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\pt32x005_misc.o --omf_browse .\out\pt32x005_misc.crf --depend .\out\pt32x005_misc.d)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+F (..\Retarget\PT32X005_retarget.c)(0x602F31A8)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\pt32x005_retarget.o --omf_browse .\out\pt32x005_retarget.crf --depend .\out\pt32x005_retarget.d)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
+F (..\Retarget\PT32X005_serial.c)(0x5FE186FC)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\pt32x005_serial.o --omf_browse .\out\pt32x005_serial.crf --depend .\out\pt32x005_serial.d)
+I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_version.h)(0x5B1F3E94)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5B5843C6)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5B617084)
+I (..\PT32X005_FWLib\inc\PT32X005_Type.h)(0x602F2FC8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599EDB3C)
+I (C:\Keil_v5\ARM\ARMCC\include\rt_misc.h)(0x599EDB3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (..\FileSources\system_PT32X005.h)(0x60586C8A)
+I (..\FileSources\PT32X005_conf.h)(0x5FE30952)
+I (..\PT32X005_FWLib\inc\PT32X005_gpio.h)(0x60A20B16)
+I (..\PT32X005_FWLib\inc\PT32X005_tim.h)(0x6059AAD2)
+I (..\PT32X005_FWLib\inc\PT32X005_misc.h)(0x5FE18874)
+I (..\PT32X005_FWLib\inc\PT32X005_uart.h)(0x5FE189A6)
+I (..\PT32X005_FWLib\inc\PT32X005_sys.h)(0x5FE189C2)
+I (..\PT32X005_FWLib\inc\PT32X005_pwm.h)(0x60A1E97C)
+I (..\PT32X005_FWLib\inc\PT32X005_wdg.h)(0x60473594)
+I (..\PT32X005_FWLib\inc\PT32X005_i2c.h)(0x608B7152)
+I (..\PT32X005_FWLib\inc\PT32X005_spi.h)(0x6059B1CA)
+I (..\PT32X005_FWLib\inc\PT32X005_crc.h)(0x5FE188B8)
+I (..\PT32X005_FWLib\inc\PT32X005_flash.h)(0x608511D0)
+I (..\PT32X005_FWLib\inc\PT32X005_adc.h)(0x607E9818)
+I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)

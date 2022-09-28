@@ -1,0 +1,22 @@
+--cpu Cortex-M0
+".\out\startup_pt32x005x.o"
+".\out\system_pt32x005.o"
+".\out\main.o"
+".\out\pt32x005_it.o"
+".\out\x2445dk_eeprom_p32.o"
+".\out\x2445dk_function_ptc32.o"
+".\out\x2445dk_init_p32.o"
+".\out\x2445dk_uart_p32.o"
+".\out\pt32x005_gpio.o"
+".\out\pt32x005_sys.o"
+".\out\pt32x005_uart.o"
+".\out\pt32x005_adc.o"
+".\out\pt32x005_flash.o"
+".\out\pt32x005_pwm.o"
+".\out\pt32x005_misc.o"
+".\out\pt32x005_retarget.o"
+".\out\pt32x005_serial.o"
+--library_type=microlib --strict --scatter ".\Out\X2445DK-PT32F005.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\List\X2445DK-PT32F005.map" -o .\Out\X2445DK-PT32F005.axf
