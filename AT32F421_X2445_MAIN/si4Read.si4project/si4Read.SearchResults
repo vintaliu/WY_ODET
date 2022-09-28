@@ -1,0 +1,3 @@
+---- Erro_PwrErro Matches (2 in 2 files) ----
+00DriverConst.h (F:\LG-HxingSVNManage\程序版本\HX2430Y1-转把车控制器\branches\HX2415Y1-有刷单电机驱动-MC51F003\USER) line 103 : #define Erro_PwrErro                     0x03//EC电路有问题
+vPowerOnCheck in 00DriverInit.c (F:\LG-HxingSVNManage\程序版本\HX2430Y1-转把车控制器\branches\HX2415Y1-有刷单电机驱动-MC51F003\USER) :         g_strSysInfo.ucErroType = Erro_PwrErro;
