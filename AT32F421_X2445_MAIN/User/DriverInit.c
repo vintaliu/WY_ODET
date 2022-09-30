@@ -29,8 +29,8 @@ void vTime14Mxl90393(void);
 void vInitPortAsWaiteMode(void)
 {
     GPIO_InitType GPIO_InitStructure = {0};
-    EXTI_InitType EXTI_InitStructure = {0};
-    NVIC_InitType NVIC_InitStructure = {0};
+//    EXTI_InitType EXTI_InitStructure = {0};
+//    NVIC_InitType NVIC_InitStructure = {0};
 //    System_Init();
     RCC_AHBPeriphClockCmd(RCC_AHBPERIPH_GPIOB | RCC_AHBPERIPH_GPIOC, ENABLE);
     GPIO_InitStructure.GPIO_Pins = ResetStm8Pin ;
@@ -1357,6 +1357,7 @@ void vShowErroToDis(unsigned char ucErroNum)
     {
         ucTag1ms = FALSE;
         while(FALSE == ucTag1ms);
+        		
         if(ReadKeyOfOn_OffFlag || ucAnlyFree)//如果有电源按键或者是示教通信
         {
             if(FALSE == ucShowErro) vSendSingleOrder(QuitErro);//只退出一次报警

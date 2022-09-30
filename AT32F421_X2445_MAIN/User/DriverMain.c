@@ -35,7 +35,7 @@ int main(void)
     vInitPortAsWaiteMode();//在刚上电的时候 重新初始化一个端口 让机器一直在等待一个开机按键信号
     if(!ReadKeyOfOn_OffFlag)//如果一直有无开机 信息
     {
-        vNoKeyInStandbyMode();//如果刚开机就去进入一个低功耗的模式
+        vNoKeyInStandbyMode();//如果刚开机就去进入一个低功耗的模式，如果没有开机按键没有按下，就死循环等待开机键按下
     }	
 		ucEnAdcCalc = TRUE;
     System_Init();

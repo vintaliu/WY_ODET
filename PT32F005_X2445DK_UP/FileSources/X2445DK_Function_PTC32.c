@@ -415,6 +415,13 @@ void vInitLedPin(void)
 
 void SetPWM1_Out(unsigned int x, unsigned int y)
 {
+	if(x > 0){
+	  x = 2000;
+	}
+	if(y > 0){
+	  y = 50;
+	}
+	
 	PWM1->MR0 = x;
 	PWM1->MR4 = y;
 }
