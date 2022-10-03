@@ -3,7 +3,7 @@
 .\objects\at32f4xx_it.o: ..\..\User\Bsp\DriveBsp.h
 .\objects\at32f4xx_it.o: ..\..\Libraries\CMSIS\CM4\DeviceSupport\at32f4xx.h
 .\objects\at32f4xx_it.o: ..\..\Libraries\CMSIS\CM4\CoreSupport\core_cm4.h
-.\objects\at32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\at32f4xx_it.o: C:\Keil_v5\ARM\ARMCCv506u7\Bin\..\include\stdint.h
 .\objects\at32f4xx_it.o: ..\..\Libraries\CMSIS\CM4\CoreSupport\core_cmInstr.h
 .\objects\at32f4xx_it.o: ..\..\Libraries\CMSIS\CM4\CoreSupport\cmsis_armcc.h
 .\objects\at32f4xx_it.o: ..\..\Libraries\CMSIS\CM4\CoreSupport\core_cmFunc.h
@@ -37,12 +37,12 @@
 .\objects\at32f4xx_it.o: ..\..\Libraries\AT32F4xx_StdPeriph_Driver\inc\at32f4xx_xmc.h
 .\objects\at32f4xx_it.o: ..\..\Libraries\AT32F4xx_StdPeriph_Driver\inc\at32f4xx_syscfg.h
 .\objects\at32f4xx_it.o: ..\..\Libraries\AT32F4xx_StdPeriph_Driver\inc\misc.h
-.\objects\at32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\at32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\at32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\at32f4xx_it.o: C:\Keil_v5\ARM\ARMCCv506u7\Bin\..\include\stdio.h
+.\objects\at32f4xx_it.o: C:\Keil_v5\ARM\ARMCCv506u7\Bin\..\include\string.h
+.\objects\at32f4xx_it.o: C:\Keil_v5\ARM\ARMCCv506u7\Bin\..\include\stdlib.h
 .\objects\at32f4xx_it.o: ..\..\User\Bsp\inc\DriveDelay.h
 .\objects\at32f4xx_it.o: ..\..\User\DriverUart.h
-.\objects\at32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\at32f4xx_it.o: C:\Keil_v5\ARM\ARMCCv506u7\Bin\..\include\stdarg.h
 .\objects\at32f4xx_it.o: ..\..\User\DriverADC.h
 .\objects\at32f4xx_it.o: ..\..\User\DriverTimer.h
 .\objects\at32f4xx_it.o: ..\..\User\ControlUsedArry.h

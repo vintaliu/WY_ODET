@@ -65,7 +65,7 @@ Section Cross References
     stm32f10x_wwdg.o(i.WWDG_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
     main.o(i.main) refers to bsp_led.o(i.LED_GPIO_Config) for LED_GPIO_Config
     main.o(i.main) refers to stm32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
-    main.o(i.main) refers to bsp_systick.o(i.SysTick_Delay_ms) for SysTick_Delay_ms
+    main.o(i.main) refers to bsp_systick.o(i.SysTick_Delay_us) for SysTick_Delay_us
     main.o(i.main) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
     bsp_led.o(i.LED_GPIO_Config) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
     bsp_led.o(i.LED_GPIO_Config) refers to stm32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
@@ -667,12 +667,12 @@ Removing Unused input sections from the image.
     Removing stm32f10x_wwdg.o(i.WWDG_SetCounter), (16 bytes).
     Removing stm32f10x_wwdg.o(i.WWDG_SetPrescaler), (24 bytes).
     Removing stm32f10x_wwdg.o(i.WWDG_SetWindowValue), (40 bytes).
-    Removing bsp_systick.o(i.SysTick_Delay_us), (54 bytes).
+    Removing bsp_systick.o(i.SysTick_Delay_ms), (56 bytes).
     Removing core_cm3.o(.emb_text), (32 bytes).
     Removing system_stm32f10x.o(i.SystemCoreClockUpdate), (164 bytes).
     Removing system_stm32f10x.o(.data), (20 bytes).
 
-473 unused section(s) (total 19148 bytes) removed from the image.
+473 unused section(s) (total 19150 bytes) removed from the image.
 
 ==============================================================================
 
@@ -833,11 +833,11 @@ Image Symbol Table
     SetSysClockTo72                          0x080003bd   Thumb Code   214  system_stm32f10x.o(i.SetSysClockTo72)
     i.SysTick_Config                         0x0800049c   Section        0  bsp_systick.o(i.SysTick_Config)
     SysTick_Config                           0x0800049d   Thumb Code    76  bsp_systick.o(i.SysTick_Config)
-    i.SysTick_Delay_ms                       0x080004f0   Section        0  bsp_systick.o(i.SysTick_Delay_ms)
-    i.SysTick_Handler                        0x08000528   Section        0  stm32f10x_it.o(i.SysTick_Handler)
-    i.SystemInit                             0x0800052c   Section        0  system_stm32f10x.o(i.SystemInit)
-    i.UsageFault_Handler                     0x0800058c   Section        0  stm32f10x_it.o(i.UsageFault_Handler)
-    i.main                                   0x08000594   Section        0  main.o(i.main)
+    i.SysTick_Delay_us                       0x080004f0   Section        0  bsp_systick.o(i.SysTick_Delay_us)
+    i.SysTick_Handler                        0x08000526   Section        0  stm32f10x_it.o(i.SysTick_Handler)
+    i.SystemInit                             0x08000528   Section        0  system_stm32f10x.o(i.SystemInit)
+    i.UsageFault_Handler                     0x08000588   Section        0  stm32f10x_it.o(i.UsageFault_Handler)
+    i.main                                   0x08000590   Section        0  main.o(i.main)
     .bss                                     0x20000000   Section       96  libspace.o(.bss)
     HEAP                                     0x20000060   Section      512  startup_stm32f10x_md.o(HEAP)
     Heap_Mem                                 0x20000060   Data         512  startup_stm32f10x_md.o(HEAP)
@@ -1000,13 +1000,13 @@ Image Symbol Table
     PendSV_Handler                           0x0800038f   Thumb Code     2  stm32f10x_it.o(i.PendSV_Handler)
     RCC_APB2PeriphClockCmd                   0x08000391   Thumb Code    26  stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd)
     SVC_Handler                              0x080003b1   Thumb Code     2  stm32f10x_it.o(i.SVC_Handler)
-    SysTick_Delay_ms                         0x080004f1   Thumb Code    56  bsp_systick.o(i.SysTick_Delay_ms)
-    SysTick_Handler                          0x08000529   Thumb Code     2  stm32f10x_it.o(i.SysTick_Handler)
-    SystemInit                               0x0800052d   Thumb Code    78  system_stm32f10x.o(i.SystemInit)
-    UsageFault_Handler                       0x0800058d   Thumb Code     8  stm32f10x_it.o(i.UsageFault_Handler)
-    main                                     0x08000595   Thumb Code    40  main.o(i.main)
-    Region$$Table$$Base                      0x080005c0   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080005d0   Number         0  anon$$obj.o(Region$$Table)
+    SysTick_Delay_us                         0x080004f1   Thumb Code    54  bsp_systick.o(i.SysTick_Delay_us)
+    SysTick_Handler                          0x08000527   Thumb Code     2  stm32f10x_it.o(i.SysTick_Handler)
+    SystemInit                               0x08000529   Thumb Code    78  system_stm32f10x.o(i.SystemInit)
+    UsageFault_Handler                       0x08000589   Thumb Code     8  stm32f10x_it.o(i.UsageFault_Handler)
+    main                                     0x08000591   Thumb Code   136  main.o(i.main)
+    Region$$Table$$Base                      0x0800061c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800062c   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x20000000   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x20000060   Data           0  libspace.o(.bss)
 
@@ -1018,9 +1018,9 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000005d0, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000062c, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000005d0, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000062c, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1097,16 +1097,15 @@ Memory Map of the image
     0x080003ba   0x080003ba   0x00000002   PAD
     0x080003bc   0x080003bc   0x000000e0   Code   RO         3195    i.SetSysClockTo72   system_stm32f10x.o
     0x0800049c   0x0800049c   0x00000054   Code   RO         3149    i.SysTick_Config    bsp_systick.o
-    0x080004f0   0x080004f0   0x00000038   Code   RO         3150    i.SysTick_Delay_ms  bsp_systick.o
-    0x08000528   0x08000528   0x00000002   Code   RO         3081    i.SysTick_Handler   stm32f10x_it.o
-    0x0800052a   0x0800052a   0x00000002   PAD
-    0x0800052c   0x0800052c   0x00000060   Code   RO         3197    i.SystemInit        system_stm32f10x.o
-    0x0800058c   0x0800058c   0x00000008   Code   RO         3082    i.UsageFault_Handler  stm32f10x_it.o
-    0x08000594   0x08000594   0x0000002c   Code   RO         3056    i.main              main.o
-    0x080005c0   0x080005c0   0x00000010   Data   RO         3389    Region$$Table       anon$$obj.o
+    0x080004f0   0x080004f0   0x00000036   Code   RO         3151    i.SysTick_Delay_us  bsp_systick.o
+    0x08000526   0x08000526   0x00000002   Code   RO         3081    i.SysTick_Handler   stm32f10x_it.o
+    0x08000528   0x08000528   0x00000060   Code   RO         3197    i.SystemInit        system_stm32f10x.o
+    0x08000588   0x08000588   0x00000008   Code   RO         3082    i.UsageFault_Handler  stm32f10x_it.o
+    0x08000590   0x08000590   0x0000008c   Code   RO         3056    i.main              main.o
+    0x0800061c   0x0800061c   0x00000010   Data   RO         3389    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080005d0, Size: 0x00000660, Max: 0x00005000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x0800062c, Size: 0x00000660, Max: 0x00005000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1123,19 +1122,19 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
         44          6          0          0          0        462   bsp_led.o
-       140          8          0          0          0      16182   bsp_systick.o
-        44          4          0          0          0        423   main.o
-         0          0          0          0          0     214604   misc.o
+       138          8          0          0          0      16182   bsp_systick.o
+       140          4          0          0          0        587   main.o
+         0          0          0          0          0     214608   misc.o
         64         26        236          0       1536        848   startup_stm32f10x_md.o
-       286          0          0          0          0       3240   stm32f10x_gpio.o
-        42          0          0          0          0       3690   stm32f10x_it.o
-        32          6          0          0          0        585   stm32f10x_rcc.o
+       286          0          0          0          0       3248   stm32f10x_gpio.o
+        42          0          0          0          0       3710   stm32f10x_it.o
+        32          6          0          0          0        589   stm32f10x_rcc.o
        328         28          0          0          0       1997   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-       986         78        252          0       1536     242031   Object Totals
+      1078         78        252          0       1536     242231   Object Totals
          0          0         16          0          0          0   (incl. Generated)
-         6          0          0          0          0          0   (incl. Padding)
+         4          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1181,15 +1180,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1236         94        252          0       1632     241503   Grand Totals
-      1236         94        252          0       1632     241503   ELF Image Totals
-      1236         94        252          0          0          0   ROM Totals
+      1328         94        252          0       1632     241703   Grand Totals
+      1328         94        252          0       1632     241703   ELF Image Totals
+      1328         94        252          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 1488 (   1.45kB)
+    Total RO  Size (Code + RO Data)                 1580 (   1.54kB)
     Total RW  Size (RW Data + ZI Data)              1632 (   1.59kB)
-    Total ROM Size (Code + RO Data + RW Data)       1488 (   1.45kB)
+    Total ROM Size (Code + RO Data + RW Data)       1580 (   1.54kB)
 
 ==============================================================================
 

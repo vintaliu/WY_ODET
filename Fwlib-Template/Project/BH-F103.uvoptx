@@ -155,6 +155,11 @@
           <WinNumber>2</WinNumber>
           <ItemText>LOAD</ItemText>
         </Ww>
+        <Ww>
+          <count>1</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>t,0x0A</ItemText>
+        </Ww>
       </WatchWindow2>
       <Tracepoint>
         <THDelay>0</THDelay>
