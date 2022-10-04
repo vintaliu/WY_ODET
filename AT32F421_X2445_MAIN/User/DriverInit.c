@@ -86,7 +86,7 @@ void vNoKeyInStandbyMode(void)//刚上电，没有按键的情况下
 //	  RCC->CTRL &= ~RCC_CTRL_PLLEN;//
     while(!ReadKeyOfOn_OffFlag)//Waite for Power Key Press Up !
     {
-        vSoftDelayms(1);
+      vSoftDelayms(1);
     }
 		RCC->CFG |= RCC_CFG_SYSCLKSEL_1;//时钟的使用，使其频率最低
 //	  RCC->CTRL |= RCC_CTRL_HSEEN;
@@ -1293,6 +1293,9 @@ void vShowErroToDis(unsigned char ucErroNum)
     unsigned char ucDataBuf[5] = {0};
     unsigned int uiTimeCont = 0;
     unsigned char ucShowErro = 0;
+		unsigned char stopFlag = 0;
+		
+//		ucErroType = ErroNoRemote;
 
     if(ucErroNum)ucErroType = ucErroNum;
     CtlDriverPowerContolOFF;
@@ -1345,7 +1348,7 @@ void vShowErroToDis(unsigned char ucErroNum)
     else ucDataBuf[1] = ucShowErro;
     vSendMultBytesOrder(WriteOneByte, ucDataBuf, 2);
 
-		for(uiTimeCont = 0; uiTimeCont < 5; uiTimeCont++)//报警延长时间
+		for(uiTimeCont = 0; uiTimeCont < 1; uiTimeCont++)//报警延长时间
 		{
 			   ucTag100ms = FALSE;
 				while(FALSE == ucTag100ms);
@@ -1367,11 +1370,20 @@ void vShowErroToDis(unsigned char ucErroNum)
                 uiTimeCont = 0;//清空延时变量
                 vAnalyTeacherDataOfTime();//如果有示教器发过来的数据这时候要去处理下
             }
-            if(ReadKeyOfOn_OffFlag) break;
+            if(ReadKeyOfOn_OffFlag) 
+             {
+						   stopFlag = 1;
+						   break;
+						 }
         }
-        if(ReadKeyOfOn_OffFlag) break;
+        if(ReadKeyOfOn_OffFlag) 
+					{
+						 stopFlag = 2;
+						 break;
+					}
         if(ucPowerKeyPressTimes >= 2)
         {
+					  stopFlag = 3;
             break;
         }
     }

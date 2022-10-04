@@ -32,7 +32,7 @@ void GPIO_InitPT32(void)
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7; //电量指示灯 2，3，4，5
     GPIO_Init(CMSDK_PC, &GPIO_InitStructure);
 
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_4 | GPIO_Pin_5;//速度指示灯
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_4 | GPIO_Pin_5;//速度指示灯
     GPIO_Init(CMSDK_PD, &GPIO_InitStructure);
 
 	  GPIO_ResetBits(CMSDK_PB, GPIO_Pin_4);

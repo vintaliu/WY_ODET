@@ -157,7 +157,7 @@ I (..\PT32X005_FWLib\inc\PT32X005_pwr.h)(0x60482CBA)
 I (..\FileSources\function.h)(0x6333F9AB)
 I (..\FileSources\SystemInit.h)(0x611F14DB)
 I (..\FileSources\uart.h)(0x611E0ED4)
-F (..\FileSources\X2445DK_Init_P32.c)(0x633515A8)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\x2445dk_init_p32.o --omf_browse .\out\x2445dk_init_p32.crf --depend .\out\x2445dk_init_p32.d)
+F (..\FileSources\X2445DK_Init_P32.c)(0x63367CD1)(-c --cpu Cortex-M0 -D__MICROLIB -g -W -O0 -Otime --apcs=interwork --split_sections -I ..\PT32X005_FWLib\inc -I ..\FileSources-I.\RTE\_X2445DK-PT32F005-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\PAI-IC\PT32X005_DFP\1.0.2\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DUSE_STDPERIPH_DRIVER -DPT32X005 -DUSE_FULL_ASSERT-o .\out\x2445dk_init_p32.o --omf_browse .\out\x2445dk_init_p32.crf --depend .\out\x2445dk_init_p32.d)
 I (..\FileSources\X2445DK_Const.h)(0x614BCC92)
 I (..\PT32X005_FWLib\inc\PT32X005.h)(0x6099F458)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h)(0x5B617084)
