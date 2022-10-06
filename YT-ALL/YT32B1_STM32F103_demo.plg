@@ -1,0 +1,15 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+E:\A0洋桃电子\A01洋桃开发板\洋桃1号开发板YT32B1\开发板出厂测试程序\！综合功能测试程序1（出厂程序）\YT32B1_STM32F103_demo.uvproj
+Project File Date:  10/11/2017
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=30058 RO-data=2342 RW-data=72 ZI-data=2096  
+FromELF: creating hex file...
+"YT32B1_STM32F103_demo.axf" - 0 Error(s), 0 Warning(s).
