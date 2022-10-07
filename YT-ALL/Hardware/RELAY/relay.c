@@ -36,7 +36,7 @@ void RELAY_Init(void){ //继电器的接口初始化
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; //设置IO接口速度（2/10/50MHz）    
 	GPIO_Init(RELAYPORT, &GPIO_InitStructure);
 	//必须将禁用JTAG功能才能做GPIO使用
-	GPIO_PinRemapConfig(GPIO_Remap_SWJ_Disable, ENABLE);// 改变指定管脚的映射,完全禁用JTAG+SW-DP
+	//GPIO_PinRemapConfig(GPIO_Remap_SWJ_Disable, ENABLE);// 改变指定管脚的映射,完全禁用JTAG+SW-DP
 	GPIO_ResetBits(RELAYPORT,RELAY1 | RELAY2); //都为低电平（0） 初始为关继电器							
 }
 

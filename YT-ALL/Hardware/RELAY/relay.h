@@ -4,8 +4,8 @@
 
 
 #define RELAYPORT	GPIOA	//定义IO接口
-#define RELAY1	GPIO_Pin_14	//定义IO接口
-#define RELAY2	GPIO_Pin_13	//定义IO接口
+#define RELAY1	GPIO_Pin_10	//定义IO接口
+#define RELAY2	GPIO_Pin_9	//定义IO接口
 
 
 
