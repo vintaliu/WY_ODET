@@ -2,7 +2,7 @@
 .\objects\at32f4xx_rcc.o: ..\..\Libraries\AT32F4xx_StdPeriph_Driver\inc\at32f4xx_rcc.h
 .\objects\at32f4xx_rcc.o: ..\..\Libraries\CMSIS\CM4\DeviceSupport\at32f4xx.h
 .\objects\at32f4xx_rcc.o: ..\..\Libraries\CMSIS\CM4\CoreSupport\core_cm4.h
-.\objects\at32f4xx_rcc.o: C:\Keil_v5\ARM\ARMCCv506u7\Bin\..\include\stdint.h
+.\objects\at32f4xx_rcc.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\at32f4xx_rcc.o: ..\..\Libraries\CMSIS\CM4\CoreSupport\core_cmInstr.h
 .\objects\at32f4xx_rcc.o: ..\..\Libraries\CMSIS\CM4\CoreSupport\cmsis_armcc.h
 .\objects\at32f4xx_rcc.o: ..\..\Libraries\CMSIS\CM4\CoreSupport\core_cmFunc.h

@@ -2,7 +2,7 @@
 .\objects\stm32f10x_bkp.o: .\Lib\inc\stm32f10x_bkp.h
 .\objects\stm32f10x_bkp.o: .\CMSIS\stm32f10x.h
 .\objects\stm32f10x_bkp.o: .\CMSIS\core_cm3.h
-.\objects\stm32f10x_bkp.o: C:\Keil_v5\ARM\ARMCCv506u7\Bin\..\include\stdint.h
+.\objects\stm32f10x_bkp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\stm32f10x_bkp.o: .\CMSIS\system_stm32f10x.h
 .\objects\stm32f10x_bkp.o: .\User\stm32f10x_conf.h
 .\objects\stm32f10x_bkp.o: .\Lib\inc\stm32f10x_adc.h

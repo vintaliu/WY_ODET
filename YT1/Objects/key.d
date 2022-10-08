@@ -3,7 +3,7 @@
 .\objects\key.o: .\Basic\sys\sys.h
 .\objects\key.o: .\CMSIS\stm32f10x.h
 .\objects\key.o: .\CMSIS\core_cm3.h
-.\objects\key.o: C:\Keil_v5\ARM\ARMCCv506u7\Bin\..\include\stdint.h
+.\objects\key.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\key.o: .\CMSIS\system_stm32f10x.h
 .\objects\key.o: .\User\stm32f10x_conf.h
 .\objects\key.o: .\Lib\inc\stm32f10x_adc.h

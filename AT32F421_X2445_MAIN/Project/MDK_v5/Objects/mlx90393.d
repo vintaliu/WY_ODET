@@ -3,7 +3,7 @@
 .\objects\mlx90393.o: ..\..\User\Bsp\DriveBsp.h
 .\objects\mlx90393.o: ..\..\Libraries\CMSIS\CM4\DeviceSupport\at32f4xx.h
 .\objects\mlx90393.o: ..\..\Libraries\CMSIS\CM4\CoreSupport\core_cm4.h
-.\objects\mlx90393.o: C:\Keil_v5\ARM\ARMCCv506u7\Bin\..\include\stdint.h
+.\objects\mlx90393.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\mlx90393.o: ..\..\Libraries\CMSIS\CM4\CoreSupport\core_cmInstr.h
 .\objects\mlx90393.o: ..\..\Libraries\CMSIS\CM4\CoreSupport\cmsis_armcc.h
 .\objects\mlx90393.o: ..\..\Libraries\CMSIS\CM4\CoreSupport\core_cmFunc.h
@@ -37,12 +37,12 @@
 .\objects\mlx90393.o: ..\..\Libraries\AT32F4xx_StdPeriph_Driver\inc\at32f4xx_xmc.h
 .\objects\mlx90393.o: ..\..\Libraries\AT32F4xx_StdPeriph_Driver\inc\at32f4xx_syscfg.h
 .\objects\mlx90393.o: ..\..\Libraries\AT32F4xx_StdPeriph_Driver\inc\misc.h
-.\objects\mlx90393.o: C:\Keil_v5\ARM\ARMCCv506u7\Bin\..\include\stdio.h
-.\objects\mlx90393.o: C:\Keil_v5\ARM\ARMCCv506u7\Bin\..\include\string.h
-.\objects\mlx90393.o: C:\Keil_v5\ARM\ARMCCv506u7\Bin\..\include\stdlib.h
+.\objects\mlx90393.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\mlx90393.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\mlx90393.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\mlx90393.o: ..\..\User\Bsp\inc\DriveDelay.h
 .\objects\mlx90393.o: ..\..\User\DriverUart.h
-.\objects\mlx90393.o: C:\Keil_v5\ARM\ARMCCv506u7\Bin\..\include\stdarg.h
+.\objects\mlx90393.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\mlx90393.o: ..\..\User\DriverADC.h
 .\objects\mlx90393.o: ..\..\User\DriverTimer.h
 .\objects\mlx90393.o: ..\..\User\ControlUsedArry.h
