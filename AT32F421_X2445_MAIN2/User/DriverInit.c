@@ -535,11 +535,14 @@ unsigned char ucCheckMotoConnect(void)//检测电机连接情况
 }
 /*
 检查系统各功能模块性能及好坏
+*@param checkMotoTestPwmFlag 是否检查电机PWM 
+*        @value ENABLE 检查电源
+*        @value DISABLE 不检查电源
 */
 #define  ErroRemoteAlarmFlashLedTimeMs   120
 #define  ErroRemoteAlarmWaiteTime         4
 #define  RelaesPowerValue  1800//当电压小于 16.9v的时候 不要去释放电压了
-void vCheckSystemInfo(void)
+void vCheckSystemInfo(FunctionalState checkMotoTestPwmFlag)
 {
     u32 uiTempXDelt, uiTempYDelt ;
     unsigned int uiTime = 0;
@@ -561,98 +564,106 @@ void vCheckSystemInfo(void)
 //    }
 //#endif
 			
+			ucErroType = ErroNoCheckSys;
+			
 #ifdef CheckPowerVoltage
+		
+		vSendSysPower(4000);//发一个开机声音
+		uiTempYDelt = uiTempXDelt = strSysInfo.uiSysTemPower;//将电量的值 暂时存下
+		if(uiTempYDelt > RelaesPowerValue)//如果EC在开机的时候电压小，就不要去释放一次电压了
+		{
+				uiTempXDelt *= 9;
+				uiTempXDelt /= 10;
+				if(ENABLE == checkMotoTestPwmFlag)
+				{
+					CtlSetMotor1LeftPwmPercent(CheckMotoTestPwmValue);
+					CtlSetMotor1RightPwmPercent(0);
+					CtlSetMotor2LeftPwmPercent(CheckMotoTestPwmValue);
+					CtlSetMotor2RightPwmPercent(0);
+				}
+				
+				for(uiTime = 0; uiTime < 400; uiTime ++)
+				{
+						ucTag1ms = FALSE;
+						while(FALSE == ucTag1ms);
+						if(ucPowerKeyPressTimes >= 2)
+						{
+								CtlSetMotor1LeftPwmPercent(0);
+								CtlSetMotor1RightPwmPercent(0);
+								CtlSetMotor2LeftPwmPercent(0);
+								CtlSetMotor2RightPwmPercent(0);
+								vAutoPowerOffTimeFlag();
+						}
+						if(strSysInfo.uiSysTemPower < (uiTempXDelt + 150))//如果此时EC电压一直在下降
+						{
+								uiTime = 8888;
+						}
+				}
 
-    vSendSysPower(4000);//发一个开机声音
-    uiTempYDelt = uiTempXDelt = strSysInfo.uiSysTemPower;//将电量的值 暂时存下
-    if(uiTempYDelt > RelaesPowerValue)//如果EC在开机的时候电压小，就不要去释放一次电压了
-    {
-        uiTempXDelt *= 9;
-        uiTempXDelt /= 10;
-        CtlSetMotor1LeftPwmPercent(CheckMotoTestPwmValue);
-        CtlSetMotor1RightPwmPercent(0);
-        CtlSetMotor2LeftPwmPercent(CheckMotoTestPwmValue);
-        CtlSetMotor2RightPwmPercent(0);
-        for(uiTime = 0; uiTime < 400; uiTime ++)
-        {
-            ucTag1ms = FALSE;
-            while(FALSE == ucTag1ms);
-            if(ucPowerKeyPressTimes >= 2)
-            {
-                CtlSetMotor1LeftPwmPercent(0);
-                CtlSetMotor1RightPwmPercent(0);
-                CtlSetMotor2LeftPwmPercent(0);
-                CtlSetMotor2RightPwmPercent(0);
-                vAutoPowerOffTimeFlag();
-            }
-            if(strSysInfo.uiSysTemPower < (uiTempXDelt + 150))//如果此时EC电压一直在下降
-            {
-                uiTime = 8888;
-            }
-        }
+				if((strSysInfo.uiSysTemPower > (uiTempXDelt + 150)) && (uiTempYDelt > NoPowerOnAdcValue)) //如果没有上控制系统的电源的时候 有电压说明是有错的
+				{
+						CtlPowerOnTest_OFF;
+						ucErroType = ErroRelayShort;	//说明是继电器有短路
+						CtlSetMotor1LeftPwmPercent(0);
+						CtlSetMotor1RightPwmPercent(0);
+						CtlSetMotor2LeftPwmPercent(0);
+						CtlSetMotor2RightPwmPercent(0);
+						return;
+				}
+		}
 
-        if((strSysInfo.uiSysTemPower > (uiTempXDelt + 150)) && (uiTempYDelt > NoPowerOnAdcValue)) //如果没有上控制系统的电源的时候 有电压说明是有错的
-        {
-            CtlPowerOnTest_OFF;
-            ucErroType = ErroRelayShort;	//说明是继电器有短路
-            CtlSetMotor1LeftPwmPercent(0);
-            CtlSetMotor1RightPwmPercent(0);
-            CtlSetMotor2LeftPwmPercent(0);
-            CtlSetMotor2RightPwmPercent(0);
-            return;
-        }
-    }
+		CtlBrakeBikeDisEn;//让刹车器打开下，因继电器没有上电。不会出问题的
+		CtlSetMotor1LeftPwmPercent(0);
+		CtlSetMotor1RightPwmPercent(0);
+		CtlSetMotor2LeftPwmPercent(0);
+		CtlSetMotor2RightPwmPercent(0);
+		for(uiTime = 0; uiTime < 50; uiTime ++)
+		{
+				ucTag1ms = FALSE;
+				while(FALSE == ucTag1ms);
+				if(ucPowerKeyPressTimes >= 2 )
+				{
+						vAutoPowerOffTimeFlag();
+				}
+		}
+		CtlPowerOnTest_ON;
+		for(uiTime = 0; uiTime < 150; uiTime ++)
+		{
+				ucTag1ms = FALSE;
+				while(FALSE == ucTag1ms);
+				if(ucPowerKeyPressTimes >= 2)
+				{
+						vAutoPowerOffTimeFlag();
+				}
+		}
 
-    CtlBrakeBikeDisEn;//让刹车器打开下，因继电器没有上电。不会出问题的
-    CtlSetMotor1LeftPwmPercent(0);
-    CtlSetMotor1RightPwmPercent(0);
-    CtlSetMotor2LeftPwmPercent(0);
-    CtlSetMotor2RightPwmPercent(0);
-    for(uiTime = 0; uiTime < 50; uiTime ++)
-    {
-        ucTag1ms = FALSE;
-        while(FALSE == ucTag1ms);
-        if(ucPowerKeyPressTimes >= 2 )
-        {
-            vAutoPowerOffTimeFlag();
-        }
-    }
-    CtlPowerOnTest_ON;
-    for(uiTime = 0; uiTime < 150; uiTime ++)
-    {
-        ucTag1ms = FALSE;
-        while(FALSE == ucTag1ms);
-        if(ucPowerKeyPressTimes >= 2)
-        {
-            vAutoPowerOffTimeFlag();
-        }
-    }
-
-    if(strSysInfo.uiSysTemPower < (NoPowerOnAdcValue - 200)) //如果没有上控制系统的电源的时候 有电压说明是有错的
-    {
-        CtlPowerOnTest_OFF;//如果上电的时候  没有电压的变化，可能是电路有短路的情况了
-        ucErroType = ErroRelayBreak ; //继电器断开
-        return;
-    }//LG_qiuzhi
+		if(strSysInfo.uiSysTemPower < (NoPowerOnAdcValue - 200)) //如果没有上控制系统的电源的时候 有电压说明是有错的
+		{
+				CtlPowerOnTest_OFF;//如果上电的时候  没有电压的变化，可能是电路有短路的情况了
+				ucErroType = ErroRelayBreak ; //继电器断开
+				return;
+		}//LG_qiuzhi
+	  
 #endif
-    //20190517上电异常就不检测电机了
-    //    CtlDriverPowerContolON;
-    for(uiTime = 0; uiTime < 50; uiTime ++)
-    {
-        ucTag1ms = FALSE;
-        while(FALSE == ucTag1ms);
-        if(ucPowerKeyPressTimes >= 2)
-        {
-            vAutoPowerOffTimeFlag();
-        }
-    }
-    if(strSysInfo.uiSysTemPower <= LowPowerVoltage)
-    {
-        CtlPowerOnTest_OFF;
-        ucErroType = ErroLowVoltage ; //继电器断开
-        return;
-    }//LG_qiuzhi
-    //    CtlPowerOnTest_OFF;
+		//20190517上电异常就不检测电机了
+		//    CtlDriverPowerContolON;
+		for(uiTime = 0; uiTime < 50; uiTime ++)
+		{
+				ucTag1ms = FALSE;
+				while(FALSE == ucTag1ms);
+				if(ucPowerKeyPressTimes >= 2)
+				{
+						vAutoPowerOffTimeFlag();
+				}
+		}
+		if(strSysInfo.uiSysTemPower <= LowPowerVoltage)
+		{
+				CtlPowerOnTest_OFF;
+				ucErroType = ErroLowVoltage ; //继电器断开
+				return;
+		}//LG_qiuzhi
+		//    CtlPowerOnTest_OFF;
+	  
 #define    AlowBreakAdcErro  180
 
         if(FALSE == ucCheckMotoConnect())return;
@@ -1356,6 +1367,18 @@ void vShowErroToDis(unsigned char ucErroNum)
     {
         ucTag1ms = FALSE;
         while(FALSE == ucTag1ms);
+			
+			  //如果有 硬件（各模块）异常
+			  if( ErroNoCheckSys != ucErroType || ErroNoErro != ucErroType)
+				{
+					 //检测 硬件（各模块）异常是否恢复
+				   vCheckSystemInfo(DISABLE);//去检查各模块是否正常地待命
+          
+				}
+			  if(ErroNoCheckSys == ucErroType || ErroNoErro == ucErroType)
+				{
+					   ucErroType = ErroNoErro;//如果一切正常，解除初始化的错误标志
+				}
         if(ReadKeyOfOn_OffFlag || ucAnlyFree)//如果有电源按键或者是示教通信
         {
             if(FALSE == ucShowErro) vSendSingleOrder(QuitErro);//只退出一次报警
@@ -1372,9 +1395,19 @@ void vShowErroToDis(unsigned char ucErroNum)
         {
             break;
         }
+				if(ErroNoErro == ucErroType)
+        {
+					break;
+				}
     }
+
     vSendSingleOrder(QuitErro);
-    vAutoPowerOffTimeFlag();
+		if(ErroNoErro != ucErroType  && ErroNoCheckSys != ucErroType )
+    {
+			 //如果报警结束还有异常就关机
+		   vAutoPowerOffTimeFlag();
+		}
+    
 }
 void vReadEepromData(void)
 {
