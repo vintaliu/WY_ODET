@@ -871,11 +871,11 @@ static void ADC1_Mode_Config(void)
 
     ADC_RegularChannelConfig(ADC1, ADC_Channel_1, 1, ADC_SampleTime_13_5 );//PA1 遥感Y位置
     ADC_RegularChannelConfig(ADC1, ADC_Channel_2, 2, ADC_SampleTime_13_5 );//PA2  遥感X位置
-    ADC_RegularChannelConfig(ADC1, ADC_Channel_8, 3, ADC_SampleTime_13_5 );//PA3 电机1右电压检测
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_8, 3, ADC_SampleTime_13_5 );//PB0 电机1右电压检测
     ADC_RegularChannelConfig(ADC1, ADC_Channel_4, 4, ADC_SampleTime_13_5 );//PA4  电机1左电压检测
     ADC_RegularChannelConfig(ADC1, ADC_Channel_6, 5, ADC_SampleTime_13_5 );//PA6 系统电量检测
     ADC_RegularChannelConfig(ADC1, ADC_Channel_7, 6, ADC_SampleTime_13_5 );//PA7电机2左电压检测
-    ADC_RegularChannelConfig(ADC1, ADC_Channel_8, 7, ADC_SampleTime_13_5 );//PB0 刹车器电压反馈
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_8, 7, ADC_SampleTime_13_5 );//PB0 刹车器电压反馈 --> 刹车器电压不再走ADC， 直接读取PB8,PB9电压
     ADC_RegularChannelConfig(ADC1, ADC_Channel_9, 8, ADC_SampleTime_13_5 );//PB1 电机2右电压检测
     ADC_RegularChannelConfig(ADC1, ADC_Channel_0, 9, ADC_SampleTime_13_5 );//PA0  电机1的电流检测
     ADC_RegularChannelConfig(ADC1, ADC_Channel_5, 10, ADC_SampleTime_13_5 );//PA5 右电机电流检测
@@ -909,7 +909,7 @@ void DMA_Configuration(void)
     DMA_InitStructure.DMA_PeripheralInc = DMA_PERIPHERALINC_DISABLE;          /* 外设地址寄存器不变 */
     DMA_InitStructure.DMA_MemoryInc = DMA_MEMORYINC_ENABLE;                   /* 内存地址寄存器递增 */
     DMA_InitStructure.DMA_PeripheralDataWidth = DMA_PERIPHERALDATAWIDTH_HALFWORD; /* 外设数据宽度为16位 */
-    DMA_InitStructure.DMA_MemoryDataWidth = DMA_MEMORYDATAWIDTH_HALFWORD;         /* 存储器数据宽度为8位 */
+    DMA_InitStructure.DMA_MemoryDataWidth = DMA_MEMORYDATAWIDTH_HALFWORD;         /* 存储器数据宽度为16位 */
     DMA_InitStructure.DMA_Mode = DMA_MODE_CIRCULAR;                             //DMA通道x没有设置为内存到内存传输
     DMA_InitStructure.DMA_Priority = DMA_PRIORITY_VERYHIGH;                   /* 非常高优先级 */
     DMA_InitStructure.DMA_MTOM = DMA_MEMTOMEM_DISABLE;                        /* 非内存到内存 */

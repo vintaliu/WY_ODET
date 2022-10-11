@@ -86,21 +86,21 @@ int main(void)
     //		while (1);
     if(FALSE ==  uniDiverInfo.strDirverAtt.unMotorInfo.bits.bBreakEn)//1-刹车器程序或0-驻坡程序由参数表第6项决定20190110
     {
-        //GPIO_ResetBits(C_BreakControl_Port,C_BreakControl_Pin);
-        CtlBrakeBikeEn;
-        strSysInfo.uiSysBreakFlag = 0;
+        //驻坡，
+        CtlBrakeBikeEn;//复位PC13,
+        strSysInfo.uiSysBreakFlag = 0;//0 是 驻坡
     }
     else
     {
-        CtlBrakeBikeDisEn;
-        strSysInfo.uiSysBreakFlag = 1;
+        CtlBrakeBikeDisEn;//置位PC13
+        strSysInfo.uiSysBreakFlag = 1;//1 是电磁刹车
         PwmDataInit();
     }
     if(0 == (ReadMlxReadTimerState & 0x0001))
     {
-        EnAbleMlxTimerReadTnterrupt;
+        EnAbleMlxTimerReadTnterrupt;//使能TMR14定时器
     }		
-    CtrlExtSpeekerDis;//强制不响
+    CtrlExtSpeekerDis;//强制外置喇叭(PB11)不响
 //		while (1)       
 //		{
 //			 if(ucTag400ms)//如果在空闲的状态下，如果有示教器发过来的数据这时候要去处理下
