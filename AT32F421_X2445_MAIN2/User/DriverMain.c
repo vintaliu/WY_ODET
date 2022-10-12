@@ -18,7 +18,7 @@ unsigned char ucInChargePinLowCont = 0;
 unsigned char ucGiveVoltageToOldOneTime = FALSE;
 unsigned char ucEnAdcCalc = TRUE;
 unsigned char ucAutoBattIdenConfigData = 0;//自电池识别配置过标志
-unsigned char ucFirstStartOneTimeFlag = FALSE;
+unsigned char ucFirstStartOneTimeFlag = FALSE;//关机后变为FALSE，开机后变为TRUE
 //unsigned int ucFirstStartOneTime = 0;
 #define UseHardWareWatchDog//只为调试方便。
 /*
@@ -234,6 +234,7 @@ int main(void)
         }
         if(FALSE ==  uniDiverInfo.strDirverAtt.unMotorInfo.bits.bBreakEn)//1-刹车器程序或0-驻坡程序由参数表第6项决定20190110
         {
+					  //驻坡，复位PC13
             GPIO_ResetBits(C_BreakControl_Port, C_BreakControl_Pin);
         }
         if((ucSpeedDowenFlag) && (ucFirstStartOneTimeFlag)) //(ucFirstStartOneTimeFlag == TRUE))//&& (FALSE == ucConnectBreakFlag)已经刹车完成，并且检测刹车器已经连接了
