@@ -84,8 +84,13 @@ void vNoKeyInStandbyMode(void)//刚上电，没有按键的情况下
     RCC->CFG &= 0xFFFFFFFC;//时钟的使用，使其频率最低
 //	  RCC->CTRL &= ~RCC_CTRL_HSEEN;
 //	  RCC->CTRL &= ~RCC_CTRL_PLLEN;//
-    while(!ReadKeyOfOn_OffFlag)//Waite for Power Key Press Up !
+    while(!ReadKeyOfOn_OffFlag)//Waite for Power Key Pressed !
     {
+      vSoftDelayms(1);
+    }
+		//等待按键松开
+		while(ReadKeyOfOn_OffFlag)
+		{
       vSoftDelayms(1);
     }
 		RCC->CFG |= RCC_CFG_SYSCLKSEL_1;//时钟的使用，使其频率最低
@@ -309,6 +314,7 @@ unsigned char ucCheckMotoConnect(void)//检测电机连接情况
         vAutoPowerOffTimeFlag();
     }
 #define CheckMotoTestPwmAsSlop   3000//这里设置  电机的测试电压  由于检测的另一端是悬空的，没有任何问题。可以测试
+		
     if(TRUE == uniDiverInfo.strDirverAtt.unMotorInfo.bits.bCheckMotorConnect)//如果系统要求检测电机的连接
     {
         C_SetS_MotoA_A_AdcAsM1_Left_Port_Low;
@@ -533,6 +539,89 @@ unsigned char ucCheckMotoConnect(void)//检测电机连接情况
     ucEnAdcCalc  = TRUE;
     return TRUE;
 }
+/**
+*检测刹车器是否正常
+* 返回值：错误码
+* 
+*/
+
+unsigned char vCheckErrorMotoBreak(){
+	  unsigned char errorCode = ErroNoCheckSys;
+	  u32 uiTempXDelt, uiTempYDelt ;
+	  #define    AlowBreakAdcErroTmp  180
+    if(FALSE ==  uniDiverInfo.strDirverAtt.unMotorInfo.bits.bBreakEn)//1-刹车器程序或0-驻坡程序由参数表第6项决定20190110
+    {
+        if(TRUE == uniDiverInfo.strDirverAtt.unMotorInfo.bits.bCheckBreakConnect)
+        {
+            uiTempXDelt = strSysInfo.uiSysTemPower * BreakLeftBreakAdcP; //左电机比例值
+            uiTempYDelt = strSysInfo.uiSysTemPower * BreakRightBreakAdcP; //右电机比例值
+            if((strSysInfo.uiBreakFeedBackCurrent >= (uiTempXDelt - AlowBreakAdcErroTmp)) && (strSysInfo.uiBreakFeedBackCurrent <= (uiTempXDelt + AlowBreakAdcErroTmp)))
+            {
+                errorCode = ErroMoto2Break; //右刹车器坏掉
+            }
+            else if((strSysInfo.uiBreakFeedBackCurrent >= (uiTempYDelt - AlowBreakAdcErroTmp)) && (strSysInfo.uiBreakFeedBackCurrent <= (uiTempYDelt + AlowBreakAdcErroTmp)))
+            {
+                errorCode = ErroMoto1Break; //左刹车器坏掉
+            }
+            else if(strSysInfo.uiBreakFeedBackCurrent < (strSysInfo.uiSysTemPower * NoBreakAdcP + AlowBreakAdcErroTmp) )
+            {
+                errorCode = ErroNoBearker ; //如果是两个刹车器都坏掉了
+            }
+        }
+        if(strSysInfo.uiBreakFeedBackCurrent > (strSysInfo.uiSysTemPower * BreadAdAndPowerP - 650) )
+        {
+            ucConnectBreakFlag = TRUE; //系统检测到刹车器
+        }
+        else ucConnectBreakFlag = FALSE;
+    }
+    else
+    {
+        if(TRUE == uniDiverInfo.strDirverAtt.unMotorInfo.bits.bCheckBreakConnect)
+        {
+            if(C_ReadLeftMotoBreak_Pin_Low)
+            {
+                errorCode = ErroMoto1Break; //左刹车器坏掉
+                if(TRUE == uniDiverInfo.strDirverAtt.unMotorInfo.bits.bChangeMotor1Motor2)ucErroType = ErroMoto2Break; //左刹车器坏掉
+            }
+            if(C_ReadRightMotoBreak_Pin_Low)
+            {
+                errorCode = ErroMoto2Break; //右刹车器坏掉
+                if(TRUE == uniDiverInfo.strDirverAtt.unMotorInfo.bits.bChangeMotor1Motor2)ucErroType = ErroMoto1Break; //左刹车器坏掉
+
+            }
+            if(C_ReadLeftMotoBreak_Pin_Low && C_ReadRightMotoBreak_Pin_Low)
+            {
+                errorCode = ErroNoBearker ; //如果是两个刹车器都坏掉了
+            }
+        }
+        if((!C_ReadLeftMotoBreak_Pin_Low) || (!C_ReadRightMotoBreak_Pin_Low))
+        {
+            ucConnectBreakFlag = TRUE; //系统检测到刹车器
+        }
+        else ucConnectBreakFlag = FALSE;
+    }
+		return errorCode;
+}
+
+/**
+*开机过程中出现报错时，检测系统错误是否恢复
+* 错误包含：刹车错误 
+*/
+void vCheckSystemInfoWhenPowerOnError(unsigned char errorCode)
+{
+	  switch(errorCode)
+		{
+			//刹车错误
+			case ErroMoto1Break:
+			case ErroMoto2Break:
+		  case ErroNoBearker:
+				   ucErroType = vCheckErrorMotoBreak();
+			     break;
+		
+		}
+	
+}
+
 /*
 检查系统各功能模块性能及好坏
 */
@@ -560,6 +649,8 @@ void vCheckSystemInfo(void)
 //        //CtlPowerOnTest_OFF;
 //    }
 //#endif
+			//检查之前先初始化错误类型为 没有错误（ErroNoCheckSys）
+			ucErroType = ErroNoCheckSys;
 			
 #ifdef CheckPowerVoltage
 
@@ -1360,7 +1451,13 @@ void vShowErroToDis(unsigned char ucErroNum)
     {
         ucTag1ms = FALSE;
         while(FALSE == ucTag1ms);
-        		
+			 
+        //vCheckSystemInfoWhenPowerOnError(ucErroType);//去检查各模块是否正常地待命
+			  vCheckSystemInfo();
+        if(ErroNoCheckSys == ucErroType || ErroNoErro == ucErroType)
+				{
+					ucErroType = ErroNoErro;//如果一切正常，解除初始化的错误标志
+				}
         if(ReadKeyOfOn_OffFlag || ucAnlyFree)//如果有电源按键或者是示教通信
         {
             if(FALSE == ucShowErro) vSendSingleOrder(QuitErro);//只退出一次报警
@@ -1386,9 +1483,20 @@ void vShowErroToDis(unsigned char ucErroNum)
 					  stopFlag = 3;
             break;
         }
+				//如果没有错误，跳出报警循环
+				if(ErroNoErro == ucErroType)
+        {
+					  stopFlag = 4;
+            break;
+				}
     }
-    vSendSingleOrder(QuitErro);
-    vAutoPowerOffTimeFlag();
+		vSendSingleOrder(QuitErro);
+		//如果报警结束，还有错误就向显示板发送关机指令
+		if(ErroNoErro != ucErroType)
+    {
+			 vAutoPowerOffTimeFlag();
+		}
+    
 }
 void vReadEepromData(void)
 {

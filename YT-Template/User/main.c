@@ -26,10 +26,10 @@ int main (void){//主程序
 	//主循环
 	while(1){
 		
-		GPIO_SetBits(LEDPORT,LED3); //LED灯都为低电平（0） 
-		delay_ms(20000);
-		GPIO_ResetBits(LEDPORT,LED3); //LED灯都为高电平（1） 
-    delay_ms(20000);
+		GPIO_SetBits(LEDPORT,LED1); //LED灯都为低电平（0） 
+		delay_ms(1000);
+		GPIO_ResetBits(LEDPORT,LED1); //LED灯都为高电平（1） 
+    delay_ms(1000);
 		
 		
 

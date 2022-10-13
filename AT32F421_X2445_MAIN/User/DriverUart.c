@@ -889,7 +889,7 @@ void vAnalyTeacherDataOfTime(void)
         for(ucTemp = 0; ucTemp < 5; ucTemp++)ucTeacherDataTemp[ucTemp] = 0x00;
         break;
     }
-    case OrderSendPare://
+    case OrderSendPare:////用户设置的信息内容
     {
         vSaveTeacherData(ucTeacherDataTemp[1]);//没有移植
         for(ucTemp = 0; ucTemp < 5; ucTemp++)ucTeacherDataTemp[ucTemp] = 0x00;
