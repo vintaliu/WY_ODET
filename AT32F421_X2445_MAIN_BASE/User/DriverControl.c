@@ -1300,6 +1300,7 @@ void vRunMotor(unsigned char ucDirctionData)
     unsigned int uiOverCurrentCont = 0;   //超流计数器
     unsigned int uiOverCurrentCntNextReachTime = 0;   //超流计数器  下次超过的时间
     usMaxDriverCurrent = 2510;//最大驱动电流//给2435的电流
+		float fRunInFrontSpeedPare = 1.0f;
 
 #ifdef UsedYingKe50A
     if(35 == uniDiverInfo.strDirverAtt.ucMaxDriverCurrent)usMaxDriverCurrent = 2510;//如果编程器的设置是35A
@@ -1316,12 +1317,21 @@ void vRunMotor(unsigned char ucDirctionData)
     uiOverCurrentCont = 0;
     usMaxDriverCurrentOld = usMaxDriverCurrent;
     uiOverCurrentCntNextReachTime = MaxCurrentHoldLonTime;
-    fTemp = (1 - (uniDiverInfo.strDirverAtt.ucForwardMinSpeedP * 0.01)) / 4.0;
-    fStep4SpeedPare = 1 - fTemp;
-    fStep3SpeedPare = 1 - 2 * fTemp;
-    fStep2SpeedPare = 1 - 3 * fTemp;
-    fStep1SpeedPare = 1 - 4 * fTemp;//进入主程序，先算出几个速度标量的分度值
-
+		
+    ////////////////////////////修改速度档位比例分配法
+    if(uniDiverInfo.strDirverAtt.ucForwardSpeedP > uniDiverInfo.strDirverAtt.ucForwardMinSpeedP)
+    {
+     iDeltPwmX = uniDiverInfo.strDirverAtt.ucForwardSpeedP - uniDiverInfo.strDirverAtt.ucForwardMinSpeedP;
+    }
+    else iDeltPwmX = uniDiverInfo.strDirverAtt.ucForwardMinSpeedP - uniDiverInfo.strDirverAtt.ucForwardSpeedP;
+    fRunInFrontSpeedPare = iDeltPwmX/400.0;
+    fStep4SpeedPare = 1 - fRunInFrontSpeedPare;
+    fStep3SpeedPare = 1 - 2 * fRunInFrontSpeedPare;
+    fStep2SpeedPare = 1 - 3 * fRunInFrontSpeedPare;
+    fStep1SpeedPare = 1 - 4 * fRunInFrontSpeedPare;//进入主程序，先算出几个速度标量的分度值
+		////////////////////////////修改速度档位比例分配法
+		
+		fTemp = (1 - (uniDiverInfo.strDirverAtt.ucForwardMinSpeedP * 0.01)) / 4.0;
     if(uniDiverInfo.strDirverAtt.ucSwerveMaxSpeedP > uniDiverInfo.strDirverAtt.ucSwerveMinSpeedP)
     {
         iDeltPwmX = uniDiverInfo.strDirverAtt.ucSwerveMaxSpeedP - uniDiverInfo.strDirverAtt.ucSwerveMinSpeedP;
