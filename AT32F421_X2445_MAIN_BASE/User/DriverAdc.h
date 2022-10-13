@@ -60,7 +60,7 @@ struct strSysTemInfo
     unsigned int uiCalcSysShowPower;//计算出来的
     unsigned int uiBreakFeedBackCurrent;//刹车器反馈电流
 		
-	  unsigned int uiSysBreakFlag;//刹车时候标志位		
+	  unsigned int uiSysBreakFlag;//刹车时候标志位 0驻坡 ，1 电磁刹车		
 	  unsigned int uiCalcPwmInBreak;//计算出上次刹车时候 的PWM值 最大值
 };
 
@@ -88,7 +88,7 @@ extern volatile struct strMotorInfo strMoto1Info, strMoto2Info;
 //AD通道的定义
 #define RemoteYAdcCh                           0//PA1 遥感Y位置
 #define RemoteXAdcCh                           1//PA2  遥感X位置
-#define Motor1RightHBridgeVolHaveFilterCh      2//PA3 电机1右电压检测
+#define Motor1RightHBridgeVolHaveFilterCh      2//PB0 电机1右电压检测
 #define Motor1LeftHBridgeVolHaveFilterCh  	   3//PA4  电机1左电压检测
 #define SysTemPowerAdcCh  	                   4//PA6 系统电量检测
 #define Motor2LeftHBridgeVolHaveFilterCh  	   5//PA7电机2左电压检测

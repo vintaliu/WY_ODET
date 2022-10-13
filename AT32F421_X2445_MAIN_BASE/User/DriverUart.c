@@ -111,6 +111,7 @@ void vSendSysPower(unsigned int uiPower)//发送系统电量
     ucSendBuff[ucSendCont++] = OrderPower;
     if(uniDiverInfo.strDirverAtt.unMotorInfo.bits.bLilonOrQiansuan)
     {
+			  //锂电池电量标定
         usTemp = uiPower;
         if(usTemp > 3037)usTemp = 26280;//大于27.04 五个灯
         else if((usTemp > 2952) && (usTemp <= 3037))

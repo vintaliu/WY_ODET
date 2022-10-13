@@ -117,7 +117,7 @@
 #define UsartRxPin                       				   GPIO_Pins_11
 
 #define ExPortSpeekerPort            	GPIOB
-#define ExPortSpeekerPin             	GPIO_Pins_11// 外接高音喇叭 PB12
+#define ExPortSpeekerPin             	GPIO_Pins_11// 外接高音喇叭 PB11
 
 #define  TeachModeTestPort          	GPIOA
 #define  TeachModeTestPin	            GPIO_Pins_12//当是，示教情况下的检测口

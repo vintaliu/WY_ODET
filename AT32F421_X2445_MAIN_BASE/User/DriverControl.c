@@ -17,6 +17,9 @@ void vCheckHardWareErro(void);//去检查硬件错误
 #define FirstDownPwm 800//第一次减速所到的位置
 volatile struct strSysTemInfo strSysInfo = {0};//系统一些状态结构体的定义
 volatile struct strMotorInfo strMoto1Info = {0}, strMoto2Info = {0};//两个电机的一些信息  strMoto1Info->X电机   strMoto2Info—>Y电机
+// ucSpeedDowenFlag 刹车标志 
+//      TRUE 表示  开启刹车器（即电机被刹住抱死，不允许转动）
+//      FALSE 表示 关掉刹车器（即电机被松开刹车，允许转动）
 volatile unsigned char ucSpeedDowenFlag = FALSE;
 // void vDelayms(u32 uiDelayTime);//
 void vDelay30us(u32 uiDelayTime);
@@ -2569,7 +2572,7 @@ void vAutoPowerOffTimeFlag(void)
     vSendSingleOrder(OrderPowerOff);//关机
     g_uiTimeNumCont1ms = 60;
     while(g_uiTimeNumCont1ms);
-    C_EnResetStm8;
+    C_EnResetStm8;//复位（显示板）单片机
     CtlSetMotor1LeftPwmPercent(0);
     CtlSetMotor1RightPwmPercent(0);
     CtlSetMotor2LeftPwmPercent(0);
