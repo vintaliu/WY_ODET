@@ -1331,7 +1331,6 @@ void vRunMotor(unsigned char ucDirctionData)
     fStep1SpeedPare = 1 - 4 * fRunInFrontSpeedPare;//进入主程序，先算出几个速度标量的分度值
 		////////////////////////////修改速度档位比例分配法
 		
-		fTemp = (1 - (uniDiverInfo.strDirverAtt.ucForwardMinSpeedP * 0.01)) / 4.0;
     if(uniDiverInfo.strDirverAtt.ucSwerveMaxSpeedP > uniDiverInfo.strDirverAtt.ucSwerveMinSpeedP)
     {
         iDeltPwmX = uniDiverInfo.strDirverAtt.ucSwerveMaxSpeedP - uniDiverInfo.strDirverAtt.ucSwerveMinSpeedP;
