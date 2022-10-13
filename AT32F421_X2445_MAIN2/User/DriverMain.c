@@ -9,7 +9,7 @@
 unsigned char ucEmgStopEn = 0;//是否有急停事件的发生
 unsigned char ucStsTemState = PowerDownMode;//系统状态全局变量
 unsigned char ucErroType = ErroNoCheckSys;//系统出错全局变量
-unsigned char ucNewDirectCont = SysNoDirection , ucOldDirectCont = SysNoDirection;//
+unsigned char ucNewDirectCont = SysNoDirection , ucOldDirectCont = SysNoDirection;//摇杆方向
 unsigned char ucSpeedGrad = SpeedGrad5;//速度刻度全局变量
 unsigned char ucRunAsMode = SysInStandby;//系统的一个工作模式指示变量  刚开机的时候  机器处一个低功耗的模式
 unsigned char ucPowerKeyPressTimes = 0x01;//电源按下次数，计数
