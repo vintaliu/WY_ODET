@@ -1299,8 +1299,9 @@ void vRunMotor(unsigned char ucDirctionData)
     unsigned short usMaxDriverCurrentOld = 0;//最大驱动电流
     unsigned int uiOverCurrentCont = 0;   //超流计数器
     unsigned int uiOverCurrentCntNextReachTime = 0;   //超流计数器  下次超过的时间
-    usMaxDriverCurrent = 2510;//最大驱动电流//给2435的电流
 		float fRunInFrontSpeedPare = 1.0f;
+    usMaxDriverCurrent = 2510;//最大驱动电流//给2435的电流
+		
 
 #ifdef UsedYingKe50A
     if(35 == uniDiverInfo.strDirverAtt.ucMaxDriverCurrent)usMaxDriverCurrent = 2510;//如果编程器的设置是35A

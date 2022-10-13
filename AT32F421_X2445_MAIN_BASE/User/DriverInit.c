@@ -535,11 +535,14 @@ unsigned char ucCheckMotoConnect(void)//检测电机连接情况
 }
 /*
 检查系统各功能模块性能及好坏
+*@param checkMotoTestPwmFlag 是否检查电机PWM 
+*        @value ENABLE 检查电源
+*        @value DISABLE 不检查电源
 */
 #define  ErroRemoteAlarmFlashLedTimeMs   120
 #define  ErroRemoteAlarmWaiteTime         4
 #define  RelaesPowerValue  1800//当电压小于 16.9v的时候 不要去释放电压了
-void vCheckSystemInfo(void)
+void vCheckSystemInfo(FunctionalState checkMotoTestPwmFlag)
 {
     u32 uiTempXDelt, uiTempYDelt ;
     unsigned int uiTime = 0;
@@ -560,7 +563,8 @@ void vCheckSystemInfo(void)
 //        //CtlPowerOnTest_OFF;
 //    }
 //#endif
-			
+			//检查之前，先初始化错误类型，
+			ucErroType = ErroNoCheckSys;
 #ifdef CheckPowerVoltage
 
     vSendSysPower(4000);//发一个开机声音
@@ -569,10 +573,14 @@ void vCheckSystemInfo(void)
     {
         uiTempXDelt *= 9;
         uiTempXDelt /= 10;
-        CtlSetMotor1LeftPwmPercent(CheckMotoTestPwmValue);
-        CtlSetMotor1RightPwmPercent(0);
-        CtlSetMotor2LeftPwmPercent(CheckMotoTestPwmValue);
-        CtlSetMotor2RightPwmPercent(0);
+			  if(ENABLE == checkMotoTestPwmFlag)//如果需要释放 电池 电压，开机第一次检查需要释放，开机后报错过程中不需要释放电压
+				{
+						CtlSetMotor1LeftPwmPercent(CheckMotoTestPwmValue);
+						CtlSetMotor1RightPwmPercent(0);
+						CtlSetMotor2LeftPwmPercent(CheckMotoTestPwmValue);
+						CtlSetMotor2RightPwmPercent(0);
+				}
+        
         for(uiTime = 0; uiTime < 400; uiTime ++)
         {
             ucTag1ms = FALSE;
@@ -1357,6 +1365,15 @@ void vShowErroToDis(unsigned char ucErroNum)
     {
         ucTag1ms = FALSE;
         while(FALSE == ucTag1ms);
+			
+			  //如果有 硬件（各模块）异常
+			  if( ErroNoCheckSys != ucErroType || ErroNoErro != ucErroType)
+				{
+					 //检测 硬件（各模块）异常是否恢复
+				   vCheckSystemInfo(DISABLE);//去检查各模块是否正常地待命
+          
+				}
+			
         if(ReadKeyOfOn_OffFlag || ucAnlyFree)//如果有电源按键或者是示教通信
         {
             if(FALSE == ucShowErro) vSendSingleOrder(QuitErro);//只退出一次报警
@@ -1373,9 +1390,17 @@ void vShowErroToDis(unsigned char ucErroNum)
         {
             break;
         }
+				if(ErroNoErro == ucErroType)
+        {
+					break;
+				}
     }
     vSendSingleOrder(QuitErro);
-    vAutoPowerOffTimeFlag();
+    if(ErroNoErro != ucErroType  && ErroNoCheckSys != ucErroType )
+    {
+			 //如果报警结束还有异常就关机
+		   vAutoPowerOffTimeFlag();
+		}
 }
 void vReadEepromData(void)
 {

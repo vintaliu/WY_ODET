@@ -51,7 +51,7 @@ int main(void)
     }
     if((SelfCheckMode == ucStsTemState ) || (SysInAutoPowerOn == ucStsTemState )) //如果上电成功就下检查下系统各功能模块
     {
-        vCheckSystemInfo();//去检查各模块是否正常地待命
+        vCheckSystemInfo(ENABLE);//去检查各模块是否正常地待命
         if(ErroNoCheckSys == ucErroType)ucErroType = ErroNoErro;//如果一切正常，解除初始化的错误标志
     }
     else
