@@ -1294,52 +1294,63 @@ void vSetTeacherPortInt(void)
     NVIC_Init(&NVIC_InitStructure); ///<Enable and set EXTI13 Interrupt to the lowest priority
 }
 
-
+unsigned char vGetAlarmNum(void)
+{
+    unsigned char alarmNum = 0;
+	
+	  if((ErroLowVoltage == ucErroType) || (ErroOverVoltage == ucErroType))
+    {
+        alarmNum = 0x01;
+    }
+    else if((ErroMoto1HighBriageBreak == ucErroType) || (ErroMoto1HighBriageShort == ucErroType))
+    {
+        alarmNum = 0x02;
+    }
+    else if((ErroMoto2HighBriageBreak == ucErroType) || (ErroMoto2HighBriageShort == ucErroType))
+    {
+        alarmNum = 0x04;
+    }
+    else if((ErroMoto1Break == ucErroType) || (ErroNoBearker == ucErroType))
+    {
+        alarmNum = 0x03;
+    }
+    else if(ErroMoto2Break == ucErroType)
+    {
+        alarmNum = 0x05;
+    }
+    else if((ErroRelayShort == ucErroType) || (ErroRelayBreak == ucErroType))
+    {
+        alarmNum = 0x08;
+    }
+    else if(ErroNoRemote == ucErroType)
+    {
+        alarmNum = 0x07;
+    }
+    
+		return alarmNum;
+}
 
 void vShowErroToDis(unsigned char ucErroNum)
 {
     unsigned char ucDataBuf[5] = {0};
     unsigned int uiTimeCont = 0;
     unsigned char ucShowErro = 0;
+		unsigned char ucShowErroNew = 0;
+		unsigned char ucShowErroLasted = 0;
 
     if(ucErroNum)ucErroType = ucErroNum;
     CtlDriverPowerContolOFF;
     CtlBrakeBikeDisEn;
     CtlPowerOnTest_OFF;
     CtrlExtSpeekerDis;
-    if((ErroLowVoltage == ucErroType) || (ErroOverVoltage == ucErroType))
-    {
-        ucShowErro = 0x01;
-    }
-    else if((ErroMoto1HighBriageBreak == ucErroType) || (ErroMoto1HighBriageShort == ucErroType))
-    {
-        ucShowErro = 0x02;
-    }
-    else if((ErroMoto2HighBriageBreak == ucErroType) || (ErroMoto2HighBriageShort == ucErroType))
-    {
-        ucShowErro = 0x04;
-    }
-    else if((ErroMoto1Break == ucErroType) || (ErroNoBearker == ucErroType))
-    {
-        ucShowErro = 0x03;
-    }
-    else if(ErroMoto2Break == ucErroType)
-    {
-        ucShowErro = 0x05;
-    }
-    else if((ErroRelayShort == ucErroType) || (ErroRelayBreak == ucErroType))
-    {
-        ucShowErro = 0x08;
-    }
-    else if(ErroNoRemote == ucErroType)
-    {
-        ucShowErro = 0x07;
-    }
-    else if(ErroNoCheckSys != ucErroType)
-    {
-        ucDataBuf[0] = LastErroSaveAtEepromAdd;
+		
+		ucShowErroLasted = ucShowErroNew = ucShowErro = vGetAlarmNum();
+		
+		if(ErroNoCheckSys != ucErroType){
+		    ucDataBuf[0] = LastErroSaveAtEepromAdd;
         ucDataBuf[1] = 11;
-    }
+		}
+    
     ucDataBuf[0] = LastErroSaveAtEepromAdd;
     if((0x0F & ucLastErro) == ucShowErro) //如果上次的错误与本次错误一致  记录上次错误的次数
     {
@@ -1371,7 +1382,14 @@ void vShowErroToDis(unsigned char ucErroNum)
 				{
 					 //检测 硬件（各模块）异常是否恢复
 				   vCheckSystemInfo(DISABLE);//去检查各模块是否正常地待命
-          
+					 ucShowErroNew = vGetAlarmNum();
+					 if(ucShowErroNew != ucShowErroLasted){
+					   ucTag100ms = FALSE;
+				     while(FALSE == ucTag100ms);
+				     vSendOneByteOrder(OrderErro, ucShowErroNew);
+						 ucShowErroLasted = ucShowErroNew;
+						 uiTimeCont = 0;
+					 }
 				}
 			
         if(ReadKeyOfOn_OffFlag || ucAnlyFree)//如果有电源按键或者是示教通信
