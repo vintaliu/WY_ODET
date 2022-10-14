@@ -1340,7 +1340,7 @@ void vRunMotor(unsigned char ucDirctionData)
         iDeltPwmX = uniDiverInfo.strDirverAtt.ucSwerveMaxSpeedP - uniDiverInfo.strDirverAtt.ucSwerveMinSpeedP;
     }
     else iDeltPwmX = uniDiverInfo.strDirverAtt.ucSwerveMinSpeedP - uniDiverInfo.strDirverAtt.ucSwerveMaxSpeedP;
-    fTemp = iDeltPwmX * 0.005;
+    fTemp = iDeltPwmX * 0.0035;
     fStep4BackSwSpeedPare = 1 - fTemp;
     fStep3BackSwSpeedPare = 1 - 2 * fTemp;
     fStep2BackSwSpeedPare = 1 - 3 * fTemp;
