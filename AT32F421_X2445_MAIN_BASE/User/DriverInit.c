@@ -542,7 +542,7 @@ unsigned char ucCheckMotoConnect(void)//检测电机连接情况
 #define  ErroRemoteAlarmFlashLedTimeMs   120
 #define  ErroRemoteAlarmWaiteTime         4
 #define  RelaesPowerValue  1800//当电压小于 16.9v的时候 不要去释放电压了
-void vCheckSystemInfo(FunctionalState checkMotoTestPwmFlag)
+void vCheckSystemInfo()
 {
     u32 uiTempXDelt, uiTempYDelt ;
     unsigned int uiTime = 0;
@@ -563,8 +563,7 @@ void vCheckSystemInfo(FunctionalState checkMotoTestPwmFlag)
 //        //CtlPowerOnTest_OFF;
 //    }
 //#endif
-			//检查之前，先初始化错误类型，
-			ucErroType = ErroNoCheckSys;
+			
 #ifdef CheckPowerVoltage
 
     vSendSysPower(4000);//发一个开机声音
@@ -573,14 +572,12 @@ void vCheckSystemInfo(FunctionalState checkMotoTestPwmFlag)
     {
         uiTempXDelt *= 9;
         uiTempXDelt /= 10;
-			  if(ENABLE == checkMotoTestPwmFlag)//如果需要释放 电池 电压，开机第一次检查需要释放，开机后报错过程中不需要释放电压
-				{
-						CtlSetMotor1LeftPwmPercent(CheckMotoTestPwmValue);
-						CtlSetMotor1RightPwmPercent(0);
-						CtlSetMotor2LeftPwmPercent(CheckMotoTestPwmValue);
-						CtlSetMotor2RightPwmPercent(0);
-				}
-        
+			  
+				CtlSetMotor1LeftPwmPercent(CheckMotoTestPwmValue);
+				CtlSetMotor1RightPwmPercent(0);
+				CtlSetMotor2LeftPwmPercent(CheckMotoTestPwmValue);
+				CtlSetMotor2RightPwmPercent(0);
+				
         for(uiTime = 0; uiTime < 400; uiTime ++)
         {
             ucTag1ms = FALSE;
@@ -1294,42 +1291,6 @@ void vSetTeacherPortInt(void)
     NVIC_Init(&NVIC_InitStructure); ///<Enable and set EXTI13 Interrupt to the lowest priority
 }
 
-unsigned char vGetAlarmNum(void)
-{
-    unsigned char alarmNum = 0;
-	
-	  if((ErroLowVoltage == ucErroType) || (ErroOverVoltage == ucErroType))
-    {
-        alarmNum = 0x01;
-    }
-    else if((ErroMoto1HighBriageBreak == ucErroType) || (ErroMoto1HighBriageShort == ucErroType))
-    {
-        alarmNum = 0x02;
-    }
-    else if((ErroMoto2HighBriageBreak == ucErroType) || (ErroMoto2HighBriageShort == ucErroType))
-    {
-        alarmNum = 0x04;
-    }
-    else if((ErroMoto1Break == ucErroType) || (ErroNoBearker == ucErroType))
-    {
-        alarmNum = 0x03;
-    }
-    else if(ErroMoto2Break == ucErroType)
-    {
-        alarmNum = 0x05;
-    }
-    else if((ErroRelayShort == ucErroType) || (ErroRelayBreak == ucErroType))
-    {
-        alarmNum = 0x08;
-    }
-    else if(ErroNoRemote == ucErroType)
-    {
-        alarmNum = 0x07;
-    }
-    
-		return alarmNum;
-}
-
 void vShowErroToDis(unsigned char ucErroNum)
 {
     unsigned char ucDataBuf[5] = {0};
@@ -1344,12 +1305,39 @@ void vShowErroToDis(unsigned char ucErroNum)
     CtlPowerOnTest_OFF;
     CtrlExtSpeekerDis;
 		
-		ucShowErroLasted = ucShowErroNew = ucShowErro = vGetAlarmNum();
-		
-		if(ErroNoCheckSys != ucErroType){
-		    ucDataBuf[0] = LastErroSaveAtEepromAdd;
+		if((ErroLowVoltage == ucErroType) || (ErroOverVoltage == ucErroType))
+    {
+        ucShowErro = 0x01;
+    }
+    else if((ErroMoto1HighBriageBreak == ucErroType) || (ErroMoto1HighBriageShort == ucErroType))
+    {
+        ucShowErro = 0x02;
+    }
+    else if((ErroMoto2HighBriageBreak == ucErroType) || (ErroMoto2HighBriageShort == ucErroType))
+    {
+        ucShowErro = 0x04;
+    }
+    else if((ErroMoto1Break == ucErroType) || (ErroNoBearker == ucErroType))
+    {
+        ucShowErro = 0x03;
+    }
+    else if(ErroMoto2Break == ucErroType)
+    {
+        ucShowErro = 0x05;
+    }
+    else if((ErroRelayShort == ucErroType) || (ErroRelayBreak == ucErroType))
+    {
+        ucShowErro = 0x08;
+    }
+    else if(ErroNoRemote == ucErroType)
+    {
+        ucShowErro = 0x07;
+    }
+    else if(ErroNoCheckSys != ucErroType)
+    {
+        ucDataBuf[0] = LastErroSaveAtEepromAdd;
         ucDataBuf[1] = 11;
-		}
+    }
     
     ucDataBuf[0] = LastErroSaveAtEepromAdd;
     if((0x0F & ucLastErro) == ucShowErro) //如果上次的错误与本次错误一致  记录上次错误的次数
@@ -1377,21 +1365,6 @@ void vShowErroToDis(unsigned char ucErroNum)
         ucTag1ms = FALSE;
         while(FALSE == ucTag1ms);
 			
-			  //如果有 硬件（各模块）异常
-			  if( ErroNoCheckSys != ucErroType || ErroNoErro != ucErroType)
-				{
-					 //检测 硬件（各模块）异常是否恢复
-				   vCheckSystemInfo(DISABLE);//去检查各模块是否正常地待命
-					 ucShowErroNew = vGetAlarmNum();
-					 if(ucShowErroNew != ucShowErroLasted){
-					   ucTag100ms = FALSE;
-				     while(FALSE == ucTag100ms);
-				     vSendOneByteOrder(OrderErro, ucShowErroNew);
-						 ucShowErroLasted = ucShowErroNew;
-						 uiTimeCont = 0;
-					 }
-				}
-			
         if(ReadKeyOfOn_OffFlag || ucAnlyFree)//如果有电源按键或者是示教通信
         {
             if(FALSE == ucShowErro) vSendSingleOrder(QuitErro);//只退出一次报警
@@ -1408,17 +1381,9 @@ void vShowErroToDis(unsigned char ucErroNum)
         {
             break;
         }
-				if(ErroNoErro == ucErroType)
-        {
-					break;
-				}
     }
     vSendSingleOrder(QuitErro);
-    if(ErroNoErro != ucErroType  && ErroNoCheckSys != ucErroType )
-    {
-			 //如果报警结束还有异常就关机
-		   vAutoPowerOffTimeFlag();
-		}
+		vAutoPowerOffTimeFlag();
 }
 void vReadEepromData(void)
 {
