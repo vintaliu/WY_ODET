@@ -242,6 +242,7 @@ void TMR14_GLOBAL_IRQHandler(void)//Mlx90393Used
 *	·µ »Ø Öµ: ÎÞ
 *********************************************************************************************************
 */
+unsigned short usCheckRemoteTimeCnt = 0;
 void TMR16_GLOBAL_IRQHandler(void)//500us
 {
     if (TMR_GetINTStatus(TMR16, TMR_INT_Overflow) != RESET)
@@ -252,6 +253,7 @@ void TMR16_GLOBAL_IRQHandler(void)//500us
         vCheckHardWareErro();
         if(ucEnAdcCalc)vDealAdcVaule();// 1ms
         uiTimeCont++;
+			  usCheckRemoteTimeCnt++;
         uiTimeCont %= 100000;
         ucTag1ms = TRUE;
         if(4 == uiTimeCont % 5)ucTag5ms = TRUE;
@@ -259,6 +261,12 @@ void TMR16_GLOBAL_IRQHandler(void)//500us
         if(99 == uiTimeCont % 100)ucTag100ms = TRUE;
         if(299 == uiTimeCont % 300)ucTag300ms = TRUE;
         if(399 == uiTimeCont % 400)ucTag400ms = TRUE;
+			  if(ReadTeachPinIsConect)
+				{
+					if(++ucInChargePinLowCont >= InChargePinLowCont)ucInChargePinLowCont = InChargePinLowCont;
+				}
+				else ucInChargePinLowCont = 0;
+			  
         TMR_ClearITPendingBit(TMR16, TMR_INT_Overflow);
     }
 }

@@ -17,9 +17,6 @@ void vCheckHardWareErro(void);//去检查硬件错误
 #define FirstDownPwm 800//第一次减速所到的位置
 volatile struct strSysTemInfo strSysInfo = {0};//系统一些状态结构体的定义
 volatile struct strMotorInfo strMoto1Info = {0}, strMoto2Info = {0};//两个电机的一些信息  strMoto1Info->X电机   strMoto2Info—>Y电机
-// ucSpeedDowenFlag 刹车标志 
-//      TRUE 表示  开启刹车器（即电机被刹住抱死，不允许转动）
-//      FALSE 表示 关掉刹车器（即电机被松开刹车，允许转动）
 volatile unsigned char ucSpeedDowenFlag = FALSE;
 // void vDelayms(u32 uiDelayTime);//
 void vDelay30us(u32 uiDelayTime);
@@ -951,8 +948,20 @@ void vDownSpeedCalcPwm(unsigned char ucFlag)//智能刹车
         vDelay30usBreak(uniDiverInfo.strDirverAtt.ucBreakAccPare);
         if(ErroNoErro == ucErroType)
         {
-					  strSysInfo.uiRemoteNowYPos = vDmaContAdcVaule[0][RemoteYAdcCh];//DMA直接采样的数据  
-					  strSysInfo.uiRemoteNowXPos = vDmaContAdcVaule[0][RemoteXAdcCh];//DMA直接采样的数据  
+					  if(ucInChargePinLowCont >= InChargePinLowCont)
+						{
+							strSysInfo.uiRemoteNowXPos = FactoryRemoteMidXPos;
+							strSysInfo.uiRemoteNowYPos = FactoryRemoteMidYPos;
+						}
+						else
+						{
+							if(vDmaContAdcVaule[0][RemoteYAdcCh] < 200)strSysInfo.uiRemoteNowYPos = FactoryRemoteMidYPos;
+							else strSysInfo.uiRemoteNowYPos = vDmaContAdcVaule[0][RemoteYAdcCh];//DMA直接采样的数据  
+							if(vDmaContAdcVaule[0][RemoteXAdcCh] < 200)strSysInfo.uiRemoteNowXPos = FactoryRemoteMidYPos;
+							else strSysInfo.uiRemoteNowXPos = vDmaContAdcVaule[0][RemoteXAdcCh];//DMA直接采样的数据  
+							if((vDmaContAdcVaule[0][RemoteYAdcCh] < 200) || (vDmaContAdcVaule[0][RemoteXAdcCh] < 200))strSysInfo.uiRemoteNowXPos = strSysInfo.uiRemoteNowYPos = FactoryRemoteMidYPos;
+						}
+
             ucNewDirectCont = ucCalcDirection();//如果在刹车的过程中一但有电机转动，立即退出当前的状态
             //if(strSysInfo.uiCalcSysShowPower > CheckLowAlarmVoltage)//低电压依旧执行刹车过程
             {
@@ -1304,7 +1313,6 @@ void vRunMotor(unsigned char ucDirctionData)
     unsigned int uiOverCurrentCntNextReachTime = 0;   //超流计数器  下次超过的时间
 		float fRunInFrontSpeedPare = 1.0f;
     usMaxDriverCurrent = 2510;//最大驱动电流//给2435的电流
-		
 
 #ifdef UsedYingKe50A
     if(35 == uniDiverInfo.strDirverAtt.ucMaxDriverCurrent)usMaxDriverCurrent = 2510;//如果编程器的设置是35A
@@ -1334,7 +1342,7 @@ void vRunMotor(unsigned char ucDirctionData)
     fStep2SpeedPare = 1 - 3 * fRunInFrontSpeedPare;
     fStep1SpeedPare = 1 - 4 * fRunInFrontSpeedPare;//进入主程序，先算出几个速度标量的分度值
 		////////////////////////////修改速度档位比例分配法
-		
+
     if(uniDiverInfo.strDirverAtt.ucSwerveMaxSpeedP > uniDiverInfo.strDirverAtt.ucSwerveMinSpeedP)
     {
         iDeltPwmX = uniDiverInfo.strDirverAtt.ucSwerveMaxSpeedP - uniDiverInfo.strDirverAtt.ucSwerveMinSpeedP;
@@ -2930,6 +2938,7 @@ void vDealAdcVaule(void)//运算一个周期413us
     u16 usMaxData = 0, usMinData = 0xFFFF, usTempData;
     u32 uiTempData = 0;
     u8 ucTemp;
+	  unsigned char ucErroRemoteCnt = 0;
     //#define DividTimes 1
     //      		CtlTestLedON;
     //刹车器动作电压检测CH0
@@ -2948,9 +2957,16 @@ void vDealAdcVaule(void)//运算一个周期413us
     }
     //uiTempData = (uiTempData - usMaxData - usMinData) >> DividTimes;//这里的OneChannelConvertTimes一定是10才好使的
     uiTempData = ((uiTempData - usMaxData - usMinData) / (OneChannelConvertTimes - 2));
-    uiTempData = (uiTempData >> 2); //由于在定时器里做的低通滤波器,一定不要用乘除法
+    usMaxData = uiTempData = (uiTempData >> 2); //由于在定时器里做的低通滤波器,一定不要用乘除法
     uiTempData += ((strSysInfo.uiRemoteNowYPos << 2) - strSysInfo.uiRemoteNowYPos) >> 2; // As C = S/4+(C*3)/4
-    strSysInfo.uiRemoteNowYPos = uiTempData;
+
+		if(ucInChargePinLowCont >= InChargePinLowCont)strSysInfo.uiRemoteNowYPos = FactoryRemoteMidYPos;
+		if(vDmaContAdcVaule[0][RemoteYAdcCh] < 200)//直接从DMA获取数据最为准确
+		{
+			ucErroRemoteCnt |= 0x01;
+			strSysInfo.uiRemoteNowYPos = FactoryRemoteMidYPos;
+		}
+		else strSysInfo.uiRemoteNowYPos = uiTempData;
     usMaxData = 0;
     usMinData = 0xFFFF;
     uiTempData = 0;
@@ -2973,9 +2989,26 @@ void vDealAdcVaule(void)//运算一个周期413us
 
 
     uiTempData = ((uiTempData - usMaxData - usMinData) / (OneChannelConvertTimes - 2));
-    uiTempData = (uiTempData >> 2); //由于在定时器里做的低通滤波器,一定不要用乘除法
+    usMaxData = uiTempData = (uiTempData >> 2); //由于在定时器里做的低通滤波器,一定不要用乘除法
     uiTempData += ((strSysInfo.uiRemoteNowXPos << 2) - strSysInfo.uiRemoteNowXPos) >> 2; // As C = S/4+(C*3)/4
-    strSysInfo.uiRemoteNowXPos = uiTempData;
+		if(ucInChargePinLowCont >= InChargePinLowCont)strSysInfo.uiRemoteNowXPos = FactoryRemoteMidXPos;
+		if(vDmaContAdcVaule[0][RemoteXAdcCh] < 200)//直接从DMA获取数据最为准确
+		{
+			ucErroRemoteCnt |= 0x02;
+			strSysInfo.uiRemoteNowXPos = FactoryRemoteMidXPos;
+		}
+		else strSysInfo.uiRemoteNowXPos = uiTempData;
+		
+		if(ucErroRemoteCnt)strSysInfo.uiRemoteNowXPos = strSysInfo.uiRemoteNowYPos = FactoryRemoteMidYPos;
+	
+		if(0x03 == ucErroRemoteCnt)
+		{
+				if(usCheckRemoteTimeCnt >= 500)
+				{
+					ucErroType = ErroNoRemote;
+					usCheckRemoteTimeCnt = 0xFFFE;
+				}
+		}
     usMaxData = 0;
     usMinData = 0xFFFF;
     uiTempData = 0;
@@ -3428,7 +3461,7 @@ void vDealAdcVauleMotoAndCurrent(void)
 
 unsigned char ucJudgeMotoBreakResult = 0;
 
-extern unsigned char ucInChargePinLowCont;
+//unsigned char ucInChargePinLowCont = 0;
 
 void SlopModeAdjus_Init(SLOPMODEADJUST_t *p)
 {

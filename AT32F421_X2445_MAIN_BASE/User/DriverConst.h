@@ -19,7 +19,7 @@
 //#define AutoBattIdenConfigDef  //是否使用电池类型识别
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
-#define UsedLinSuanTieLi    //如果使用磷酸铁锂电--如果是三元锂电。要注释掉                ///@@@@
+//#define UsedLinSuanTieLi    //如果使用磷酸铁锂电--如果是三元锂电。要注释掉                ///@@@@
 //#define UsedYingKe50A       //英科50A控制器                                               ///@@@@
 #define UartTxOdMode        //串口发送是开漏模式                                          ///@@@@
 #define AutoPowerOffTime   20//无操作自动关机时间 单位为分钟                             ///@@@@
@@ -289,6 +289,7 @@ extern unsigned char ucRunAsMode;//系统当前运行的状态
 extern unsigned char ucPowerKeyPressTimes;
 extern unsigned char  ucAnlyFree;
 extern unsigned char ucLastErro;
+extern unsigned char ucInChargePinLowCont;
 #ifdef BreakTabUsed_Ram
 	extern unsigned short uiBreakPwmTab[3605];//刹车曲线数组表，只有在开机的时候或者是参数改变的情况下才去计算一下的
 #else
@@ -359,7 +360,7 @@ extern unsigned char ucAutoBattIdenConfigData;//电池自动识别数据
 #define Reverse           	0x02
 
 #define KeyHoldTime 25//按键消抖时间
-#define InChargePinLowCont  5//只有充电插头插入2秒的样子的时候 才去指示充电的
+#define InChargePinLowCont  20//只有充电插头插入2秒的样子的时候 才去指示充电的
 
 #define PowerOffTime (AutoPowerOffTime*60*1000)/10
 
@@ -676,6 +677,6 @@ extern SLOPMODEADJUST_t  MotoBSlopModeAdjust;
 extern unsigned char ucMingRuiErrConst;
 extern void PwmDataInit(void);
 
-
+extern unsigned short usCheckRemoteTimeCnt;
 #endif
 
