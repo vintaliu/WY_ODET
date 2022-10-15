@@ -19,7 +19,7 @@
 //#define AutoBattIdenConfigDef  //是否使用电池类型识别
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
-#define UsedLinSuanTieLi    //如果使用磷酸铁锂电--如果是三元锂电。要注释掉                ///@@@@
+//#define UsedLinSuanTieLi    //如果使用磷酸铁锂电--如果是三元锂电。要注释掉                ///@@@@
 //#define UsedYingKe50A       //英科50A控制器                                               ///@@@@
 #define UartTxOdMode        //串口发送是开漏模式                                          ///@@@@
 #define AutoPowerOffTime   20//无操作自动关机时间 单位为分钟                             ///@@@@
