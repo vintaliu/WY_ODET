@@ -19,7 +19,7 @@
 //#define AutoBattIdenConfigDef  //是否使用电池类型识别
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
-//#define UsedLinSuanTieLi    //如果使用磷酸铁锂电--如果是三元锂电。要注释掉                ///@@@@
+#define UsedLinSuanTieLi    //如果使用磷酸铁锂电--如果是三元锂电。要注释掉                ///@@@@
 //#define UsedYingKe50A       //英科50A控制器                                               ///@@@@
 #define UartTxOdMode        //串口发送是开漏模式                                          ///@@@@
 #define AutoPowerOffTime   20//无操作自动关机时间 单位为分钟                             ///@@@@
@@ -117,7 +117,7 @@
 #define UsartRxPin                       				   GPIO_Pins_11
 
 #define ExPortSpeekerPort            	GPIOB
-#define ExPortSpeekerPin             	GPIO_Pins_11// 外接高音喇叭 PB11
+#define ExPortSpeekerPin             	GPIO_Pins_11// 外接高音喇叭 PB12
 
 #define  TeachModeTestPort          	GPIOA
 #define  TeachModeTestPin	            GPIO_Pins_12//当是，示教情况下的检测口
@@ -224,7 +224,7 @@ extern void vInitPort(void);//对单片机io口的初始化工作
 extern void vSysTemSourceAsActive(void);//对系统用到的资源的初始化
 extern unsigned char ucPowerOnCotrol(void);//对上电工作的处理，主要是按键一块
 extern void vDealReadProgramPin(void);//读取上电
-extern void vCheckSystemInfo(FunctionalState checkMotoTestPwmFlag);//对系统一些功能模块的测试工作
+extern void vCheckSystemInfo(void);//对系统一些功能模块的测试工作
 
 extern void vContolRealize(void);//对控制的实现
 extern unsigned char ucCalcDirection(void);//计算摇杆的控制方向
