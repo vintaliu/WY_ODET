@@ -1296,8 +1296,6 @@ void vShowErroToDis(unsigned char ucErroNum)
     unsigned char ucDataBuf[5] = {0};
     unsigned int uiTimeCont = 0;
     unsigned char ucShowErro = 0;
-		unsigned char ucShowErroNew = 0;
-		unsigned char ucShowErroLasted = 0;
 
     if(ucErroNum)ucErroType = ucErroNum;
     CtlDriverPowerContolOFF;
