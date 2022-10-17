@@ -224,7 +224,7 @@ extern void vInitPort(void);//对单片机io口的初始化工作
 extern void vSysTemSourceAsActive(void);//对系统用到的资源的初始化
 extern unsigned char ucPowerOnCotrol(void);//对上电工作的处理，主要是按键一块
 extern void vDealReadProgramPin(void);//读取上电
-extern void vCheckSystemInfo(void);//对系统一些功能模块的测试工作
+extern void vCheckSystemInfo(FunctionalState checkMotoTestPwmFlag);//对系统一些功能模块的测试工作
 
 extern void vContolRealize(void);//对控制的实现
 extern unsigned char ucCalcDirection(void);//计算摇杆的控制方向
