@@ -542,7 +542,7 @@ unsigned char ucCheckMotoConnect(void)//检测电机连接情况
 #define  ErroRemoteAlarmFlashLedTimeMs   120
 #define  ErroRemoteAlarmWaiteTime         4
 #define  RelaesPowerValue  1800//当电压小于 16.9v的时候 不要去释放电压了
-void vCheckSystemInfo(FunctionalState checkMotoTestPwmFlag)
+void vCheckSystemInfo(FunctionalState checkFirstFlag)
 {
     u32 uiTempXDelt, uiTempYDelt ;
     unsigned int uiTime = 0;
@@ -573,7 +573,7 @@ void vCheckSystemInfo(FunctionalState checkMotoTestPwmFlag)
     {
         uiTempXDelt *= 9;
         uiTempXDelt /= 10;
-			  if(ENABLE == checkMotoTestPwmFlag)//如果需要释放 电池 电压，开机第一次检查需要释放，开机后报错过程中不需要释放电压
+			  if(ENABLE == checkFirstFlag)//如果需要释放 电池 电压，开机第一次检查需要释放，开机后报错过程中不需要释放电压
 				{
 						CtlSetMotor1LeftPwmPercent(CheckMotoTestPwmValue);
 						CtlSetMotor1RightPwmPercent(0);
@@ -671,16 +671,19 @@ void vCheckSystemInfo(FunctionalState checkMotoTestPwmFlag)
             uiTempYDelt = strSysInfo.uiSysTemPower * BreakRightBreakAdcP; //右电机比例值
             if((strSysInfo.uiBreakFeedBackCurrent >= (uiTempXDelt - AlowBreakAdcErro)) && (strSysInfo.uiBreakFeedBackCurrent <= (uiTempXDelt + AlowBreakAdcErro)))
             {
+							  CtlPowerOnTest_OFF;
                 ucErroType = ErroMoto2Break; //左刹车器坏掉
                 return;
             }
             else if((strSysInfo.uiBreakFeedBackCurrent >= (uiTempYDelt - AlowBreakAdcErro)) && (strSysInfo.uiBreakFeedBackCurrent <= (uiTempYDelt + AlowBreakAdcErro)))
             {
+							  CtlPowerOnTest_OFF;
                 ucErroType = ErroMoto1Break; //左刹车器坏掉
                 return;
             }
             else if(strSysInfo.uiBreakFeedBackCurrent < (strSysInfo.uiSysTemPower * NoBreakAdcP + AlowBreakAdcErro) )
             {
+							  CtlPowerOnTest_OFF;
                 ucErroType = ErroNoBearker ; //如果是两个刹车器都坏掉了
                 return;
             }
@@ -697,12 +700,14 @@ void vCheckSystemInfo(FunctionalState checkMotoTestPwmFlag)
         {
             if(C_ReadLeftMotoBreak_Pin_Low)
             {
+							  CtlPowerOnTest_OFF;
                 ucErroType = ErroMoto1Break; //左刹车器坏掉
                 if(TRUE == uniDiverInfo.strDirverAtt.unMotorInfo.bits.bChangeMotor1Motor2)ucErroType = ErroMoto2Break; //左刹车器坏掉
                 return;
             }
             if(C_ReadRightMotoBreak_Pin_Low)
             {
+							  CtlPowerOnTest_OFF;
                 ucErroType = ErroMoto2Break; //左刹车器坏掉
                 if(TRUE == uniDiverInfo.strDirverAtt.unMotorInfo.bits.bChangeMotor1Motor2)ucErroType = ErroMoto1Break; //左刹车器坏掉
 
@@ -710,6 +715,7 @@ void vCheckSystemInfo(FunctionalState checkMotoTestPwmFlag)
             }
             if(C_ReadLeftMotoBreak_Pin_Low && C_ReadRightMotoBreak_Pin_Low)
             {
+							  CtlPowerOnTest_OFF;
                 ucErroType = ErroNoBearker ; //如果是两个刹车器都坏掉了
                 return;
             }
@@ -1413,6 +1419,7 @@ void vShowErroToDis(unsigned char ucErroNum)
 					break;
 				}
     }
+		
     vSendSingleOrder(QuitErro);
     if(ErroNoErro != ucErroType  && ErroNoCheckSys != ucErroType )
     {
