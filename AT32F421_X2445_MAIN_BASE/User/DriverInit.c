@@ -1339,7 +1339,7 @@ unsigned char vGetAlarmNum(void)
 void vShowErroToDis(unsigned char ucErroNum)
 {
     unsigned char ucDataBuf[5] = {0};
-    unsigned int uiTimeCont = 0;
+    unsigned int uiTimeContTmp = 0;
     unsigned char ucShowErro = 0;
 		unsigned char ucShowErroNew = 0;
 		unsigned char ucShowErroLasted = 0;
@@ -1370,7 +1370,7 @@ void vShowErroToDis(unsigned char ucErroNum)
     else ucDataBuf[1] = ucShowErro;
     vSendMultBytesOrder(WriteOneByte, ucDataBuf, 2);
 
-		for(uiTimeCont = 0; uiTimeCont < 5; uiTimeCont++)//报警延长时间
+		for(uiTimeContTmp = 0; uiTimeContTmp < 5; uiTimeContTmp++)//报警延长时间
 		{
 			   ucTag100ms = FALSE;
 				while(FALSE == ucTag100ms);
@@ -1378,7 +1378,7 @@ void vShowErroToDis(unsigned char ucErroNum)
 		}
 
     ucShowErro = FALSE;
-    for(uiTimeCont = 0; uiTimeCont < 40000; uiTimeCont++)//报警延长时间
+    for(uiTimeContTmp = 0; uiTimeContTmp < 60; uiTimeContTmp++)//报警延长时间
     {
         ucTag1ms = FALSE;
         while(FALSE == ucTag1ms);
@@ -1389,12 +1389,13 @@ void vShowErroToDis(unsigned char ucErroNum)
 					 //检测 硬件（各模块）异常是否恢复
 				   vCheckSystemInfo(DISABLE);//去检查各模块是否正常地待命
 					 ucShowErroNew = vGetAlarmNum();
+					ucShowErroNew = 0x08;
 					 if(ucShowErroNew != ucShowErroLasted){
 					   ucTag100ms = FALSE;
 				     while(FALSE == ucTag100ms);
 				     vSendOneByteOrder(OrderErro, ucShowErroNew);
 						 ucShowErroLasted = ucShowErroNew;
-						 uiTimeCont = 0;
+						 uiTimeContTmp = 0;
 					 }
 				}
 			
@@ -1404,7 +1405,7 @@ void vShowErroToDis(unsigned char ucErroNum)
             ucShowErro = TRUE;//如果下次还有示教内容。就不去报警了
             if(ucAnlyFree)//如果有示教内容
             {
-                uiTimeCont = 0;//清空延时变量
+                uiTimeContTmp = 0;//清空延时变量
                 vAnalyTeacherDataOfTime();//如果有示教器发过来的数据这时候要去处理下
             }
             if(ReadKeyOfOn_OffFlag) break;
