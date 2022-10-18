@@ -1259,7 +1259,7 @@ void vRunMotor(unsigned char ucDirctionData)
 #ifdef UsedYingKe50A
 #define MaxContinueOutCurrent  2080 //最大持续输出电流，不管堵转多长时间都有电流输出
 #else
-#define MaxContinueOutCurrent  1680 //最大持续输出电流，不管堵转多长时间都有电流输出	
+#define MaxContinueOutCurrent  1616 //最大持续输出电流，不管堵转多长时间都有电流输出	
 #endif
 #define CurrentReduceDeltTime  80//逐级降电流，时间间隔
 #define MaxCurrentHoldLonTime  5000//最大电流持续时间
@@ -1308,12 +1308,12 @@ void vRunMotor(unsigned char ucDirctionData)
 
 #ifdef UsedYingKe50A
     if(35 == uniDiverInfo.strDirverAtt.ucMaxDriverCurrent)usMaxDriverCurrent = 2510;//如果编程器的设置是35A
-    else if(45 == uniDiverInfo.strDirverAtt.ucMaxDriverCurrent)usMaxDriverCurrent = 3800;//如果编程器的设置是45A
+    else if(45 == uniDiverInfo.strDirverAtt.ucMaxDriverCurrent)usMaxDriverCurrent = 2860;//如果编程器的设置是45A
     else if(50 == uniDiverInfo.strDirverAtt.ucMaxDriverCurrent)usMaxDriverCurrent = 3800;////如果编程器的设置是50A
     else if(uniDiverInfo.strDirverAtt.ucMaxDriverCurrent > 30)usMaxDriverCurrent = 3800;//如果是沿用以前的设置方法
 #else
     if(35 == uniDiverInfo.strDirverAtt.ucMaxDriverCurrent)usMaxDriverCurrent = 2510;//如果编程器的设置是35A
-    else if(45 == uniDiverInfo.strDirverAtt.ucMaxDriverCurrent)usMaxDriverCurrent = 3000;//如果编程器的设置是45A
+    else if(45 == uniDiverInfo.strDirverAtt.ucMaxDriverCurrent)usMaxDriverCurrent = 2650;//如果编程器的设置是45A
     else if(50 == uniDiverInfo.strDirverAtt.ucMaxDriverCurrent)usMaxDriverCurrent = 3000;////如果编程器的设置是50A
     else if(uniDiverInfo.strDirverAtt.ucMaxDriverCurrent > 30)usMaxDriverCurrent = 3000;//如果是沿用以前的设置方法
 #endif
