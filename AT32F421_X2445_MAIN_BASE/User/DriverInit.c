@@ -1389,7 +1389,6 @@ void vShowErroToDis(unsigned char ucErroNum)
 					 //检测 硬件（各模块）异常是否恢复
 				   vCheckSystemInfo(DISABLE);//去检查各模块是否正常地待命
 					 ucShowErroNew = vGetAlarmNum();
-					ucShowErroNew = 0x08;
 					 if(ucShowErroNew != ucShowErroLasted){
 					   ucTag100ms = FALSE;
 				     while(FALSE == ucTag100ms);
